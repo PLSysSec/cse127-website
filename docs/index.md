@@ -1,35 +1,106 @@
-This course focuses on computer and network security, covering a wide range of topics on both the "defensive" and "offensive" side of this field. Among these will be code security and exploitation (buffer overflows, race conditions, SQL injection, etc), access control and authentication, covert channels, protocol attacks, firewalls, intrusion detection/prevension, viruses/worms and bots, spyware and phising, denial-of-service, privacy/anonymity, and computer forensics. The goal of the course is to provide an appreciation of how to think adversarially with respect to computer systems as well as an appreciation of how to reason about attacks and defenses. 
+This course focuses on computer security, covering a wide range of topics on
+both the "defensive" and "offensive" side of this field. Among these will be
+systems security and exploitation (buffer overflows, race conditions, SQL
+injection, etc), access control and authentication, covert channels, network
+security, language-based security, denial-of-service, privacy and anonymity.
+The goal of the course is to provide an appreciation of how to think
+adversarially with respect to computer systems as well as an appreciation of
+how to reason about attacks and defenses. 
 
-To complete the projects in this course, you will need the ability to develop software programs using the C language, and some understanding of Assembly, PHP and SQL. We will not reach these in class and you will be expected to learn them on your own. If you do not know C, I recommend the classic, The C Programming Language, by Kernighan and Ritchie, because it is short and simple. 
+To complete the projects in this course, you will need the ability to develop
+software programs using the C language, and some understanding of x86 assembly,
+JavaScript, PHP and SQL. We will not reach these in class and you will be
+expected to learn them on your own. If you don't know C, K&R's [The C
+Programming Language](https://en.wikipedia.org/wiki/The_C_Programming_Language)
+is a great go to, but the [Hacking](https://nostarch.com/hacking2.htm) book is
+probably enough and covers some x86 assembly too.
 
-### Meeting time and locating
+#### Class details
 
-- **Location:** Solis 104
-- **Time:** Mondays and Wednesdays 6:30-7:50PM
+* **Lectures:** Mondays and Wednesdays, 6:30-7:50PM in SOLIS 104
+* **Section:** Tuesdays, 8:00-8:50PM in CENTER 105
+* **Staff email:** <ucsd-cse127-winter19@googlegroups.com>
+* **Piazza:** <https://piazza.com/ucsd/winter2019/cse127>
 
-### Discussion
+#### Textbook
 
-- **Location:** Center 105
-- **Time:** Tuesdays 8:00-8:50PM
+We will occasionally be assinging readings from Ross Anderson's [Security
+Engineering](https://www.cl.cam.ac.uk/~rja14/book.html) and various other
+online resources and papers.  We may also assign optional reading from Jon
+Erickson's [Hacking: The Art of
+Exploitation](https://nostarch.com/hacking2.htm).
 
-### Grading
+#### Course Staff
 
-We will grade based on homework assignments, one midterm and one final.
+- **Instructor:** [Deian Stefan](https://cseweb.ucsd.edu/~dstefan/)
+- **TAs:** Nadah Feteih, Jonathan Luck, Kaiser Pister, and [Michael Smith](https://www.spinda.net/).
 
-#### Homework projects (40%)
+#### Grading
 
-There will be x programming assignments for this class. Each will require you
-to exploit different vulnerabilities we discuss in class. 
 
-#### Midterm (25%)
+- 30% Homeworks assignments
+- 30% Midterm exam
+- 40% Final exam
+- +5% Participation in class and online
 
-The midterm will be a checkpoint exam.
+##### Homework and programming labs
 
-#### Final (35%)
+We will have homework assignments that are meant to both reinforce your
+knowledge of the concepts covered in lecture and get you to think about
+security in more depth, beyond what is covered lecture.
 
-The final will be comprehensive.
+You are expected to work on the assignments by yourself. You may discuss
+the assignments with students from the course, in general, but not any specific
+solution. There are no late days, but you will receive an additional 10% if you
+turn in your assignment by the early date.
 
-### Acknowledgements
+If you consult anything (books, academic papers, internet resources, people not
+in your group) when working on the assignments, note this in your submission.
+We encourage outside learning but expect you to not seek out specific details
+about a solution -- anything submitted should be considered your own work.
+Similarly, you are expected to not publish or otherwise share your solutions at
+any point (even after the class is over).  If you are unsure about what is
+allowed, please ask the course staff.
 
-The course structure and many of the ideas are influenced (or directly from)
-Stefan Savage
+##### Exams
+
+The midterm exam will be held in class on **TBA**. The midterm is
+**closed-book**, but you may use a double-sided cheat sheet (letter-size).
+
+The final exam will be held on March 20th in **TBA** from 7:00PM-9:59PM. You
+**must** take the exam at this time and location.  The final is
+**closed-book**, but you may use 2 double-sided cheat sheets (letter-size).
+
+The exams will make up 70% of your grade. Since the final is cumulative your
+midterm grade will be calculated as:
+
+```
+midterm > 0 ?  max(final, midterm) : 0
+```
+
+This means that (1) you basically get a second chance if you don't so well on
+the midterm and (2) you must show up to both the midterm and the final.  If you
+need to miss either exam because of a documented medical emergency, contact the
+instructor immediately.
+
+##### Participation/pre-lecture readings
+
+Before each class there will be some assigned reading. You are expected to do
+the reading and have at least a vague understanding of the concepts that will
+be discussed in class. This will allow us to spend the lecture time to solidify
+your understanding.  Asking and answering questions in class, on Piazza, or
+during office hours counts towards your class participation. 
+
+#### Acknowledgements
+
+The course structure and many of the ideas are influenced or directly from
+Stefan Savage, Kirill Levchenko, and Hovav Shacham.
+
+#### Academic integrity and student conduct
+
+By taking this course, you implicitly agree to abide by the UCSD policies on <a
+href="https://senate.ucsd.edu/Operating-Procedures/Senate-Manual/appendices/2">Integrity
+of Scholarship</a> and <a
+href="https://students.ucsd.edu/sponsor/student-conduct/">Student Conduct</a>.
+University rules on integrity of scholarship and code of conduct are taken
+seriously and will be enforced.
