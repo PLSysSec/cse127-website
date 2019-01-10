@@ -25,8 +25,8 @@ email.
 ### Teaching Assistant
 
 - **Name:** Nadah Feteih
-- **Email:** 
-- **Office Hours:** 
+- **Email:** nfeteih@eng.ucsd.edu
+- **Office Hours:** Tuesdays, CSE B240a 3:30-4:30pm
 
 ### Teaching Assistant
 
