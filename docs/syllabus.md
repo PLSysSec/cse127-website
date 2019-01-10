@@ -2,7 +2,7 @@
 :----------|:--------------------------------
 Jan  7     | [**Overview and introduction**](slides/lecture1.pdf) <br/> Optional reading: Chapter 0x200 of Hacking
 Jan  9     | [**Security Foundations**](slides/lecture2.pdf) <br/> Reading: Thompson's [Reflections on Trusting Trust](papers/thompson.pdf), [Ch 1](https://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c01.pdf), and [Ch 4.1-4.2](https://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c04.pdf)
-Jan 14     | discussion
+Jan 14     | In-class discussion
 Jan 16     |
 Jan 21     | **[MLK](https://en.wikipedia.org/wiki/Martin_Luther_King_Jr.) - no class**
 Jan 23     |
