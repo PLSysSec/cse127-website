@@ -16,13 +16,10 @@ post a private question or contact the course staff by email.
 ##### Teaching Assistants
 
 - **Name:** Nadah Feteih
-- **Office hours:** TBA
-<hr/>
-- **Name:** Jonathan Luck
-- **Office hours:** TBA
+- **Office Hours:** Tuesday 3:30PM-4:30PM in CSE B240a
 <hr/>
 - **Name:** Kaiser Pister
-- **Office hours:** TBA
+- **Office hours:** Wednesday 11AM-12PM in TBA
 <hr/>
 - **Name:** [Michael Smith](https://www.spinda.net/)
-- **Office hours:** TBA
+- **Office hours:** Thursday 6:15PM-7:15PM in CSE in TBA
