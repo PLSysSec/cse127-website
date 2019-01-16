@@ -22,4 +22,4 @@ post a private question or contact the course staff by email.
 - **Office hours:** Wednesday 11AM-12PM in TBA
 <hr/>
 - **Name:** [Michael Smith](https://www.spinda.net/)
-- **Office hours:** Thursday 6:15PM-7:15PM in CSE in TBA
+- **Office hours:** Thursday 6:30PM-7:30PM at the whiteboard outside CSE 3140
