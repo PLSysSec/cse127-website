@@ -21,7 +21,7 @@ post a private question or contact the course staff by email.
 ____
 
 - **Name:** Kaiser Pister
-- **Office hours:** Wednesday 11AM-12PM in TBA
+- **Office hours:** Wednesday 11AM-12PM at the whiteboard outside CSE 3140
 
 ____
 
