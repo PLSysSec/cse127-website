@@ -17,9 +17,13 @@ post a private question or contact the course staff by email.
 
 - **Name:** Nadah Feteih
 - **Office Hours:** Tuesday 3:30PM-4:30PM in CSE B240a
-<hr/>
+
+____
+
 - **Name:** Kaiser Pister
 - **Office hours:** Wednesday 11AM-12PM in TBA
-<hr/>
+
+____
+
 - **Name:** [Michael Smith](https://www.spinda.net/)
 - **Office hours:** Thursday 6:30PM-7:30PM at the whiteboard outside CSE 3140
