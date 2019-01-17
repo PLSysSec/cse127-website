@@ -150,3 +150,8 @@ our auto-grading server to your email address associated with this class. The em
 breakdown of the steps it took to grade your assignment, points earned (or not) at each step, and a
 total score which&mdash;apart from exceptional circumstances&mdash;you can consider your final
 grade for this sub-assignment.
+
+## Bugs
+
+If you find a bug in this assignment please create an issue
+[here](https://github.com/PLSysSec/cse127-winter19/issues).
