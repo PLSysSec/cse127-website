@@ -37,13 +37,14 @@ Exploitation](https://nostarch.com/hacking2.htm).
 
 #### Grading
 
-
 - 30% Homeworks assignments
 - 30% Midterm exam
 - 40% Final exam
 - +5% Participation in class and online
 
 ##### Homework and programming labs
+
+- [**Assignment 1**](pa1) (20 pts), due Sunday, January 27, 2019 by 11:59:59 PM
 
 We will have homework assignments that are meant to both reinforce your
 knowledge of the concepts covered in lecture and get you to think about
