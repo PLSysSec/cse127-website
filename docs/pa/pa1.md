@@ -66,7 +66,6 @@ recommend the following workflow in GDB:
     - `where` &mdash; view stack frames
     - `x <loc>` &mdash; examine memory
     - `x $eip` &mdash; examine current instruction pointer
-    - `x $ebp+4` &mdash; examine return address
     - `x /10x $esp` &mdash; examine 10 words at top of stack
     - `x /10x buf` &mdash; examine 10 words in `buf`
     - `x /10i $eip` &mdash; examine 10 instructions starting at instruction pointer
