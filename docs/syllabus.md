@@ -3,15 +3,15 @@
 Jan  7     | [**Overview and introduction**](slides/lecture1.pdf) <br/> Optional reading: Chapter 0x200 of Hacking
 Jan  9     | [**Security Foundations**](slides/lecture2.pdf) <br/> Reading: Thompson's [Reflections on Trusting Trust](papers/thompson.pdf), [Ch 1](https://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c01.pdf), and [Ch 4.1-4.2](https://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c04.pdf)
 Jan 14     | [**Security Foundations (in-class discussion)**](slides/lecture3.pdf) [Kirill's slides](https://cseweb.ucsd.edu/classes/fa17/cse127-b/lec2.pdf)
-Jan 16     | [**Low-level Software Security I: Buffer Overflows**](slides/lecture4.pdf) <br/> Reading: Aleph One's [Smashing the Stack for Fun and Profit](http://phrack.org/issues/49/14.html#article) <br/> Optional reading: 0x300-0x320 from Hacking. 0x200-0x270 if you don't have a strong C background.
+Jan 16     | [**Low-level Software Security I**](slides/lecture4.pdf) <br/> Reading: Aleph One's [Smashing the Stack for Fun and Profit](http://phrack.org/issues/49/14.html#article) <br/> Optional reading: 0x300-0x320 from Hacking. 0x200-0x270 if you don't have a strong C background.
 Jan 21     | **[MLK](https://en.wikipedia.org/wiki/Martin_Luther_King_Jr.) - no class**
-Jan 23     |
+Jan 23     | **Low-level Software Security II** <br/> Reading: [Eternal War in Memory](papers/eternal-war-in-memory.pdf) by Szekeres et al., [ASLR](https://pax.grsecurity.net/docs/aslr.txt), and [NOEXEC](https://pax.grsecurity.net/docs/noexec.txt)
 Jan 28     |
 Jan 30     |
 Feb  4     |
 Feb  6     |
 Feb 11     |
-Feb 13     |
+Feb 13     | **Midterm exam (in-class)**
 Feb 18     | **President's day - no class**
 Feb 20     |
 Feb 25     |
