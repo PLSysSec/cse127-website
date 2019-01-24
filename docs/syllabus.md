@@ -6,7 +6,7 @@ Jan 14     | [**Security Foundations (in-class discussion)**](slides/lecture3.pd
 Jan 16     | [**Low-level Software Security I**](slides/lecture4.pdf) <br/> Reading: Aleph One's [Smashing the Stack for Fun and Profit](http://phrack.org/issues/49/14.html#article) <br/> Optional reading: 0x300-0x320 from Hacking. 0x200-0x270 if you don't have a strong C background.
 Jan 21     | **[MLK](https://en.wikipedia.org/wiki/Martin_Luther_King_Jr.) - no class**
 Jan 23     | [**Low-level Software Security II**](slides/lecture5.pdf) <br/> Reading: [Eternal War in Memory](papers/eternal-war-in-memory.pdf) by Szekeres et al., [ASLR](https://pax.grsecurity.net/docs/aslr.txt), and [NOEXEC](https://pax.grsecurity.net/docs/noexec.txt)
-Jan 28     |
+Jan 28     | **Low-level Software Security III** <br/> Reading: [On the Effectiveness of Address-Space Randomization](papers/shacham:aslr.pdf) by Shacham et al. and [The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls (on the x86)](papers/shacham:rop.pdf) by Shacham
 Jan 30     |
 Feb  4     |
 Feb  6     |
