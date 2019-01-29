@@ -63,7 +63,7 @@ allowed, please ask the course staff.
 
 ##### Exams
 
-The midterm exam will be held in class on **TBA**. The midterm is
+The midterm exam will be held in class on February 13th. The midterm is
 **closed-book**, but you may use a double-sided cheat sheet (letter-size).
 
 The final exam will be held on March 20th in **TBA** from 7:00PM-9:59PM. You
