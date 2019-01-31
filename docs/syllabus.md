@@ -7,8 +7,8 @@ Jan 16     | [**Low-level Software Security I**](slides/lecture4.pdf) <br/> Read
 Jan 21     | **[MLK](https://en.wikipedia.org/wiki/Martin_Luther_King_Jr.) - no class**
 Jan 23     | [**Low-level Software Security II**](slides/lecture5.pdf) <br/> Reading: [Eternal War in Memory](papers/eternal-war-in-memory.pdf) by Szekeres et al., [ASLR](https://pax.grsecurity.net/docs/aslr.txt), and [NOEXEC](https://pax.grsecurity.net/docs/noexec.txt)
 Jan 28     | [**Low-level Software Security III**](slides/lecture6.pdf) <br/> Reading: [On the Effectiveness of Address-Space Randomization](papers/shacham:aslr.pdf) by Shacham et al., [The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls (on the x86)](papers/shacham:rop.pdf) by Shacham, and [Hacking BLind](papers/bittau:brop.pdf) by Bittau et al.
-Jan 30     | **Low-level Software Security IV** <br/> Reading: [Control-Flow Integrity](papers/abadi:cfi.pdf) by Abadi et al., [Control-Flow Bending: On the Effectiveness of Control-Flow Integrity](papers/carlini:cfb.pdf) by Carlini et al., and [Oscar: A Practical Page-Permissions-Based Scheme for Thwarting Dangling Pointers](papers/dang:oscar.pdf) by Dang et al.
-Feb  4     |
+Jan 30     | [**Low-level Software Security IV**](slides/lecture7.pdf) <br/> Reading: [Control-Flow Integrity](papers/abadi:cfi.pdf) by Abadi et al., [Control-Flow Bending: On the Effectiveness of Control-Flow Integrity](papers/carlini:cfb.pdf) by Carlini et al. and [Control-Flow Integrity: Precision, Security, and Performance](papers/burow:cfi.pdf) by Burow et al. 
+Feb  4     | **Memory safety and isolation** <br/> Reading [Oscar: A Practical Page-Permissions-Based Scheme for Thwarting Dangling Pointers](papers/dang:oscar.pdf) by Dang et al., Bringing Memory Safety to WebAssembly (see Piazza), and [Efficient Software-Based Fault Isolation](papers/wahbe:sfi.pdf) by Wahbe et al.
 Feb  6     |
 Feb 11     |
 Feb 13     | **Midterm exam (in-class)**
