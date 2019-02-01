@@ -63,7 +63,7 @@ To complete the assignment, you will need to: generate targets specific to your 
 
 Run `make generate` in the `targets` directory to create the four target source files specific to you. This will prompt you for your student ID (`A########` or `U########`), which will be used to randomize portions of the contents of `target1.c`-`target4.c`.
 
-Next, then run `make` to build the target binaries `target1`-`target4`.
+Run `make` to build the target binaries `target1`-`target4`.
 
 Run `sudo make install` to copy the binaries into the `/tmp` directory.
 
