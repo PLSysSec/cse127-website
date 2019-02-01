@@ -4,32 +4,26 @@
 
 **Early Turn-In: Thursday, February 7, 2019 by 11:59:59 PM (10% bonus)**
 
-The goal of this assignment is to gain hands-on experience with the effects of buffer 
-overflows and other memory-safety bugs. 
-You will be provided a skeleton for implementing these exploits in C. 
-You must not discuss your solution with other students until three days after the assignment deadline. 
-You may consult any online references you wish. 
-If you use any code in your answer that you did not write yourself, you must document that fact. 
-Failure to do so will be considered a violation of the academic integrity policy.
+The goal of this assignment is to gain hands-on experience with the effects of buffer overflows and other memory-safety bugs.
 
-## Getting Started 
+- You will be provided a skeleton for implementing these exploits in C.
+- You must not discuss your solution with other students until three days after the assignment deadline.
+- You may consult any online references you wish.
+- If you use any code in your answer that you did not write yourself, you must document that fact. Failure to do so will be considered a violation of the academic integrity policy.
+
+## Getting Started
 
 To complete this assignment you will be provided with a VirtualBox VM and a set of files including a turn-in script.
 
 ### VM Image
 
-In order to match the environment in which your submission will be graded, 
-all work for this assignment must be done on the VirtualBox VM we have provided named cfbox. 
-Do not create a VM in the Virtualbox software and then load the image from the link below. 
-Instead, double click on the file provided below to initialize a VM with the proper configuration. 
-You can download the VM image [**here**](https://drive.google.com/file/d/1IGTFd60VijSqUw3r_pOSBBSj5-qt02-7/view?usp=sharing).
+In order to match the environment in which your submission will be graded, all work for this assignment must be done on the VirtualBox VM we have provided, named `pa2box`. You can download the VM image [**here**](https://drive.google.com/a/eng.ucsd.edu/uc?id=11GnFuU7-RC8nlwm9oKAlaGHfVquVGKBz&export=download).
 
-The VM is configured with two users: `student`, with password `hacktheplanet`; and `root`, with
-password `hackallthethings`. The VM is configured with SSH on port 2222. Please note that SSH is
-disabled for `root`, so you can only SSH in as the `student` user. You can still log in as `root`
-using `su` or by logging into the VM directly.
+Import the `pa2box.vbox` file into VirtualBox via the `Machine` &rarr; `Add` menu item. *Don't* create a new VirtualBox VM software or import the `pa2box-data.vmdk` file on its own: if you do this, you won't have the correct configuration.
 
-To SSH into the VM:
+The VM is configured with two users: `student`, with password `hacktheplanet`; and `root`, with password `hackallthethings`. Instead of using the command line through VirtualBox, we recommend that you SSH into your VM from another client. The VM image is configured to expose SSH on port 2222 of your system's loopback address (`127.0.0.1`).
+
+To SSH into the VM (from your host system running VirtualBox, ***not*** from inside the VM):
 
 ```
 ssh -p 2222 student@127.0.0.1
@@ -47,44 +41,38 @@ To copy files from the VM to your computer:
 scp -P 2222 student@127.0.0.1:/path/to/files/ /destination/path
 ```
 
-### Submission Script
-
-**INSERT TEXT FROM MICHAEL**
+Please note that SSH is disabled for `root`, so you can only SSH in as the `student` user. You can still log in as `root` using `su` or by logging into the VM directly.
 
 ### Assignment Files
 
-Starter files are provided in an archive on the class webpage. 
-It contains exploit starter code (in the `sploits` directory) for each of the 4 vulnerable programs (in the targets directory). 
-Additionally included with the exploits is `shellcode.h`, which gives Aleph One’s shellcode. 
-The `sploits` directory contains a `Makefile` to build the expoits. 
-The `targets` directory contains a `Makefile` to generate targets specific to your PID, 
-and a folder called `base` that you should not modify as these are what are used to generate your targets.
+Starter files are included inside the `student` home directory of the VM image.
 
-## Assignment Instructions
+The `targets` directory contains a `Makefile` to generate target executables specific to your PID (as well as a folder called `base`, which you should not modify, used to generate the targets).
 
-You will be writing an exploit for each of the 4 vulnerable programs provided in the assignment. 
-Each exploit, when run in the VM with its target installed setuid-root in `/tmp`, 
-should yield a root shell `(/bin/sh)`. You can verify this by typing `whoami` in the root shell, 
-to which you should see the response `root`. You must use Aleph One’s shellcode in `shellcode.h`, 
-as this will be used in the grading scripts. Additionally, for each exploit, provide a brief description of how it works in the `writeup.txt` file.
+Exploit starter code can be found in the `sploits1`-`sploits4` directories: one per each of the four vulnerable target programs. Each of these contains a `Makefile`, a `shellcode.h` header file providing Aleph One's shellcode, and a `sploitN.c` file in which you should write your exploit code (in addition to an `assignment.toml` file, which should not be modified).
+
+You will be writing an exploit for each of the four vulnerable programs provided in the assignment.  Each exploit, when run in the VM with its target installed setuid-root in `/tmp`,  should yield a root shell (`/bin/sh`). You can verify that the shell has been launched as `root` by typing `whoami`, to which you should see the response `root`. You *must* use Aleph One’s shellcode in `shellcode.h`,  as this will be used in the grading scripts.
+
+For each exploit, in addition to your `.c` file, please also create a corresponding file `writeup.txt` containing a brief description of how the exploit works.
 
 ## Exploit Generation
 
-To complete the assignment, you will first need to generate targets specific to your PID, then use GDB to find vulnerabilities in the targets, then build your exploits.
+To complete the assignment, you will need to: generate targets specific to your PID; use GDB to find vulnerabilities in the targets; and, finally, craft your exploit programs.
 
 ### Generating the Targets
 
-The first step to generate your targets is to fill in the PID file. 
-Then run `make generate` in the `targets` directory to create the 4 target source files specific to you: 
-`target1.c` through `target4.c`. Then run `make` to build the target binaries: 
-`target1` through `target4`. Then run `make install` to copy the binaries into the `/tmp` directory.
-To make the binaries as setuid-root, use `su` to launch a root shell, 
-and then `make install` and `make setuid`. Don’t forget to exit your root shell when you’re done, returning you to the user shell.
+Run `make generate` in the `targets` directory to create the four target source files specific to you. This will prompt you for your student ID (`A########`), which will be used to randomize portions of the contents of `target1.c`-`target4.c`.
+
+Next, then run `make` to build the target binaries `target1`-`target4`.
+
+Run `sudo make install` to copy the binaries into the `/tmp` directory.
+
+Finally, run `sudo make setuid` to mark the binaries as setuid-root. If you forget this step, then your exploits will end up launching a normal shell instead of a root shell!
 
 ## Using GDB
 
-To run an exploit in GDB, run e.g., `gdb -e sploit1 -s /tmp/target1` to execute `
-sploit1` and use the symbol file `target1`. I recommend the following workflow in GDB:
+To run an exploit in GDB, run, e.g., `gdb -e sploit1 -s /tmp/target1` to execute `
+sploit1` and use the symbol file `target1`. We recommend the following workflow in GDB:
 
 1. **Starting.** Set breakpoints that you can later use for analysis:
     - `b foo` &mdash; break at function `foo`
@@ -112,12 +100,15 @@ resources.
 ### Exploit Notes
 
 For this assignment you should read and have a solid understanding of Aleph One’s “Smashing the Stack for Fun and Profit”.
-Aleph One gives code that calculates addresses on the target’s stack based on addresses on the exploit’s stack. 
-However, addresses on the exploit’s stack can change based on how the exploit is executed 
-(working directory, arguments, environment, etc.); in my testing, I do not guarantee 
-to execute your exploits exactly the same way bash does. You must therefore hard-code target stack locations in your exploits. 
-You should not use a function such as `get_sp()` in the exploits you hand in. 
-You should only modify the sploit C files; i.e. your sploits should work with unmodified Makefiles, targets, etc.
-In grading, the exploits may be run with a different environment and different working directory. 
-Your exploits must work in these cases also. Your exploit programs should not take any command-line arguments.
-Shutting down the VM removes the files in /tmp, and if you want to keep them then pause the VM and save its state!
+
+Aleph One gives code that calculates addresses on the target’s stack based on addresses on the exploit’s stack. However, addresses on the exploit’s stack can change based on how the exploit is executed (working directory, arguments, environment, etc.). You must therefore hard-code target stack locations in your exploits.
+
+You should not use a function such as `get_sp()` in the exploits you hand in. You should only modify the `sploitN.c` files and corresponding `writeup.txt` files; i.e., your exploits should work with unmodified Makefiles, targets, etc. In grading, the exploits may be run with a different environment and different working directory. Your exploits must work in these cases also. Your exploit programs should not take any command-line arguments.
+
+Shutting down the VM removes the files in /tmp; if you want to keep them, pause the VM and save its state!
+
+### Submission
+
+To submit your solution for each sub-assignment, run the `gradinator-submit` command from the corresponding `sploit1`-`sploit4` directory and follow the prompts that appear. You may submit as many times as you like ahead of the deadline, but only your most recent submission will be counted. Note that each of the four sub-assignments ***must be submitted separately***.
+
+For each sub-assignment, after submitting an attempted solution, you'll subsequently receive a message from our auto-grading server to your email address associated with this class. The email will contain a breakdown of the steps it took to grade your assignment, points earned (or not) at each step, and a total score for that sub-assignment. Each one is worth 25 points.
