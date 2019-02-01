@@ -491,8 +491,8 @@
 <p>To complete this assignment you will be provided with a VirtualBox VM and a set of files including a turn-in script.</p>
 <h3 id="vm-image">VM Image<a class="headerlink" href="#vm-image" title="Permanent link">&para;</a></h3>
 <p>In order to match the environment in which your submission will be graded, all work for this assignment must be done on the VirtualBox VM we have provided, named <code>pa2box</code>. You can download the VM image <a href="https://drive.google.com/a/eng.ucsd.edu/uc?id=11GnFuU7-RC8nlwm9oKAlaGHfVquVGKBz&amp;export=download"><strong>here</strong></a>.</p>
-<p>Import the <code>pa2box.vbox</code> file into VirtualBox via the <code>Machine</code> &rarr; <code>Add</code> menu item. <em>Don't</em> create a new VirtualBox VM software or import the <code>pa2box-data.vmdk</code> file on its own: if you do this, you won't have the correct configuration.</p>
-<p>The VM is configured with two users: <code>student</code>, with password <code>hacktheplanet</code>; and <code>root</code>, with password <code>hackallthethings</code>. Instead of using the command line through VirtualBox, we recommend that you SSH into your VM from another client. The VM image is configured to expose SSH on port 2222 of your system's loopback address (<code>127.0.0.1</code>).</p>
+<p>Import the <code>pa2box.vbox</code> file into VirtualBox via the <code>Machine</code> &rarr; <code>Add</code> menu item. <em>Don't</em> create a brand-new VirtualBox VM or import the <code>pa2box-data.vmdk</code> file on its own: if you do this, you won't have the correct configuration.</p>
+<p>After importing the VM, select it in the VirtualBox sidebar and start it with the green arrow button or the <code>Machine</code> &rarr; <code>Start</code> menu item. The VM is configured with two users: <code>student</code>, with password <code>hacktheplanet</code>; and <code>root</code>, with password <code>hackallthethings</code>. Instead of using the command line through VirtualBox, we recommend that you SSH into your VM from another client. The VM image is configured to expose an SSH server on port 2222 of your system's loopback address (<code>127.0.0.1</code>).</p>
 <p>To SSH into the VM (from your host system running VirtualBox, <strong><em>not</em></strong> from inside the VM):</p>
 <pre><code>ssh -p 2222 student@127.0.0.1
 </code></pre>
@@ -515,8 +515,8 @@
 <h2 id="exploit-generation">Exploit Generation<a class="headerlink" href="#exploit-generation" title="Permanent link">&para;</a></h2>
 <p>To complete the assignment, you will need to: generate targets specific to your PID; use GDB to find vulnerabilities in the targets; and, finally, craft your exploit programs.</p>
 <h3 id="generating-the-targets">Generating the Targets<a class="headerlink" href="#generating-the-targets" title="Permanent link">&para;</a></h3>
-<p>Run <code>make generate</code> in the <code>targets</code> directory to create the four target source files specific to you. This will prompt you for your student ID (<code>A########</code>), which will be used to randomize portions of the contents of <code>target1.c</code>-<code>target4.c</code>.</p>
-<p>Next, then run <code>make</code> to build the target binaries <code>target1</code>-<code>target4</code>.</p>
+<p>Run <code>make generate</code> in the <code>targets</code> directory to create the four target source files specific to you. This will prompt you for your student ID (<code>A########</code> or <code>U########</code>), which will be used to randomize portions of the contents of <code>target1.c</code>-<code>target4.c</code>.</p>
+<p>Run <code>make</code> to build the target binaries <code>target1</code>-<code>target4</code>.</p>
 <p>Run <code>sudo make install</code> to copy the binaries into the <code>/tmp</code> directory.</p>
 <p>Finally, run <code>sudo make setuid</code> to mark the binaries as setuid-root. If you forget this step, then your exploits will end up launching a normal shell instead of a root shell!</p>
 <h2 id="using-gdb">Using GDB<a class="headerlink" href="#using-gdb" title="Permanent link">&para;</a></h2>
