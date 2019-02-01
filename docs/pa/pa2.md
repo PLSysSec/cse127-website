@@ -19,9 +19,9 @@ To complete this assignment you will be provided with a VirtualBox VM and a set 
 
 In order to match the environment in which your submission will be graded, all work for this assignment must be done on the VirtualBox VM we have provided, named `pa2box`. You can download the VM image [**here**](https://drive.google.com/a/eng.ucsd.edu/uc?id=11GnFuU7-RC8nlwm9oKAlaGHfVquVGKBz&export=download).
 
-Import the `pa2box.vbox` file into VirtualBox via the `Machine` &rarr; `Add` menu item. *Don't* create a new VirtualBox VM software or import the `pa2box-data.vmdk` file on its own: if you do this, you won't have the correct configuration.
+Import the `pa2box.vbox` file into VirtualBox via the `Machine` &rarr; `Add` menu item. *Don't* create a brand-new VirtualBox VM or import the `pa2box-data.vmdk` file on its own: if you do this, you won't have the correct configuration.
 
-The VM is configured with two users: `student`, with password `hacktheplanet`; and `root`, with password `hackallthethings`. Instead of using the command line through VirtualBox, we recommend that you SSH into your VM from another client. The VM image is configured to expose SSH on port 2222 of your system's loopback address (`127.0.0.1`).
+After importing the VM, select it in the VirtualBox sidebar and start it with the green arrow button or the `Machine` &rarr; `Start` menu item. The VM is configured with two users: `student`, with password `hacktheplanet`; and `root`, with password `hackallthethings`. Instead of using the command line through VirtualBox, we recommend that you SSH into your VM from another client. The VM image is configured to expose an SSH server on port 2222 of your system's loopback address (`127.0.0.1`).
 
 To SSH into the VM (from your host system running VirtualBox, ***not*** from inside the VM):
 
@@ -61,9 +61,9 @@ To complete the assignment, you will need to: generate targets specific to your 
 
 ### Generating the Targets
 
-Run `make generate` in the `targets` directory to create the four target source files specific to you. This will prompt you for your student ID (`A########`), which will be used to randomize portions of the contents of `target1.c`-`target4.c`.
+Run `make generate` in the `targets` directory to create the four target source files specific to you. This will prompt you for your student ID (`A########` or `U########`), which will be used to randomize portions of the contents of `target1.c`-`target4.c`.
 
-Next, then run `make` to build the target binaries `target1`-`target4`.
+Run `make` to build the target binaries `target1`-`target4`.
 
 Run `sudo make install` to copy the binaries into the `/tmp` directory.
 
