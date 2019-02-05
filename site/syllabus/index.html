@@ -291,15 +291,15 @@
 </tr>
 <tr>
 <td align="left">Jan  9</td>
-<td align="left"><a href="../slides/lecture2.pdf"><strong>Security Foundations</strong></a> <br/> Reading: Thompson's <a href="../papers/thompson.pdf">Reflections on Trusting Trust</a>, <a href="https://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c01.pdf">Ch 1</a>, and <a href="https://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c04.pdf">Ch 4.1-4.2</a></td>
+<td align="left"><a href="../slides/lecture2.pdf"><strong>Security foundations</strong></a> <br/> Reading: Thompson's <a href="../papers/thompson.pdf">Reflections on Trusting Trust</a>, <a href="https://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c01.pdf">Ch 1</a>, and <a href="https://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c04.pdf">Ch 4.1-4.2</a></td>
 </tr>
 <tr>
 <td align="left">Jan 14</td>
-<td align="left"><a href="../slides/lecture3.pdf"><strong>Security Foundations (in-class discussion)</strong></a> <a href="https://cseweb.ucsd.edu/classes/fa17/cse127-b/lec2.pdf">Kirill's slides</a></td>
+<td align="left"><a href="../slides/lecture3.pdf"><strong>Security foundations (in-class discussion)</strong></a> <a href="https://cseweb.ucsd.edu/classes/fa17/cse127-b/lec2.pdf">Kirill's slides</a></td>
 </tr>
 <tr>
 <td align="left">Jan 16</td>
-<td align="left"><a href="../slides/lecture4.pdf"><strong>Low-level Software Security I</strong></a> <br/> Reading: Aleph One's <a href="http://phrack.org/issues/49/14.html#article">Smashing the Stack for Fun and Profit</a> <br/> Optional reading: 0x300-0x320 from Hacking. 0x200-0x270 if you don't have a strong C background.</td>
+<td align="left"><a href="../slides/lecture4.pdf"><strong>Stack buffer-overflows</strong></a> <br/> Reading: Aleph One's <a href="http://phrack.org/issues/49/14.html#article">Smashing the Stack for Fun and Profit</a> <br/> Optional reading: 0x300-0x320 from Hacking. 0x200-0x270 if you don't have a strong C background.</td>
 </tr>
 <tr>
 <td align="left">Jan 21</td>
@@ -307,27 +307,35 @@
 </tr>
 <tr>
 <td align="left">Jan 23</td>
-<td align="left"><a href="../slides/lecture5.pdf"><strong>Low-level Software Security II</strong></a> <br/> Reading: <a href="../papers/eternal-war-in-memory.pdf">Eternal War in Memory</a> by Szekeres et al., <a href="https://pax.grsecurity.net/docs/aslr.txt">ASLR</a>, and <a href="https://pax.grsecurity.net/docs/noexec.txt">NOEXEC</a></td>
+<td align="left"><a href="../slides/lecture5.pdf"><strong>ASLR and W^X</strong></a> <br/> Reading: <a href="../papers/eternal-war-in-memory.pdf">Eternal War in Memory</a> by Szekeres et al., <a href="https://pax.grsecurity.net/docs/aslr.txt">ASLR</a>, and <a href="https://pax.grsecurity.net/docs/noexec.txt">NOEXEC</a></td>
 </tr>
 <tr>
 <td align="left">Jan 28</td>
-<td align="left"><a href="../slides/lecture6.pdf"><strong>Low-level Software Security III</strong></a> <br/> Reading: <a href="../papers/shacham:aslr.pdf">On the Effectiveness of Address-Space Randomization</a> by Shacham et al., <a href="../papers/shacham:rop.pdf">The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls (on the x86)</a> by Shacham, and <a href="../papers/bittau:brop.pdf">Hacking BLind</a> by Bittau et al.</td>
+<td align="left"><a href="../slides/lecture6.pdf"><strong>Return-oriented programming</strong></a> <br/> Reading: <a href="../papers/shacham:aslr.pdf">On the Effectiveness of Address-Space Randomization</a> by Shacham et al., <a href="../papers/shacham:rop.pdf">The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls (on the x86)</a> by Shacham, and <a href="../papers/bittau:brop.pdf">Hacking BLind</a> by Bittau et al.</td>
 </tr>
 <tr>
 <td align="left">Jan 30</td>
-<td align="left"><a href="../slides/lecture7.pdf"><strong>Low-level Software Security IV</strong></a> <br/> Reading: <a href="../papers/abadi:cfi.pdf">Control-Flow Integrity</a> by Abadi et al., <a href="../papers/carlini:cfb.pdf">Control-Flow Bending: On the Effectiveness of Control-Flow Integrity</a> by Carlini et al. and <a href="../papers/burow:cfi.pdf">Control-Flow Integrity: Precision, Security, and Performance</a> by Burow et al.</td>
+<td align="left"><a href="../slides/lecture7.pdf"><strong>Control flow integrity</strong></a> <br/> Reading: <a href="../papers/abadi:cfi.pdf">Control-Flow Integrity</a> by Abadi et al., <a href="../papers/carlini:cfb.pdf">Control-Flow Bending: On the Effectiveness of Control-Flow Integrity</a> by Carlini et al. and <a href="../papers/burow:cfi.pdf">Control-Flow Integrity: Precision, Security, and Performance</a> by Burow et al.</td>
 </tr>
 <tr>
 <td align="left">Feb  4</td>
-<td align="left"><strong>Memory safety and isolation</strong> <br/> Reading <a href="../papers/dang:oscar.pdf">Oscar: A Practical Page-Permissions-Based Scheme for Thwarting Dangling Pointers</a> by Dang et al., Bringing Memory Safety to WebAssembly (see Piazza), and <a href="../papers/wahbe:sfi.pdf">Efficient Software-Based Fault Isolation</a> by Wahbe et al.</td>
+<td align="left"><strong>Memory safety</strong> <br/> Reading:</td>
+</tr>
+<tr>
+<td align="left"><a href="../papers/softbound.pdf">SoftBound: Highly Compatible and CompleteSpatial Memory Safety for C</a> by Nagarakatte et al.,</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a href="../papers/dang:oscar.pdf">Oscar: A Practical Page-Permissions-Based Scheme for Thwarting Dangling Pointers</a> by Dang et al., and Bringing Memory Safety to WebAssembly by Disselkoen et al.</td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left">Feb  6</td>
-<td align="left"></td>
+<td align="left"><strong>Least privilege and privilege separation</strong> <br/> Reading: <a href="../papers/ossecurity.pdf">Operating Systems Security</a> by Jaeger</td>
 </tr>
 <tr>
 <td align="left">Feb 11</td>
-<td align="left"></td>
+<td align="left"><strong>Sandboxing and isolation</strong> <br/> Reading: <a href="../papers/wahbe:sfi.pdf">Efficient Software-Based Fault Isolation</a> by Wahbe et al. and <a href="../papers/tal:traps.pdf">Traps and Pitfalls: Practical Problems in System Call Interposition Based Security Tools</a> by Garfinkel</td>
 </tr>
 <tr>
 <td align="left">Feb 13</td>
