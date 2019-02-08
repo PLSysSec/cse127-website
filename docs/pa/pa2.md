@@ -1,4 +1,4 @@
-# Assignment 2 *(100 pts)*
+# Assignment 2 *75 pts + 25pts extra for sploit4*
 
 **Deadline: Sunday, February 10, 2019 by 11:59:59 PM**
 

@@ -9,8 +9,9 @@ Jan 23     | [**ASLR and W^X**](slides/lecture5.pdf) <br/> Reading: [Eternal War
 Jan 28     | [**Return-oriented programming**](slides/lecture6.pdf) <br/> Reading: [On the Effectiveness of Address-Space Randomization](papers/shacham:aslr.pdf) by Shacham et al., [The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls (on the x86)](papers/shacham:rop.pdf) by Shacham, and [Hacking BLind](papers/bittau:brop.pdf) by Bittau et al.
 Jan 30     | [**Control flow integrity**](slides/lecture7.pdf) <br/> Reading: [Control-Flow Integrity](papers/abadi:cfi.pdf) by Abadi et al., [Control-Flow Bending: On the Effectiveness of Control-Flow Integrity](papers/carlini:cfb.pdf) by Carlini et al. and [Control-Flow Integrity: Precision, Security, and Performance](papers/burow:cfi.pdf) by Burow et al. 
 Feb  4     | **Memory safety** <br/> Reading: [SoftBound: Highly Compatible and CompleteSpatial Memory Safety for C](papers/softbound.pdf) by Nagarakatte et al., [Oscar: A Practical Page-Permissions-Based Scheme for Thwarting Dangling Pointers](papers/dang:oscar.pdf) by Dang et al., and Bringing Memory Safety to WebAssembly by Disselkoen et al.
-Feb  6     | **Least privilege and privilege separation** <br/> Reading: [Operating Systems Security](papers/ossecurity.pdf) by Jaeger
-Feb 11     | **Sandboxing and isolation** <br/> Reading: [Efficient Software-Based Fault Isolation](papers/wahbe:sfi.pdf) by Wahbe et al.
+Feb  6     | [**Least privilege and privilege separation**](slides/lecture9.pdf) <br/> Reading: [Operating Systems Security](papers/ossecurity.pdf) by Jaeger
+Feb 11     | **Isolation** and **short review** <br/> Reading: [Efficient Software-Based Fault Isolation](papers/wahbe:sfi.pdf) by Wahbe et al.
+Feb 12     | **Midterm review**
 Feb 13     | **Midterm exam (in-class)**
 Feb 18     | **President's day - no class**
 Feb 20     |
