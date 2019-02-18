@@ -14,7 +14,7 @@ Feb 11     | [**Isolation** and **short review**](slides/lecture10.pdf) <br/> Re
 Feb 12     | **Midterm review**
 Feb 13     | **Midterm exam (in-class)**
 Feb 18     | **President's day - no class**
-Feb 20     |
+Feb 20     | **Page tables, VMs, and side channels** <br/> Reading: [Remote Timing Attacks are Practical](papers/brumley:timing.pdf) by Brumley and Boneh
 Feb 25     |
 Feb 27     |
 Mar  4     |
