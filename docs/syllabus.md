@@ -14,9 +14,9 @@ Feb 11     | [**Isolation** and **short review**](slides/lecture10.pdf) <br/> Re
 Feb 12     | **Midterm review**
 Feb 13     | **Midterm exam (in-class)**
 Feb 18     | **President's day - no class**
-Feb 20     | **Page tables, VMs, and side channels** <br/> Reading: [Remote Timing Attacks are Practical](papers/brumley:timing.pdf) by Brumley and Boneh
-Feb 25     |
-Feb 27     |
+Feb 20     | [**Page tables, VMs, and side channels**](slides/lecture11.pdf) <br/> Reading: [Remote Timing Attacks are Practical](papers/brumley:timing.pdf) by Brumley and Boneh
+Feb 25     | [**Web security model and CSRF**](slides/lecture12.pdf) <br/> Reading: [CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29) and [Same Origin Policy](https://code.google.com/archive/p/browsersec/wikis/Part2.wiki#Same-origin_policy)
+Feb 27     | **CSRF, XSS, SQLi** <br/> Reading: [XSS Game](https://xss-game.appspot.com/) and [SQL Injection](https://secure.php.net/manual/en/security.database.sql-injection.php)
 Mar  4     |
 Mar  6     |
 Mar 11     | 
