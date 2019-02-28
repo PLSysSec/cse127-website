@@ -38,7 +38,7 @@
     
     
       
-        <title>CSRF - Computer Security</title>
+        <title>SRF, XSS, SQLi - Computer Security</title>
       
     
     
@@ -110,7 +110,7 @@
                 Computer Security
               </span>
               <span class="md-header-nav__topic">
-                CSRF
+                SRF, XSS, SQLi
               </span>
             
           
@@ -251,6 +251,102 @@
     <a href="../../pa/pa3/" title="Assignment 3" class="md-nav__link">
       Assignment 3
     </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Lecture notes
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Lecture notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        SRF, XSS, SQLi
+      </label>
+    
+    <a href="./" title="SRF, XSS, SQLi" class="md-nav__link md-nav__link--active">
+      SRF, XSS, SQLi
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#defenses" title="Defenses" class="md-nav__link">
+    Defenses
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csrf-tokens" title="CSRF tokens" class="md-nav__link">
+    CSRF tokens
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#referrer-and-origin-headers" title="Referrer and origin headers" class="md-nav__link">
+    Referrer and origin headers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -463,8 +559,7 @@ db.query(query);
 <p>For SQLi you can sanitize user input, but this is generally no longer the
 recommend approach. Prepared statements are largely the norm:</p>
 <pre><code>db.query({ text: 'SELECT * FROM messages WHERE name = '$1'
-         , values: [user]
-         });
+         , values: [user] });
 </code></pre>
 
 <p>The prepare <code>text</code> says which statement to execute and where the parameters are
@@ -494,6 +589,41 @@ recommend approach. Prepared statements are largely the norm:</p>
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../pa/pa3/" title="Assignment 3" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Assignment 3
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../contact/" title="Contact information" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Contact information
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
