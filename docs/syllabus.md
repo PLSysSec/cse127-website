@@ -17,10 +17,10 @@ Feb 18     | **President's day - no class**
 Feb 20     | [**Page tables, VMs, and side channels**](slides/lecture11.pdf) <br/> Reading: [Remote Timing Attacks are Practical](papers/brumley:timing.pdf) by Brumley and Boneh
 Feb 25     | [**Web security model and CSRF**](slides/lecture12.pdf) <br/> Reading: [CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29) and [Same Origin Policy](https://code.google.com/archive/p/browsersec/wikis/Part2.wiki#Same-origin_policy) <br/> Lecture code: [CSRF simple app](https://github.com/PLSysSec/cse127-toy-webapp)
 Feb 27     | [**CSRF, XSS, SQLi**](../notes/lecture13/) <br/> Reading: [XSS Game](https://xss-game.appspot.com/) and [SQL Injection](https://secure.php.net/manual/en/security.database.sql-injection.php)
-Mar  4     |
-Mar  6     |
-Mar 11     | 
-Mar 13     | **Advanced topics in security**
+Mar  4     | [**Modern client-side security mechanisms**](slides/lecture14.pdf) <br/> Reading [CSP](https://www.html5rocks.com/en/tutorials/security/content-security-policy/), [iframe sandbox](https://www.html5rocks.com/en/tutorials/security/sandboxed-iframes/), [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), [SRI](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity), [Mixed content](https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content), [Busting Frame Busting:a Study of Clickjacking Vulnerabilities on Popular Site](papers/rydstedt:busting.pdf) by Rydstedt et al.
+Mar  6     | **Intro to crypto**
+Mar 11     | **HTTPS and certificate transparency**
+Mar 13     | **Network security**
 Mar 20     | **Final exam 7-9:59PM**
 
 <!--
