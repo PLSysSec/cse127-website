@@ -18,8 +18,8 @@ Feb 20     | [**Page tables, VMs, and side channels**](slides/lecture11.pdf) <br
 Feb 25     | [**Web security model and CSRF**](slides/lecture12.pdf) <br/> Reading: [CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29) and [Same Origin Policy](https://code.google.com/archive/p/browsersec/wikis/Part2.wiki#Same-origin_policy) <br/> Lecture code: [CSRF simple app](https://github.com/PLSysSec/cse127-toy-webapp)
 Feb 27     | [**CSRF, XSS, SQLi**](../notes/lecture13/) <br/> Reading: [XSS Game](https://xss-game.appspot.com/) and [SQL Injection](https://secure.php.net/manual/en/security.database.sql-injection.php)
 Mar  4     | [**Modern client-side security mechanisms**](slides/lecture14.pdf) <br/> Reading [CSP](https://www.html5rocks.com/en/tutorials/security/content-security-policy/), [iframe sandbox](https://www.html5rocks.com/en/tutorials/security/sandboxed-iframes/), [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), [SRI](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity), [Mixed content](https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content), [Busting Frame Busting:a Study of Clickjacking Vulnerabilities on Popular Site](papers/rydstedt:busting.pdf) by Rydstedt et al.
-Mar  6     | **Intro to cryptography** <br/> Reading: [Security Engineering, Ch 5](https://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c05.pdf), [BREACH](http://breachattack.com/resources/BREACH%20-%20SSL,%20gone%20in%2030%20seconds.pdf)
-Mar 11     | **PKI, HTTPS, and CT**
+Mar  6     | [**Intro to cryptography**](slides/lecture15.pdf) <br/> Reading: [Security Engineering, Ch 5](https://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c05.pdf), [BREACH](http://breachattack.com/resources/BREACH%20-%20SSL,%20gone%20in%2030%20seconds.pdf)
+Mar 11     | **PKI, HTTPS, and CT** <br/> Reading: [Ten Risks of PKI](papers/ellison:ten-risks.pdf) by Ellison and Schneier, [Towards Short-Lived Certificates](papers/topalovic:towards.pdf) by Topalovic et al.
 Mar 13     | **Network security**
 Mar 20     | **Final exam 7-9:59PM**
 
