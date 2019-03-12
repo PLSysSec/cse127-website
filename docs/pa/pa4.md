@@ -1,8 +1,8 @@
 # Assignment 4 *80pts*
 
-**Deadline: Friday, March 22, 2019 by 11:59:59 PM**
+**Deadline: Saturday, March 23, 2019 by 11:59:59 PM**
 
-**Early Turn-In: Monday, March 18, 2019 by 11:59:59 PM (15% bonus)**
+**Early Turn-In: Tuesday, March 19, 2019 by 11:59:59 PM (15% bonus)**
 
 ## Overview
 
