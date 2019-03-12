@@ -1,8 +1,8 @@
 # Assignment 4 *80pts*
 
-**Deadline: [TODO: FILL ME IN]**
+**Deadline: Friday, March 22, 2019 by 11:59:59 PM**
 
-**Early Turn-In: [TODO: FILL ME IN] (10% bonus)**
+**Early Turn-In: Monday, March 18, 2019 by 11:59:59 PM (15% bonus)**
 
 ## Overview
 
