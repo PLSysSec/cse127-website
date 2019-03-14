@@ -15,35 +15,10 @@ Feb 12     | **Midterm review**
 Feb 13     | **Midterm exam (in-class)**
 Feb 18     | **President's day - no class**
 Feb 20     | [**Page tables, VMs, and side channels**](slides/lecture11.pdf) <br/> Reading: [Remote Timing Attacks are Practical](papers/brumley:timing.pdf) by Brumley and Boneh
-Feb 25     | [**Web security model and CSRF**](slides/lecture12.pdf) <br/> Reading: [CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29) and [Same Origin Policy](https://code.google.com/archive/p/browsersec/wikis/Part2.wiki#Same-origin_policy) <br/> Lecture code: [CSRF simple app](https://github.com/PLSysSec/cse127-toy-webapp)
+Feb 25     | [**Web security model and CSRF**](https://cseweb.ucsd.edu/classes/fa17/cse127-b/lec11.pdf) <br/> Reading: [CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29) and [Same Origin Policy](https://code.google.com/archive/p/browsersec/wikis/Part2.wiki#Same-origin_policy) <br/> Lecture code: [CSRF simple app](https://github.com/PLSysSec/cse127-toy-webapp)
 Feb 27     | [**CSRF, XSS, SQLi**](../notes/lecture13/) <br/> Reading: [XSS Game](https://xss-game.appspot.com/) and [SQL Injection](https://secure.php.net/manual/en/security.database.sql-injection.php)
 Mar  4     | [**Modern client-side security mechanisms**](slides/lecture14.pdf) <br/> Reading [CSP](https://www.html5rocks.com/en/tutorials/security/content-security-policy/), [iframe sandbox](https://www.html5rocks.com/en/tutorials/security/sandboxed-iframes/), [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), [SRI](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity), [Mixed content](https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content), [Busting Frame Busting:a Study of Clickjacking Vulnerabilities on Popular Site](papers/rydstedt:busting.pdf) by Rydstedt et al.
 Mar  6     | [**Intro to cryptography**](slides/lecture15.pdf) <br/> Reading: [Security Engineering, Ch 5](https://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c05.pdf), [BREACH](http://breachattack.com/resources/BREACH%20-%20SSL,%20gone%20in%2030%20seconds.pdf)
 Mar 11     | [**PKI, HTTPS, and CT**](slides/lecture16.pdf) <br/> Reading: [Ten Risks of PKI](papers/ellison:ten-risks.pdf) by Ellison and Schneier, [Towards Short-Lived Certificates](papers/topalovic:towards.pdf) by Topalovic et al., [The New Illustrated TLS Connection](https://tls13.ulfheim.net/), [CT log searches](https://crt.sh), and [CRLite: a Scalable System for Pushing all TLS Revocations to All Browsers](papers/crtlite.pdf) by Larisch et al.
-Mar 13     | **Network security** <br/> Reading: [A Look Back at Security Problems in the TCP/IP Protocol Suite](papers/bellovin:ip.pdf) by Bellovin, [An Illustrated Guide to the Kaminsky DNS Vulnerability](http://unixwiz.net/techtips/iguide-kaminsky-dns-vuln.html) by Friedl
+Mar 13     | [**Network security**](https://cseweb.ucsd.edu/classes/fa17/cse127-b/lec15.pdf) <br/> Reading: [A Look Back at Security Problems in the TCP/IP Protocol Suite](papers/bellovin:ip.pdf) by Bellovin, [An Illustrated Guide to the Kaminsky DNS Vulnerability](http://unixwiz.net/techtips/iguide-kaminsky-dns-vuln.html) by Friedl
 Mar 20     | **Final exam 7-10PM**
-
-<!--
--->
-
-<!--
-Jan 14     | **Low Level Security 1: Buffer Overflows**
-Jan 16     | **Low Level Security 2: Format String, Shellcode, Stack Protection**
-Jan 21     | **[MLK](https://en.wikipedia.org/wiki/Martin_Luther_King_Jr.) - no class**
-Jan 23     | **Low Level Security 3: Integer Overflow, ROP, CFI**
-Jan 28     | **Low Level Security 4: Heap Attacks**
-Jan 30     | **Crypto 1**
-Feb  4     | **Crypto 2: PKI and Side Channels**
-Feb  6     | **Midterm?**
-Feb 11     | **User Authentication**
-Feb 13     | **System Security 1**
-Feb 18     | **President's Day - no class**
-Feb 20     | **System Security 2**
-Feb 25     | **Web Security 1**
-Feb 27     | **Web Security 2**
-Mar  4     | **Network Security 1**
-Mar  6     | **Network Security 2**
-Mar 11     | **Fun stuff 1**
-Mar 13     | **Fun stuff 2**
-Mar 20     | **Final Exam**
--->

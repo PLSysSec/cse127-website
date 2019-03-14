@@ -92,8 +92,7 @@ during office hours counts towards your class participation.
 
 #### Acknowledgements
 
-The course structure and many of the ideas are influenced or directly from
-Stefan Savage, Kirill Levchenko, and Hovav Shacham.
+The course structure and many of the ideas and slides are influenced or directly from [Kirill Levchenko](https://klevchen.ece.illinois.edu/), [Dan Boneh](http://crypto.stanford.edu/~dabo/), [Stefan Savage](https://cseweb.ucsd.edu/~savage/), [Hovav Shacham](https://www.cs.utexas.edu/directory/hovav-shacham), and [John Mitchell](https://theory.stanford.edu/people/jcm/).
 
 #### Academic integrity and student conduct
 
