@@ -66,7 +66,7 @@ allowed, please ask the course staff.
 The midterm exam will be held in class on February 13th. The midterm is
 **closed-book**, but you may use a double-sided cheat sheet (letter-size).
 
-The final exam will be held on March 20th in **TBA** from 7:00PM-9:59PM. You
+The final exam will be held on March 20th in **Solis 104** from 7:00PM-9:59PM. You
 **must** take the exam at this time and location.  The final is
 **closed-book**, but you may use 2 double-sided cheat sheets (letter-size).
 
