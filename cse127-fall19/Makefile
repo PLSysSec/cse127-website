@@ -5,7 +5,7 @@ build:
 publish: build
 	-git add site && git commit -a -m "update site for publish"
 	cd ..  && git subtree split --prefix cse127-fall19/site -b site 
-	git push -f origin site:site &&
+	git push -f origin site:site
 	git branch -D site
 	#ssh dstefan@login.eng.ucsd.edu 'cd /cse/htdocs/classes/fa19/cse127-b/ && git fetch && git reset --hard origin/site'
 	ssh dstefan@login.eng.ucsd.edu 'cd public_html/cse127-fall19/ && git fetch && git reset --hard origin/site'
