@@ -1,5 +1,5 @@
-**Date**   | <center>**Topics**</center>
-:----------|:--------------------------------
+**Date**    | <center>**Topics**</center>
+:-----------|:--------------------------------
 Sep 30      | Intro/Threat Modeling
             | **Assignment 1: Intro**
 Oct  2      | Buffer Overflows
@@ -10,7 +10,7 @@ Oct 14      | OS Security/Isolation
             | **Assignment 3: Side Channels**
 Oct 16      | Malware (Stuxnet/Ransomware)
 Oct 21      | Web Security Model
-Oct 23      | CSRF/XSS/SQLi
+Oct 23      | Web Attacks (CSRF/XSS/SQLi)
             | **Assignment 4: Web**
 Oct 28      | Web Defenses
 Oct 30      | Midterm

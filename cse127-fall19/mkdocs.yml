@@ -15,7 +15,7 @@ theme:
 extra:
   social:
     - type: 'github'
-      link: 'https://github.com/PLSysSec/cse127-winter19'
+      link: 'https://github.com/PLSysSec/cse127-website'
 
 markdown_extensions:
   - admonition
@@ -29,4 +29,4 @@ extra_css:
 nav:
   - About: index.md
   - Syllabus: syllabus.md
-  - Contact information: contact.md
+  - Contact and Office Hours: contact.md
