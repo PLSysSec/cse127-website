@@ -18,21 +18,12 @@ probably enough and covers some x86 assembly too.
 #### Class details
 
 * **Lectures:**
-    - **(A) Nadia Heninger:** Mondays and Wednesdays, 2pm - 3:20pm @ EBU3B 4140
-    - **(B) Deian Sefan:** Mondays and Wednesdays, 5pm - 6:20pm @ CENTR 214
+    - **(A) Nadia Heninger:** Mondays and Wednesdays, 2pm - 3:20pm in EBU3B 4140
+    - **(B) Deian Sefan:** Mondays and Wednesdays, 5pm - 6:20pm in CENTR 214
 
 * **Section:**
-    - **(A) Nadia Heninger:** Fridays, 4pm-5pm @ CENTR 113
-    - **(B) Deian Sefan:** Fridays, 5pm-6pm @ CENTR 113
-
-* **Office Hours:**
-    - Monday: 11am-Noon in B270A
-    - Tuesday: 2-3p in B260A
-    - Wednesday: TBD
-    - Thursday: 2pm-3pm in B260A
-    - Friday: 1:30pm-2pm in 3148
-* **Staff email:**
-    - If you need to get in contact with the instructors please use a private Piazza post.
+    - **(A) Nadia Heninger:** Fridays, 4pm-5pm in CENTR 113
+    - **(B) Deian Sefan:** Fridays, 5pm-6pm in CENTR 113
 
 * **Piazza:** [https://piazza.com/ucsd/fall2019/cse127/home](https://piazza.com/ucsd/fall2019/cse127/home)
 
@@ -49,27 +40,16 @@ online resources and papers.  We may also assign optional reading from Jon
 Erickson's [Hacking: The Art of
 Exploitation](https://nostarch.com/hacking2.htm).
 
-#### Instructors
-
-- [Deian Stefan](https://cseweb.ucsd.edu/~dstefan/)
-- [Nadia Heninger](https://cseweb.ucsd.edu/~nadiah/)
-
-#### TAs
-- Sunjay Cauligi
-- Craig Disselkoen
-- John Renner
-- Zaki Siddiqui
-
 #### Grading
 
-- 30% Homeworks assignments
-- 30% Midterm exam
-- 40% Final exam
+- 40% Assignments
+- 25% Midterm exam
+- 35% Final exam
 - +5% Participation in class and online
 
-##### Homework and programming labs
+##### Programming assignments
 
-We will have homework assignments that are meant to both reinforce your
+We will have assignments that are meant to both reinforce your
 knowledge of the concepts covered in lecture and get you to think about
 security in more depth, beyond what is covered lecture.
 
@@ -94,7 +74,7 @@ The midterm is
 The final is
 **closed-book**, but you may use 2 double-sided cheat sheets (letter-size).
 
-The exams will make up 70% of your grade. Since the final is cumulative your
+The exams will make up 60% of your grade. Since the final is cumulative your
 midterm grade will be calculated as:
 
 ```
@@ -112,7 +92,8 @@ Before each class there will be some assigned reading. You are expected to do
 the reading and have at least a vague understanding of the concepts that will
 be discussed in class. This will allow us to spend the lecture time to solidify
 your understanding.  Asking and answering questions in class, on Piazza, or
-during office hours counts towards your class participation. 
+during office hours counts towards your class participation. Contributing to
+the class lecture notes will similarly be rewarded with extra points.
 
 #### Acknowledgements
 

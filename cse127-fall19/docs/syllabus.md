@@ -1,8 +1,8 @@
-**Date**   | <center>**Topics**</center>
-:----------|:--------------------------------
-Sep 30      | Intro/Threat Modeling
+**Date**    | <center>**Topics**</center>
+:-----------|:--------------------------------
+Sep 30      | [Intro/Threat Modeling](slides/1-introduction.pdf) <br/> Optional reading: James Mickens' [This World of Ours](https://www.usenix.org/system/files/1401_08-12_mickens.pdf) and [USENIX Security 2018 Keynote](https://www.usenix.org/conference/usenixsecurity18/presentation/mickens)
             | **Assignment 1: Intro**
-Oct  2      | Buffer Overflows
+Oct  2      | Buffer Overflows <br/> Reading: Aleph One's [Smashing the Stack for Fun and Profit](http://phrack.org/issues/49/14.html#article) <br/> Optional reading: 0x300-0x320 from Hacking. 0x200-0x270 if you don't have a strong C background.
 Oct  7      | ASLR/W^X/ROP
             | **Assignment 2: Buffer Overflows**
 Oct  9      | CFI/Memory Safety
@@ -10,7 +10,7 @@ Oct 14      | OS Security/Isolation
             | **Assignment 3: Side Channels**
 Oct 16      | Malware (Stuxnet/Ransomware)
 Oct 21      | Web Security Model
-Oct 23      | CSRF/XSS/SQLi
+Oct 23      | Web Attacks (CSRF/XSS/SQLi)
             | **Assignment 4: Web**
 Oct 28      | Web Defenses
 Oct 30      | Midterm
