@@ -1,8 +1,8 @@
 # Assignment 1 *(20 pts)*
 
-**Deadline: Sunday, January 27, 2019 by 11:59:59 PM**
+**Deadline: Wednesday, October 9, 2019 by 2:59:59 PM**
 
-**Early Turn-In: Thursday, January 24, 2019 by 11:59:59 PM (10% bonus)**
+**Early Turn-In: Sunday, October 6, 2019 by 2:59:59 PM (10% bonus)**
 
 The goal of this assignment is to become familiar with the setup that will be used for future
 assignments, such as the use of a virtual machine and the included turn-in script, as well as the
@@ -11,13 +11,13 @@ basics of working with gdb and writing programs in x86 assembly.
 ## Getting Started
 
 To complete this assignment, you will be provided with a VirtualBox VM pre-populated with the
-assignment files and a turn-in script.
+assignment files.
 
 ### VM Image
 
 In order to match the environment in which your submission will be graded, all work for this
 assignment must be done on the VirtualBox VM we provide, named `pa1box`. You can download the VM
-image [**here**](https://drive.google.com/uc?id=12lj49F4NzWrq2A482IVmcm43TbF6ygKl&export=download).
+image [**here**](https://drive.google.com/uc?id=1thaE-D_uMTqgGl6xdcTrE19lgAgkb2H-&export=download).
 
 The VM is configured with two users: `student`, with password `hacktheplanet`; and `root`, with
 password `hackallthethings`. The VM is configured with SSH on port 2222. Please note that SSH is
@@ -80,7 +80,7 @@ resources.
 
 ### Assignment Instructions
 
-Complete the following exercises and fill out `hw1.txt` with your answers.
+Complete the following exercises and **fill out [`hw1.txt`](../resources/hw1.txt)** with your answers.
 
 1. What is the value, in hex, of the `ecx` register when the function `f` is called? *(2 pts)*
 2. Which register stores the value of the variable `i` in the function main? *(2 pts)*
@@ -91,11 +91,9 @@ Complete the following exercises and fill out `hw1.txt` with your answers.
 
 ### Submission
 
-To submit your solution for this sub-assignment, run the `gradinator-submit` command from the
-`/home/student/gdb` directory and follow the prompts that appear. You may submit as many times as
-you like ahead of the deadline, but only your most recent submission will be counted. Grades for
-this part of the assignment will be released after the deadline has passed. Note that part 1 (gdb)
-and part 2 (x86) ***must be submitted separately***.
+Submit `hw1.txt` to "1a. gdb" on Gradescope. Login details can be found on the [about page](../about).
+Gradescope will check that it has successfully detected your answers, but it will not give you your grade
+until the due date.
 
 ## Part 2: `echo` in x86 *(10 pts)*
 
@@ -139,16 +137,8 @@ A `Makefile` is included, so you can build the `echo` binary by running `make` f
 
 ### Submission
 
-To submit your solution for this sub-assignment, run the `gradinator-submit` command from the
-`/home/student/x86` directory and follow the prompts that appear. You may submit as many times as
-you like ahead of the deadline, but only your most recent submission will be counted. Note that
-part 1 (gdb) and part 2 (x86) ***must be submitted separately***.
 
-For this part, after submitting an attempted solution, you'll subsequently receive a message from
-our auto-grading server to your email address associated with this class. The email will contain a
-breakdown of the steps it took to grade your assignment, points earned (or not) at each step, and a
-total score which&mdash;apart from exceptional circumstances&mdash;you can consider your final
-grade for this sub-assignment.
+Submit `echo.s` to "1b. x86 echo" on Gradescope. Login details can be found on the [about page](../about).
 
 ## Bugs
 

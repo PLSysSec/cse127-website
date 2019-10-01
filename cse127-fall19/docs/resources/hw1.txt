@@ -1,0 +1,19 @@
+/// Leave your answer in square brackets provided so they can be detected
+/// Your submissions will be checked for the presence and format of answers,
+/// and your answers will be checked for correctness after the deadline.
+
+1. What is the value, in hex, of the ecx register when the function f is called?
+[]
+
+2. Which register stores the value of the variable i in the function main?
+[]
+
+3. What is the address, in hex, of the function f?
+[]
+
+4. What is the name of the 6th instruction of the function f?
+[]
+
+5. When f completes after being called from main, to which address in main does
+control return? Write your answer in hex form.
+[]

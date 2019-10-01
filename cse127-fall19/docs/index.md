@@ -36,6 +36,11 @@ probably enough and covers some x86 assembly too.
 
 * **Piazza:** [https://piazza.com/ucsd/fall2019/cse127/home](https://piazza.com/ucsd/fall2019/cse127/home)
 
+* **Gradescope**
+    - [https://www.gradescope.com/courses/66491](https://www.gradescope.com/courses/66491)
+    - **Access Code:** 92EP32
+
+
 #### Textbook
 
 We will occasionally be assinging readings from Ross Anderson's [Security

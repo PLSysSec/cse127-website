@@ -38,7 +38,7 @@
     
     
       
-        <title>Assignment 1 *(20 pts)* - Computer Security</title>
+        <title>Assignment 1 - Computer Security</title>
       
     
     
@@ -113,7 +113,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Assignment 1 *(20 pts)*
+                Assignment 1
               
             </span>
           
@@ -209,6 +209,156 @@
     <a href="../../contact/" title="Contact information" class="md-nav__link">
       Contact information
     </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Assignments
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Assignments
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Assignment 1
+      </label>
+    
+    <a href="./" title="Assignment 1" class="md-nav__link md-nav__link--active">
+      Assignment 1
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting Started
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vm-image" class="md-nav__link">
+    VM Image
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-using-gdb-10-pts" class="md-nav__link">
+    Part 1: Using GDB (10 pts)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assignment-instructions" class="md-nav__link">
+    Assignment Instructions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submission" class="md-nav__link">
+    Submission
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-echo-in-x86-10-pts" class="md-nav__link">
+    Part 2: echo in x86 (10 pts)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#helpful-hints" class="md-nav__link">
+    Helpful Hints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submission_1" class="md-nav__link">
+    Submission
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bugs" class="md-nav__link">
+    Bugs
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -331,18 +481,18 @@
                 
                 
                 <h1 id="assignment-1-20-pts">Assignment 1 <em>(20 pts)</em><a class="headerlink" href="#assignment-1-20-pts" title="Permanent link">&para;</a></h1>
-<p><strong>Deadline: Sunday, January 27, 2019 by 11:59:59 PM</strong></p>
-<p><strong>Early Turn-In: Thursday, January 24, 2019 by 11:59:59 PM (10% bonus)</strong></p>
+<p><strong>Deadline: Wednesday, October 9, 2019 by 2:59:59 PM</strong></p>
+<p><strong>Early Turn-In: Sunday, October 6, 2019 by 2:59:59 PM (10% bonus)</strong></p>
 <p>The goal of this assignment is to become familiar with the setup that will be used for future
 assignments, such as the use of a virtual machine and the included turn-in script, as well as the
 basics of working with gdb and writing programs in x86 assembly.</p>
 <h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
 <p>To complete this assignment, you will be provided with a VirtualBox VM pre-populated with the
-assignment files and a turn-in script.</p>
+assignment files.</p>
 <h3 id="vm-image">VM Image<a class="headerlink" href="#vm-image" title="Permanent link">&para;</a></h3>
 <p>In order to match the environment in which your submission will be graded, all work for this
 assignment must be done on the VirtualBox VM we provide, named <code>pa1box</code>. You can download the VM
-image <a href="https://drive.google.com/uc?id=12lj49F4NzWrq2A482IVmcm43TbF6ygKl&amp;export=download"><strong>here</strong></a>.</p>
+image <a href="https://drive.google.com/uc?id=1thaE-D_uMTqgGl6xdcTrE19lgAgkb2H-&amp;export=download"><strong>here</strong></a>.</p>
 <p>The VM is configured with two users: <code>student</code>, with password <code>hacktheplanet</code>; and <code>root</code>, with
 password <code>hackallthethings</code>. The VM is configured with SSH on port 2222. Please note that SSH is
 disabled for <code>root</code>, so you can only SSH in as the <code>student</code> user. You can still log in as <code>root</code>
@@ -398,7 +548,7 @@ recommend the following workflow in GDB:</p>
 <p>Note that this is only a cursory overview of GDB; much more info is available from online
 resources.</p>
 <h3 id="assignment-instructions">Assignment Instructions<a class="headerlink" href="#assignment-instructions" title="Permanent link">&para;</a></h3>
-<p>Complete the following exercises and fill out <code>hw1.txt</code> with your answers.</p>
+<p>Complete the following exercises and <strong>fill out <a href="../../resources/hw1.txt"><code>hw1.txt</code></a></strong> with your answers.</p>
 <ol>
 <li>What is the value, in hex, of the <code>ecx</code> register when the function <code>f</code> is called? <em>(2 pts)</em></li>
 <li>Which register stores the value of the variable <code>i</code> in the function main? <em>(2 pts)</em></li>
@@ -408,11 +558,9 @@ resources.</p>
    return? Write your answer in hex form. <em>(2 pts)</em></li>
 </ol>
 <h3 id="submission">Submission<a class="headerlink" href="#submission" title="Permanent link">&para;</a></h3>
-<p>To submit your solution for this sub-assignment, run the <code>gradinator-submit</code> command from the
-<code>/home/student/gdb</code> directory and follow the prompts that appear. You may submit as many times as
-you like ahead of the deadline, but only your most recent submission will be counted. Grades for
-this part of the assignment will be released after the deadline has passed. Note that part 1 (gdb)
-and part 2 (x86) <strong><em>must be submitted separately</em></strong>.</p>
+<p>Submit <code>hw1.txt</code> to "1a. gdb" on Gradescope. Login details can be found on the <a href="../about">about page</a>.
+Gradescope will check that it has successfully detected your answers, but it will not give you your grade
+until the due date.</p>
 <h2 id="part-2-echo-in-x86-10-pts">Part 2: <code>echo</code> in x86 <em>(10 pts)</em><a class="headerlink" href="#part-2-echo-in-x86-10-pts" title="Permanent link">&para;</a></h2>
 <p>Files for this sub-assignment are located in the <code>x86</code> subdirectory of the <code>student</code> user's home
 directory in the VM image; that is, <code>/home/student/x86</code>. SSH into the VM and <code>cd</code> into that
@@ -453,15 +601,7 @@ newline) to stdout. Your job is to modify this program to meet the specification
 <li>This <a href="https://syscalls.kernelgrok.com/">table of Linux system calls</a> may come in handy.</li>
 </ul>
 <h3 id="submission_1">Submission<a class="headerlink" href="#submission_1" title="Permanent link">&para;</a></h3>
-<p>To submit your solution for this sub-assignment, run the <code>gradinator-submit</code> command from the
-<code>/home/student/x86</code> directory and follow the prompts that appear. You may submit as many times as
-you like ahead of the deadline, but only your most recent submission will be counted. Note that
-part 1 (gdb) and part 2 (x86) <strong><em>must be submitted separately</em></strong>.</p>
-<p>For this part, after submitting an attempted solution, you'll subsequently receive a message from
-our auto-grading server to your email address associated with this class. The email will contain a
-breakdown of the steps it took to grade your assignment, points earned (or not) at each step, and a
-total score which&mdash;apart from exceptional circumstances&mdash;you can consider your final
-grade for this sub-assignment.</p>
+<p>Submit <code>echo.s</code> to "1b. x86 echo" on Gradescope. Login details can be found on the <a href="../about">about page</a>.</p>
 <h2 id="bugs">Bugs<a class="headerlink" href="#bugs" title="Permanent link">&para;</a></h2>
 <p>If you find a bug in this assignment please create an issue
 <a href="https://github.com/PLSysSec/cse127-winter19/issues">here</a>.</p>
@@ -481,6 +621,27 @@ grade for this sub-assignment.</p>
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../contact/" title="Contact information" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Contact information
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
