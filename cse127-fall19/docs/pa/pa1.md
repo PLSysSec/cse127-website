@@ -2,7 +2,7 @@
 
 **Deadline: Wednesday, October 9, 2019 by 2:59:59 PM**
 
-**Early Turn-In: Sunday, October 6, 2019 by 2:59:59 PM (10% bonus)**
+**Early Turn-In: Sunday, October 6, 2019 by 1:59:59 PM (10% bonus)**
 
 The goal of this assignment is to become familiar with the setup that will be used for future
 assignments, such as the use of a virtual machine and the included turn-in script, as well as the
