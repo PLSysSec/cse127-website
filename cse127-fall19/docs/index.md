@@ -19,11 +19,11 @@ probably enough and covers some x86 assembly too.
 
 * **Lectures:**
     - **(A) Nadia Heninger:** Mondays and Wednesdays, 2pm - 3:20pm in EBU3B 4140
-    - **(B) Deian Sefan:** Mondays and Wednesdays, 5pm - 6:20pm in CENTR 214
+    - **(B) Deian Stefan:** Mondays and Wednesdays, 5pm - 6:20pm in CENTR 214
 
 * **Section:**
     - **(A) Nadia Heninger:** Fridays, 4pm-5pm in CENTR 113
-    - **(B) Deian Sefan:** Fridays, 5pm-6pm in CENTR 113
+    - **(B) Deian Stefan:** Fridays, 5pm-6pm in CENTR 113
 
 * **Piazza:** [https://piazza.com/ucsd/fall2019/cse127/home](https://piazza.com/ucsd/fall2019/cse127/home)
 
