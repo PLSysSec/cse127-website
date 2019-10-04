@@ -71,7 +71,7 @@ Finally, run `sudo make setuid` to mark the binaries as setuid-root. If you forg
 
 ## Using GDB
 
-To run an exploit in GDB, run, e.g., `gdb -e sploit1 -s /tmp/target1` to execute `
+To run an exploit in GDB, run, e.g., `gdb sploit1 -s /tmp/target1` to execute `
 sploit1` and use the symbol file `target1`. We recommend the following workflow in GDB:
 
 1. **Starting.** Set breakpoints that you can later use for analysis:
