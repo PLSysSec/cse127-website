@@ -52,8 +52,8 @@ Inside the `gdb` directory, you'll find `fib.c`, a C program demonstrating the F
 a `Makefile`; and `hw1.txt`, in which you'll record your responses to the questions below. The
 first step is to compile `fib` by running `make` on the command line.
 
-To run the `fib` executable in GDB, run `gdb -e fib`. Use the `-s` option to load a symbol file. I
-recommend the following workflow in GDB:
+To run the `fib` executable in GDB, run `gdb fib`.
+I recommend the following workflow in GDB:
 
 1. **Starting.** Set breakpoints that you can later use for analysis:
     - `b foo` &mdash; break at function `foo`
