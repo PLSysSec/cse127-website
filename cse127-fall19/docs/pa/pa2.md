@@ -106,7 +106,7 @@ Here are some additional GDB commands that may come in handy:
 * `p &buf` --- prints the starting address of an array or variable named `buf`
 * `i r` --- view registers
 * `i frame` --- view info about the current stack frame
-* `i stack` --- view high level info about the
+* `i stack` --- view high level info about the stack
 * `help <command>` --- get help inside GDB about a particular command
 
 
@@ -122,4 +122,4 @@ resources.
 2. Run the following command from the student home directory `tar -czvf pa2.tar.gz PID sploit[1-4]/ targets/` This will create a `pa2.tar.gz` in the home directory with all your files in it. You can see what files were zipped by running `tar -tf pa2.tar.gz`
 3. `scp` the `pa2.tar.gz` file to your local computer and submit to gradescope.
 
-Note: gradescope's autograder is not being used to grade this assignment, since it requires the environment of the VM. You'll know if your solution works if you are able to get root shells after running each sploit and if you follow the directions above
+Note: gradescope's autograder is not being used to grade this assignment, since it requires the environment of the VM. You'll know if your solution works if you are able to get root shells after running each sploit and if you follow the directions above.
