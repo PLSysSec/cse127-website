@@ -495,7 +495,8 @@
                 <h1 id="assignment-2-75-pts-25pts-extra-for-sploit4">Assignment 2 <em>75 pts + 25pts extra for sploit4</em><a class="headerlink" href="#assignment-2-75-pts-25pts-extra-for-sploit4" title="Permanent link">&para;</a></h1>
 <p><strong>Deadline: Wednesday, October 16, 2019 by 1:59:59 PM</strong></p>
 <p><strong>Early Turn-In: Sunday, October 13, 2019 by 11:59:59 PM (10% bonus)</strong></p>
-<p>The goal of this assignment is to gain hands-on experience with the effects of buffer overflows and other memory-safety bugs. <strong>sploit1-sploit3 are required. sploit4 is extra credit</strong></p>
+<p>The goal of this assignment is to gain hands-on experience with the effects of buffer overflows and other memory-safety bugs. </p>
+<p><strong>sploit1-sploit3 are required. sploit4 is extra credit!</strong></p>
 <ul>
 <li>You will be provided a skeleton for implementing these exploits in C.</li>
 <li>You must not discuss your solution with other students until three days after the assignment deadline.</li>
@@ -540,22 +541,23 @@
 <p>You should not use a function such as <code>get_sp()</code> in the exploits you hand in. You should only modify the <code>sploitN.c</code> files and corresponding <code>writeup.txt</code> files; i.e., your exploits should work with unmodified Makefiles, targets, etc. In grading, the exploits may be run with a different environment and different working directory. Your exploits must work in these cases also.  If you hard-code the target's stack locations into your exploit you should be fine. Your exploit programs should not take any command-line arguments.</p>
 <p>Shutting down the VM removes the files in /tmp; if you want to keep them, pause the VM and save its state!</p>
 <h2 id="important-using-the-shellcode">IMPORTANT: Using the shellcode<a class="headerlink" href="#important-using-the-shellcode" title="Permanent link">&para;</a></h2>
-<p>The shellcode is defined for you in <code>shellcode.h</code> inside each <code>sploitN/</code> directory. To use the shellcode in your sploit buffers, please <strong>import the shellcode with <code>#include</code> and copy the contents programatically</strong>. You can do this with <code>memcpy</code>, <code>strcpy</code>, or even just a <code>for</code> loop with array assignments. <strong>Please do NOT instead manually copy-paste the shellcode string literal into your sploit</strong>. While the sploit will still work, it may break grading.</p>
+<p>The shellcode is defined for you in <code>shellcode.h</code> inside each <code>sploitN/</code> directory. To use the shellcode in your sploit buffers, please <strong>import the shellcode with <code>#include</code> and copy the contents programatically</strong>. You can do this with <code>memcpy</code>, <code>strcpy</code>, or even just a <code>for</code> loop with array assignments. <strong>Please do NOT manually copy-paste the shellcode string literal into your sploitN.c file</strong>. While the sploit will still work, it may break grading.</p>
 <h2 id="using-gdb">Using GDB<a class="headerlink" href="#using-gdb" title="Permanent link">&para;</a></h2>
-<p>To run an exploit in GDB, run, e.g., <code>gdb -e sploit1 -s /tmp/target1 -s sploit1</code> to execute <code>sploit1</code> and use the symbol file <code>target1</code>.</p>
-<p>Note that there are <strong>two executables</strong> (<code>sploit1</code> and <code>target1</code>) when we run these programs. For this, use the following workflow to get started in GDB:</p>
+<p>To run an exploit in GDB, run, e.g., <code>gdb sploit1</code> to execute <code>sploit1</code>.</p>
+<p>Note that there are <strong>two executables</strong> when we run these programs, since, e.g., <code>sploit1</code> will execute <code>target1</code>. Because of this, you can use the following sample workflow to get started in GDB:</p>
 <ol>
 <li><code>b main</code> --- break at <code>main</code> in <code>sploit1.c</code></li>
 <li><code>r</code> --- run the executable <code>sploit1</code></li>
-<li><code>b main</code> --- break at <code>main</code> in <code>target1.c</code></li>
 <li><code>c</code> --- continue until <code>main</code> in <code>target1.c</code></li>
 <li><code>b foo</code> --- set a breakpoint at <code>foo</code> in <code>target1.c</code></li>
 </ol>
+<p>Note that you will <em>not</em> be able to set breakpoints in <code>targetN</code> until the program has started executing <code>targetN</code>.
+That is, e.g., if you tried to run <code>b foo</code> before step 3, you would get the error <code>Function "foo" not defined.</code></p>
 <p>Here are some additional GDB commands that may come in handy:</p>
 <ul>
-<li><code>p var</code> --- prints the value of variable \texttt{var}</li>
-<li><code>p buf</code> --- (if buf is an array) prints the contents of \texttt{buf}</li>
-<li><code>p &amp;buf</code> --- prints the starting address of \texttt{buf}</li>
+<li><code>p var</code> --- prints the value of a variable named <code>var</code></li>
+<li><code>p buf</code> --- (if <code>buf</code> is an array) prints the contents of an array named <code>buf</code></li>
+<li><code>p &amp;buf</code> --- prints the starting address of an array or variable named <code>buf</code></li>
 <li><code>i r</code> --- view registers</li>
 <li><code>i frame</code> --- view info about the current stack frame</li>
 <li><code>i stack</code> --- view high level info about the</li>
