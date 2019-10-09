@@ -5,7 +5,7 @@ Sep 30      | [Intro/Threat Modeling](slides/1-introduction.pdf) <br/> Optional 
 Oct  2      | [Buffer overflow attacks](slides/2-bufferoverflows.pdf) <br/> Reading: Aleph One's [Smashing the Stack for Fun and Profit](http://phrack.org/issues/49/14.html#article) <br/> Optional reading: 0x300-0x320 from Hacking. 0x200-0x270 if you don't have a strong C background.
 Oct  7      | [Buffer overflow defenses (Stack canaries/W^X/ASLR)](slides/3-lowlevelmitigations.pdf) <br/> Reading: [Eternal War in Memory](https://www.nebelwelt.net/publications/files/13Oakland.pdf) by Szekeres et al., [ASLR](https://pax.grsecurity.net/docs/aslr.txt), and [NOEXEC](https://pax.grsecurity.net/docs/noexec.txt)
             | **Assignment 2: Buffer Overflows**
-Oct  9      | CFI/Memory Safety
+Oct  9      | [More memory safety attacks and defenses](slides/4-ropcfimisc.pdf)
 Oct 14      | OS Security/Isolation
             | **Assignment 3: Side Channels**
 Oct 16      | Malware (Stuxnet/Ransomware)
