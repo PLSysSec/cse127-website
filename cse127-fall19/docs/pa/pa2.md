@@ -4,7 +4,9 @@
 
 **Early Turn-In: Sunday, October 13, 2019 by 11:59:59 PM (10% bonus)**
 
-The goal of this assignment is to gain hands-on experience with the effects of buffer overflows and other memory-safety bugs. **sploit1-sploit3 are required. sploit4 is extra credit**
+The goal of this assignment is to gain hands-on experience with the effects of buffer overflows and other memory-safety bugs. 
+
+**sploit1-sploit3 are required. sploit4 is extra credit!**
 
 - You will be provided a skeleton for implementing these exploits in C.
 - You must not discuss your solution with other students until three days after the assignment deadline.
@@ -80,26 +82,28 @@ You should not use a function such as `get_sp()` in the exploits you hand in. Yo
 Shutting down the VM removes the files in /tmp; if you want to keep them, pause the VM and save its state!
 
 ## IMPORTANT: Using the shellcode
-The shellcode is defined for you in `shellcode.h` inside each `sploitN/` directory. To use the shellcode in your sploit buffers, please **import the shellcode with `#include` and copy the contents programatically**. You can do this with `memcpy`, `strcpy`, or even just a `for` loop with array assignments. **Please do NOT instead manually copy-paste the shellcode string literal into your sploit**. While the sploit will still work, it may break grading.
+The shellcode is defined for you in `shellcode.h` inside each `sploitN/` directory. To use the shellcode in your sploit buffers, please **import the shellcode with `#include` and copy the contents programatically**. You can do this with `memcpy`, `strcpy`, or even just a `for` loop with array assignments. **Please do NOT manually copy-paste the shellcode string literal into your sploitN.c file**. While the sploit will still work, it may break grading.
 
 ## Using GDB
 
-To run an exploit in GDB, run, e.g., `gdb -e sploit1 -s /tmp/target1 -s sploit1` to execute `sploit1` and use the symbol file `target1`.
+To run an exploit in GDB, run, e.g., `gdb sploit1` to execute `sploit1`.
 
-Note that there are **two executables** (`sploit1` and `target1`) when we run these programs. For this, use the following workflow to get started in GDB:
+Note that there are **two executables** when we run these programs, since, e.g., `sploit1` will execute `target1`. Because of this, you can use the following sample workflow to get started in GDB:
 
 1. `b main` --- break at `main` in `sploit1.c`
 2. `r` --- run the executable `sploit1`
-3. `b main` --- break at `main` in `target1.c`
-4. `c` --- continue until `main` in `target1.c`
-5. `b foo` --- set a breakpoint at `foo` in `target1.c`
+3. `c` --- continue until `main` in `target1.c`
+4. `b foo` --- set a breakpoint at `foo` in `target1.c`
+
+Note that you will *not* be able to set breakpoints in `targetN` until the program has started executing `targetN`.
+That is, e.g., if you tried to run `b foo` before step 3, you would get the error `Function "foo" not defined.`
 
 
 Here are some additional GDB commands that may come in handy:
 
-* `p var` --- prints the value of variable \texttt{var}
-* `p buf` --- (if buf is an array) prints the contents of \texttt{buf}
-* `p &buf` --- prints the starting address of \texttt{buf}
+* `p var` --- prints the value of a variable named `var`
+* `p buf` --- (if `buf` is an array) prints the contents of an array named `buf`
+* `p &buf` --- prints the starting address of an array or variable named `buf`
 * `i r` --- view registers
 * `i frame` --- view info about the current stack frame
 * `i stack` --- view high level info about the
