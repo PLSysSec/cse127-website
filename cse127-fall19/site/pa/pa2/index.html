@@ -560,7 +560,7 @@ That is, e.g., if you tried to run <code>b foo</code> before step 3, you would g
 <li><code>p &amp;buf</code> --- prints the starting address of an array or variable named <code>buf</code></li>
 <li><code>i r</code> --- view registers</li>
 <li><code>i frame</code> --- view info about the current stack frame</li>
-<li><code>i stack</code> --- view high level info about the</li>
+<li><code>i stack</code> --- view high level info about the stack</li>
 <li><code>help &lt;command&gt;</code> --- get help inside GDB about a particular command</li>
 </ul>
 <p>Also refer back to the sample commands in Assignment 1.</p>
@@ -572,7 +572,7 @@ resources.</p>
 <li>Run the following command from the student home directory <code>tar -czvf pa2.tar.gz PID sploit[1-4]/ targets/</code> This will create a <code>pa2.tar.gz</code> in the home directory with all your files in it. You can see what files were zipped by running <code>tar -tf pa2.tar.gz</code></li>
 <li><code>scp</code> the <code>pa2.tar.gz</code> file to your local computer and submit to gradescope.</li>
 </ol>
-<p>Note: gradescope's autograder is not being used to grade this assignment, since it requires the environment of the VM. You'll know if your solution works if you are able to get root shells after running each sploit and if you follow the directions above</p>
+<p>Note: gradescope's autograder is not being used to grade this assignment, since it requires the environment of the VM. The autograder is used <strong>only to check that your sploits compile.</strong> You'll know if your solution works if you are able to get root shells after running each sploit and if you follow the directions above.</p>
                 
                   
                 
