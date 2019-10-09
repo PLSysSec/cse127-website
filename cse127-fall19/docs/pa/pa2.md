@@ -15,7 +15,7 @@ The goal of this assignment is to gain hands-on experience with the effects of b
 
 ## Getting Started
 
-To complete this assignment you will be provided with a VirtualBox VM and a set of files including a turn-in script.
+To complete this assignment you will be provided with a VirtualBox VM and a set of files.
 
 ### VM Image
 
