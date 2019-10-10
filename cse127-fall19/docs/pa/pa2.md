@@ -1,8 +1,8 @@
 # Assignment 2 *75 pts + 25pts extra for sploit4*
 
-**Deadline: Wednesday, October 16, 2019 by 1:59:59 PM**
+**Deadline: Wednesday, October 23, 2019 by 1:59:59 PM**
 
-**Early Turn-In: Sunday, October 13, 2019 by 11:59:59 PM (10% bonus)**
+**Early Turn-In: Sunday, October 20, 2019 by 11:59:59 PM (10% bonus)**
 
 The goal of this assignment is to gain hands-on experience with the effects of buffer overflows and other memory-safety bugs. 
 
