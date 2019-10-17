@@ -6,9 +6,9 @@ Oct  2      | [Buffer overflow attacks](slides/2-bufferoverflows.pdf) <br/> Read
 Oct  7      | [Buffer overflow defenses (Stack canaries/W^X/ASLR)](slides/3-lowlevelmitigations.pdf) <br/> Reading: [Eternal War in Memory](https://www.nebelwelt.net/publications/files/13Oakland.pdf) by Szekeres et al., [ASLR](https://pax.grsecurity.net/docs/aslr.txt), and [NOEXEC](https://pax.grsecurity.net/docs/noexec.txt)
             | **Assignment 2: Buffer Overflows**
 Oct  9      | [More memory safety attacks and defenses](slides/4-ropcfimisc.pdf)
-Oct 14      | OS Security/Isolation
+Oct 14      | [OS Security/Isolation](slides/5-isolation.pdf)
             | **Assignment 3: Side Channels**
-Oct 16      | Malware (Stuxnet/Ransomware)
+Oct 16      | [Malware](slides/6-malware.pdf)
 Oct 21      | Web Security Model
 Oct 23      | Web Attacks (CSRF/XSS/SQLi)
             | **Assignment 4: Web**
@@ -24,5 +24,5 @@ Nov 20      | Hash Functions
 Nov 25      | Asymmetric Crypto
 Nov 27      | TLS/PKI/CT
             | **Assignment 6: Crypto**
-Dec  2      | Cipherpunk
+Dec  2      | Privacy/Anonymity
 Dec  4      | Ethics/Law/Policy
