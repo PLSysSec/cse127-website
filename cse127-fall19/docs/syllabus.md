@@ -9,10 +9,10 @@ Oct  9      | [More memory safety attacks and defenses](slides/4-ropcfimisc.pdf)
 Oct 14      | [OS Security/Isolation](slides/5-isolation.pdf)
             | **Assignment 3: Side Channels**
 Oct 16      | [Malware](slides/6-malware.pdf)
-Oct 21      | [Web Security Model](slides/7-webmodel.pdf)
-Oct 23      | [Web Attacks](slides/8-webattacks.pdf)
+Oct 21      | [Web security model](slides/7-webmodel.pdf)
+Oct 23      | [Web attacks and defenses](slides/8-webattacks.pdf)
             | **Assignment 4: Web**
-Oct 28      | Web Defenses
+Oct 28      | [Modern client-side web defenses](slides/9-webdefenses.pdf)
 Oct 30      | Midterm
 Nov  4      | Network Intro
 Nov  6      | Network Attacks
