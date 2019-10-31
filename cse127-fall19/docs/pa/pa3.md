@@ -26,7 +26,7 @@ You will be writing two exploits, each of which takes advantage of a side channe
 
 ### Submitting Your Solutions
 
-Submit `memhack.c` and `timehack.c` to the corresponding assignments on Gradescope.
+Submit `memhack.c` and `timehack.c` to the corresponding assignments on Gradescope, and submit the writeups separately to the writeups assignment on Gradescope.
 
 ## Exploit Construction
 
