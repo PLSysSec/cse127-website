@@ -1,8 +1,8 @@
 # Assignment 3 *100pts*
 
-**Deadline: Thursday, March 7, 2019 by 11:59:59 PM**
+**Deadline: Wednesday, October 30, 2019 by 1:59:59 PM**
 
-**Early Turn-In: Monday, March 4, 2019 by 11:59:59 PM (10% bonus)**
+**Early Turn-In: Sunday, October 27, 2019 by 11:59:59 PM (10% bonus)**
 
 The goal of this assignment is to gain hands-on experience exploiting side channels. This assignment will demonstrate how side channels can be just as dangerous as the control flow vulnerabilities you exploited in Assignment 2.
 
@@ -10,35 +10,9 @@ You will be provided a two skeleton files (`memhack.c` and `timehack.c`) that yo
 
 ## Getting Started
 
-To complete this assignment you will be provided with a VirtualBox VM and a set of files including a turn-in script.
+Just like previous assignments, for this assignment you will be provided with a VirtualBox VM containing all the files you need.  The VM is named `pa3box`, and you can download the VM image [**here**](https://drive.google.com/a/eng.ucsd.edu/uc?id=1q6foEy60Iex07_qyCJtQHDHwQ7VQXQWC&export=download).  As in previous assignments, import the `pa3box.vbox` file into VirtualBox via the `Machine` &rarr; `Add` menu item; *don't* create a brand-new VirtualBox VM or import the `pa3box-data.vmdk` file on its own: if you do this, you won't have the correct configuration.
 
-### VM Image
-
-In order to match the environment in which your submission will be graded, all work for this assignment must be done on the VirtualBox VM we have provided, named `pa3box`. You can download the VM image [**here**](https://drive.google.com/a/eng.ucsd.edu/uc?id=1q6foEy60Iex07_qyCJtQHDHwQ7VQXQWC&export=download).
-
-Import the `pa3box.vbox` file into VirtualBox via the `Machine` &rarr; `Add` menu item. *Don't* create a brand-new VirtualBox VM or import the `pa3box-data.vmdk` file on its own: if you do this, you won't have the correct configuration.
-
-After importing the VM, select it in the VirtualBox sidebar and start it with the green arrow button or the `Machine` &rarr; `Start` menu item. The VM is configured with two users: `student`, with password `hacktheplanet`; and `root`, with password `hackallthethings`. Instead of using the command line through VirtualBox, we recommend that you SSH into your VM from another client. The VM image is configured to expose an SSH server on port 2222 of your system's loopback address (`127.0.0.1`).
-
-To SSH into the VM (from your host system running VirtualBox, ***not*** from inside the VM):
-
-```
-ssh -p 2222 student@127.0.0.1
-```
-
-To copy files from your computer to the VM:
-
-```
-scp -P 2222 -r /path/to/files/ student@127.0.0.1:/home/student
-```
-
-To copy files from the VM to your computer:
-
-```
-scp -P 2222 student@127.0.0.1:/path/to/files/ /destination/path
-```
-
-Please note that SSH is disabled for `root`, so you can only SSH in as the `student` user. You can still log in as `root` using `su` or by logging into the VM directly.
+The VM is configured with two users: `student`, with password `hacktheplanet`; and `root`, with password `hackallthethings`. We recommend you use the VM via `ssh` and `scp`, just like previous assignments.  Please note that SSH is disabled for `root`, so you can only SSH in as the `student` user. You can still log in as `root` using `su` or by logging into the VM directly.
 
 ### Assignment Files
 
@@ -52,9 +26,7 @@ You will be writing two exploits, each of which takes advantage of a side channe
 
 ### Submitting Your Solutions
 
-To submit your solution for each sub-assignment, run the `gradinator-submit` command from the corresponding `memhack` or `timehack` subdirectory and follow the prompts that appear. You may submit as many times as you like ahead of the deadline, but only your most recent submission will be counted. Note that each of the two sub-assignments ***must be submitted separately***.
-
-For each sub-assignment, after submitting an attempted solution, you'll subsequently receive a message from our auto-grading server to your email address associated with this class. The email will contain a breakdown of the steps it took to grade your assignment, points earned (or not) at each step, and a total score for that sub-assignment. Each one is worth 50 points.
+Submit `memhack.c` and `timehack.c` to the corresponding assignments on Gradescope, and submit the writeups separately to the writeups assignment on Gradescope.
 
 ## Exploit Construction
 
@@ -91,4 +63,4 @@ Now automate this entire process, in the style of the original approach in `memh
 
 ### Final Notes
 
-**Do not write a solution that simply checks all passwords exhaustively.** You will not get credit for this. This should be doable in linear time (we will stop programs that are running for excessive periods) and it will basically feel instantaneous for passwords of 8 characters or less (note we will not test passwords over 12 characters). We plan to do the testing/evaluation on our server.
+**Do not write a solution that simply checks all passwords exhaustively.** You will not get credit for this. The timing side-channel should be exploitable in linear time (we will stop programs that are running for excessive periods) and it will basically feel instantaneous for passwords of 8 characters or less (note we will not test passwords over 12 characters).

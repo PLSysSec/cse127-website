@@ -1,8 +1,8 @@
 # Assignment 4 *80pts*
 
-**Deadline: Saturday, March 23, 2019 by 11:59:59 PM**
+**Deadline: Wednesday, November 6, 2019 by 1:59:59 PM**
 
-**Early Turn-In: Tuesday, March 19, 2019 by 11:59:59 PM (15% bonus)**
+**Early Turn-In: Sunday, November 3, 2019 by 11:59:59 PM (10% bonus)**
 
 ## Overview
 
@@ -12,7 +12,7 @@ In this assignment, you have 8 'levels' or 'challenges' (each worth 10 points). 
 
 ## Getting Started/Logging In
 
-Visit [https://cse230-pa4.spinda.net](https://cse230-pa4.spinda.net). In this page, you will be asked to enter your PID and a password. You can find your password in your GradeScope account for this class (look for the "PA4 Login Information" assignment).
+Visit [https://c10-32.sysnet.ucsd.edu/challenges/](https://c10-32.sysnet.ucsd.edu/challenges/). In this page, you will be asked to enter your PID and a password. You can find your password in your Gradescope account for this class (look for the "Assignment 4 userinfo" assignment).
 
 ## A Word of Caution
 
@@ -20,11 +20,11 @@ Each level comes with a description of its password. As mentioned before, every 
 
 ## Prior Knowledge
 
-During the assignment, you may encounter situations that may require to either execute HTML, Client-side JavaScript or SQL statements. Some levels can be solved with a few lines written in Python. However, no code that you are expected to write in this assignment exceeds 10 (very small) lines. Most of the expected code is pretty generic and can be found with a quick Google search. The aim of the assignment is not to teach you coding in the said languages, but you give a hands-on experience with the tricks that most "hackers" or exploiters use in today's world. During no time are you expected to know "truly fancy" stuff like server-side PHP, ASP, JavaScript, AJAX, JQuery, Flash, CSS or in general - anything beyond the realms of the aforementioned techniques.
+During the assignment, you may encounter situations that may require to either execute HTML, Client-side JavaScript or SQL statements. Some levels can be solved with a few lines written in Python. However, no code that you are expected to write in this assignment exceeds 10 (very small) lines. Most of the expected code is pretty generic and can be found with a quick Google search. The aim of the assignment is not to teach you coding in the said languages, but to give you hands-on experience with the tricks that most "hackers" or exploiters use in today's world. During no time are you expected to know "truly fancy" stuff like PHP, ASP, server-side JavaScript, AJAX, JQuery, Flash, CSS or in general - anything beyond the realms of the aforementioned techniques.
 
 ## Useful Resources
 
-Here are few resources which I think you will find very helpful while solving the assignment. They are, in no particular order:
+Here are few resources which you may find very helpful while solving the assignment. They are, in no particular order:
 
 1. GET and POST requests - <a href="https://www.w3schools.com/tags/ref_httpmethods.asp">https://www.w3schools.com/tags/ref_httpmethods.asp</a>
 2. Python Requests library - <a href="http://docs.python-requests.org/en/master/">http://docs.python-requests.org/en/master/</a>
@@ -35,7 +35,7 @@ Here are few resources which I think you will find very helpful while solving th
 
 ## Final Notes
 
-Exploiting vulnerabilities on web services is perhaps as old as the web. This assignment is designed to give you a first-hand feel of where people who exploit vulnerabilities look at. It is intended to make you think about these vulnerabilities, whenever you design a web service of your own.
+Exploiting vulnerabilities on web services is perhaps as old as the web. This assignment is designed to give you a first-hand feel of what people who exploit vulnerabilities look at. It is intended to make you think about these vulnerabilities, whenever you design a web service of your own.
 
 However, since it is intended for academic purposes, it is heavily toned down. Think of it as a toy model of the real world. We have even included hints and descriptions on every level. Just following these and only these should be enough to get you through. In the real world, the "hacker" will not have any hints and will have to systematically try everything. This is often long and meticulous, and not suited for assignment format. Hence, your best friends are the hints present in every level.
 

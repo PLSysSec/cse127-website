@@ -2,7 +2,7 @@
 
 **Deadline: Wednesday, November 6, 2019 by 1:59:59 PM**
 
-**Early Turn-In: Sunday, November 3, 2019 by 11:59:59 PM (15% bonus)**
+**Early Turn-In: Sunday, November 3, 2019 by 11:59:59 PM (10% bonus)**
 
 ## Overview
 
