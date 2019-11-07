@@ -12,9 +12,18 @@ Being a smart but cautious hacker, you connected the flash drive to a secure, is
 
 Unfortunately, a quick glance shows that there's not much of interest on this flash drive itself.  You were hoping it might have something juicy, like the plans for the research group's next super-potent virus.  But all is not lost.  You might still be able to use some of the information on this flash drive to breach into the research group's super-secret network.  And then who knows what information you might be able to find just by listening in to what's going on...
 
-## Logistics
+## Logistics and Opening Hints
 
 You should have already received the "email to yourself" with the dump of the dropped flash drive's contents.  That should be all you need to get started - what interesting things might be here that would prove useful for your hacking activities?
+
+Linux commands you may need to know about or look up for this assignment, in alphabetical order, include:
+  - `nc`
+  - `nmap`
+  - `ssh`
+  - `tcpdump`
+  - `wget`
+
+Certain flags of some of these commands may also come in useful, such as `-F`, `-i`, `-p`, and `-X`, among others. Information can be found on man pages (e.g., `man nc`) or online.
 
 ---
 
