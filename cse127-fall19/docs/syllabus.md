@@ -15,7 +15,7 @@ Oct 23      | [Web attacks and defenses](slides/8-webattacks.pdf)
 Oct 28      | [Modern client-side web defenses](slides/9-webdefenses.pdf)
 Oct 30      | Midterm
 Nov  4      | [Network intro](slides/10-networkintro.pdf)
-Nov  6      | Network attacks]
+Nov  6      | [Network attacks](slides/11-networkattacks.pdf)
             | **Assignment 5: Networks**
 Nov 11      | Veterans Day - no class
 Nov 13      | Network Defenses
