@@ -14,7 +14,7 @@ Unfortunately, a quick glance shows that there's not much of interest on this fl
 
 ## Logistics and Opening Hints
 
-You should have already received the "email to yourself" with the dump of the dropped flash drive's contents.  That should be all you need to get started - what interesting things might be here that would prove useful for your hacking activities?
+You should have already received the "email to yourself" with the dump of the dropped flash drive's contents; the email's subject is "flash drive dump".  That should be all you need to get started - what interesting things might be here that would prove useful for your hacking activities?
 
 You'll eventually have to turn in a writeup describing the steps you took to achieve your goals, so you may want to keep a log as you go in order to make that easier.
 
