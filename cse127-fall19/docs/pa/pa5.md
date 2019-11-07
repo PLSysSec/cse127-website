@@ -19,11 +19,11 @@ You should have already received the "email to yourself" with the dump of the dr
 You'll eventually have to turn in a writeup describing the steps you took to achieve your goals, so you may want to keep a log as you go in order to make that easier.
 
 Linux commands you may need to know about or look up for this assignment, in alphabetical order, include:
-  - `nc`
-  - `nmap`
-  - `ssh`
-  - `tcpdump`
-  - `wget`
+- `nc`
+- `nmap`
+- `ssh`
+- `tcpdump`
+- `wget`
 
 Certain flags of some of these commands may also come in useful, such as `-F`, `-i`, `-p`, and `-X`, among others. Information can be found on man pages (e.g., `man nc`) or online.
 
