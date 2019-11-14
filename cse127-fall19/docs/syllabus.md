@@ -17,8 +17,8 @@ Oct 30      | Midterm
 Nov  4      | [Network intro](slides/10-networkintro.pdf)
 Nov  6      | [Network attacks](slides/11-networkattacks.pdf)
             | **Assignment 5: Networks**
-Nov 11      | Veterans Day - no class
-Nov 13      | Network Defenses
+Nov 11      | Veterans day (no class)
+Nov 13      | [Network defenses](slides/12-networkdefenses.pdf)
 Nov 18      | Symmetric Crypto
 Nov 20      | Hash Functions
 Nov 25      | Asymmetric Crypto
