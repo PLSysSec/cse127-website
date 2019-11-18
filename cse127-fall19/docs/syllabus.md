@@ -19,7 +19,7 @@ Nov  6      | [Network attacks](slides/11-networkattacks.pdf)
             | **Assignment 5: Networks**
 Nov 11      | Veterans day (no class)
 Nov 13      | [Network defenses](slides/12-networkdefenses.pdf)
-Nov 18      | Symmetric Crypto
+Nov 18      | [Symmetric-key crypto](slides/13-symmetriccrypto.pdf)
 Nov 20      | Hash Functions
 Nov 25      | Asymmetric Crypto
 Nov 27      | TLS/PKI/CT
