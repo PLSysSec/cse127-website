@@ -21,8 +21,8 @@ Nov 11      | Veterans day (no class)
 Nov 13      | [Network defenses](slides/12-networkdefenses.pdf)
 Nov 18      | [Symmetric-key crypto](slides/13-symmetriccrypto.pdf)
 Nov 20      | [Public-key crypto](slides/14-pubkeycrypto.pdf)
-Nov 25      | TLS/PKI/CT
-Nov 27      | TLS/PKI/CT
+Nov 25      | [TLS and PKI](slides/15-tls.pdf)
+Nov 27      | Advanced Topics: Breaking Crypto + Language-based Crypto
             | **Assignment 6: Crypto**
 Dec  2      | Privacy/Anonymity
 Dec  4      | Ethics/Law/Policy
