@@ -1,8 +1,8 @@
 # Assignment 6
 
-**Deadline: Friday, December 6, 2019 by 11:59:59 PM**
+**Deadline: Monday, December 9, 2019 by 11:59:59 PM**
 
-**Early Turn-In: Tuesday, December 3, 2019 by 11:59:59 PM**
+**Early Turn-In: Friday, December 6, 2019 by 11:59:59 PM**
 
 ## Overview
 
