@@ -69,7 +69,7 @@ The _population variance_ of a finite population _X_ of size _N_ and mean _mu_
 is given by
 
 ```
-  [ Sum(i=1..N) of (x\_i - mu)^2 ] / N
+  [ Sum(i=1..N) of (x_i - mu)^2 ] / N
 ```
 
 For this assignment, you should write your own code to calculate variance.
@@ -224,9 +224,7 @@ _Historical fact_: In 2009, security researchers found that the API used by
 the photo-sharing site Flickr suffered from a length-extension vulnerability
 almost exactly like the one in this exercise.
 
-*What to submit*
-
-A Python 3.x script named `len_ext_attack.py` that:
+*What to submit* A Python 3.x script named `len_ext_attack.py` that:
 
 1. Accepts a valid URL in the same form as the one above as a command line argument.
 2. Modifies the URL so that it will execute the `UnlockAllSafes` command as the user.
@@ -305,11 +303,13 @@ written by Marc Stevens that uses a more advanced technique.
 
 You can download the `fastcoll` tool here:
 
-`http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5.exe.zip` (Windows executable)
+[http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5.exe.zip](http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5.exe.zip)
+(Windows executable)
 
 or
 
-`http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5-1_source.zip` (source code)
+[http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5-1_source.zip](http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5-1_source.zip)
+(source code)
 
 If you are compiling `fastcoll` from source, you can compile
 using this makefile:
