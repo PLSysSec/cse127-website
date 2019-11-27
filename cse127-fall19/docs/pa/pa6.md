@@ -6,19 +6,17 @@
 
 ## Overview
 
-TODO: adapt overview to include Part 1 and Part 5
-
-In this project, you will investigate vulnerabilities in widely used
+In this project, we'll start by investigating Vigenere ciphers, then
+move on to investigating vulnerabilities in widely used
 cryptographic hash functions, including length-extension attacks and collision
 vulnerabilities, and an implementation vulnerability in a popular digital
 signature scheme.
 
-TODO: does this apply just to Part 1
-For these problems, solve by hand or write a program (perhaps in Python).
-
 ## Part 1: Vigenere ciphers
 
 [TODO: do we need to explain Vigenere cipher?]
+
+For these problems, solve by hand or write a program (perhaps in Python).
 
 ### 1a.
 
