@@ -132,8 +132,8 @@ applications of hash functions.
 
 To experiment with this idea, we'll use a Python implementation of the MD5 hash
 function, though SHA-1 and SHA-256 are vulnerable to length extension in the
-same way.  You can download the `pymd5` module at [TODO: where to download] and
-learn how to use it by running [TODO: verify this] `pydoc pymd5`.  To follow
+same way.  You can [download the `pymd5` module here](../resources/pymd5.py) and
+learn how to use it by running `pydoc pymd5`.  To follow
 along with these examples, run Python in interactive mode and run the command
 `from pymd5 import md5, padding`.
 
@@ -141,6 +141,7 @@ Consider the string "Use HMAC, not hashes".  We can compute its MD5 hash by
 running:
 
 ```python
+from pymd5 import md5, padding
 m = "Use HMAC, not hashes"
 h = md5()
 h.update(m)
@@ -155,7 +156,7 @@ print(md5(m).hexdigest())
 
 The output should be `3ecc68efa1871751ea9b0b1a5b25004d`.
 
-MD5 processes messages in 512-bit blocks, so, internally, the hash function
+MD5 processes messages in 512-bit blocks, so internally, the hash function
 pads _m_ to a multiple of that length.  The padding consists of the bit 1,
 followed by as many 0 bits as necessary, followed by a 64-bit count of the
 number of bits in the unpadded message.  (If the 1 and the count won't fit in
@@ -205,19 +206,16 @@ mistakenly try to construct something like an HMAC by using _hash(secret
 its security practices, hosts an API that allows its client-side applications
 to perform actions on behalf of a user by loading URLs of the form:
 
-[TODO update this url]
-`http://cis331.cis.upenn.edu/project4/api?token=d6613c382dbb78b5592091e08f6f41fe&user=nadiah&command1=ListSquirrels&command2=NoOp`
+`http://bank.cse127.ucsd.edu/pa6/api?token=d6613c382dbb78b5592091e08f6f41fe&user=nadiah&command1=ListSquirrels&command2=NoOp`
 
 where `token` is MD5(_user's 8-character password_ || `user=...` _[the rest of
-the URL starting from user= and ending with the last command]_).
+the decoded URL starting from user= and ending with the last command]_).
 
 Using the techniques that you learned in the previous section and without
 guessing the password, apply length extension to create a URL ending with
-`&command3=UnlockAllSafes` that is treated as valid by the server API.
-You have permission to use our server to check whether your command is
-accepted.
+`&command3=UnlockAllSafes` that would be treated as valid by the server API.
 
-_Hint_: You might want to use the `quote()` function from Python's `urllib`
+_Hint_: You might want to use the `quote()` function from Python's `urllib.parse`
 module to encode non-ASCII characters in the URL.
 
 _Historical fact_: In 2009, security researchers found that the API used by
@@ -228,7 +226,7 @@ almost exactly like the one in this exercise.
 
 1. Accepts a valid URL in the same form as the one above as a command line argument.
 2. Modifies the URL so that it will execute the `UnlockAllSafes` command as the user.
-3. Successfully performs the command on the server and prints the server's response.
+3. Prints the new URL to the command line.
 
 You should make the following assumptions:
 
@@ -239,20 +237,16 @@ These values may be of substantially different lengths than in the sample.
 - The input URL may be for a user with a different password, but the length of the
 password will be unchanged.
 
-- The server's output might not exactly match what you see during testing.
-
 You can base your code on the following example:
 
 ```python
-import httplib, urlparse, sys
+import sys, urllib.parse
+from pymd5 import md5, padding
 url = sys.argv[1]
 
 # Your code to modify url goes here
 
-parsedUrl = urlparse.urlparse(url)
-conn = httplib.HTTPConnection(parsedUrl.hostname,parsedUrl.port)
-conn.request("GET", parsedUrl.path + "?" + parsedUrl.query)
-print conn.getresponse().read()
+print(new_url)
 ```
 
 ## Part 3: MD5 collisions
@@ -409,7 +403,7 @@ openssl rsa -in key.pub -pubin -text -noout
 Create a file containing only the text `CSE 127 rul3z!`.
 
 ```
-echo -n CSE 127 rul3z! > message
+echo -n 'CSE 127 rul3z!' > message
 ```
 
 The following is a base64-encoded signature of the file `message` using the public
