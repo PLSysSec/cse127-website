@@ -14,11 +14,10 @@ signature scheme.
 
 ## Part 1: Vigenere ciphers
 
-[TODO: do we need to explain Vigenere cipher?]
+For this problem, solve by hand or write a program (perhaps in Python).
 
-For these problems, solve by hand or write a program (perhaps in Python).
-
-### 1a.
+You can read about how the Vigenere cipher works [on
+Wikipedia](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher#Description).
 
 You can find some ciphertext produced with the Vigenere cipher under a certain
 key here:
@@ -31,78 +30,10 @@ resulting in an increment by two places, etc.
 
 What is the key?  (Please show your work.)
 
-### 1b.
-
-Here is some data about of the relative frequency of letters in English text:
-
-- A: 8.167%
-- B: 1.492%
-- C: 2.782%
-- D: 4.253%
-- E: 12.702%
-- F: 2.228%
-- G: 2.015%
-- H: 6.094%
-- I: 6.996%
-- J: 0.153%
-- K: 0.772%
-- L: 4.025%
-- M: 2.406%
-- N: 6.749%
-- O: 7.507%
-- P: 1.929%
-- Q: 0.095%
-- R: 5.987%
-- S: 6.327%
-- T: 9.056%
-- U: 2.758%
-- V: 0.978%
-- W: 2.360%
-- X: 0.150%
-- Y: 1.974%
-- Z: 0.074%
-
-You can find some English plaintext at [TODO: instructions for acquiring
-English plaintext]
-
-The _population variance_ of a finite population _X_ of size _N_ and mean _mu_
-is given by
-
-```
-  [ Sum(i=1..N) of (x_i - mu)^2 ] / N
-```
-
-For this assignment, you should write your own code to calculate variance.
-
-a) What is the population variance of the relative letter frequencies in
-English text?
-
-b) What is the population variance of the relative letter frequencies in the
-given plaintext?
-
-c) For each of the following keys, encrypt the plaintext with a Vigenere cipher
-and the given key, then calculate and report the population variance of th
-relative letter frequencies in the resulting ciphertext.  Describe and briefly
-explain the trend in this sequence of variances.
-  - `yz`
-  - `xyz`
-  - `wxyz`
-  - `vwxyz`
-  - `uvwxyz`
-
-d) Viewing a Vigenere key of length _k_ as a collection of _k_ independent
-Caesar ciphers, calculate the mean of the frequency variances of the ciphertext
-for each one. (E.g., for key `yz`, calculate the frequency variance of the even
-numbered ciphertext characters and the frequency variance of the odd numbered
-ciphertext characters. Then take their mean.) Report the result for each key in
-part (c). Is the mean variance like those observed in part (b)? Part (c)?
-Briefly explain.
-
-e) Consider the ciphertext that was produced with key `uvwxyz`. In part (d),
-you calculated the mean of six variances for this key.  Revisit that
-ciphertext, and calculate the mean of the frequency variances that arise if you
-had assumed that the key had length 2, 3, 4, and 5.  Does this suggest a
-variant to the Kasiski attack?  (Hint: it does.)  Briefly explain.
+_Historical note_: This November, it was discovered that the security company
+Fortinet was using "XOR encryption with a static key" in some products, which
+is similar to a Vigenere cipher and has similar (lack of) security properties.
+[https://seclists.org/bugtraq/2019/Nov/38](https://seclists.org/bugtraq/2019/Nov/38)
 
 ## Part 2: Length extension
 
