@@ -341,7 +341,8 @@ The following is a base64-encoded signature of the file `message` using the publ
 key above.
 
 ```
-[TODO base64-encoded signature]
+RaHHC2E0qm1sauuhlV3KBGiaTb5IGmaaNFQn22ykTSu88EIBkBG48gjiamc3l+4HJYUwpZDefcT2
+dLPyaOHA/w==
 ```
 
 Convert this signature into a binary file:
@@ -365,7 +366,7 @@ Open a Python shell and run the following commands to import the signature as an
 ```python
 from Crypto.PublicKey import RSA
 from Crypto.Hash import SHA
-signature = int(open('sig').read().encode('hex'),16)
+signature = int(open('sig', 'rb').read().hex(), 16)
 ```
 
 Next, import the public key file that you created earlier:
@@ -378,14 +379,14 @@ The modulus and exponent are then accessible as `pubkey.n` and `pubkey.e`, respe
 Now reverse the signing operation and examine the resulting value in hex:
 
 ```python
-"%0128x" % pow(signature, pubkey.e, pubkey.n)
+"{:0128x}".format(pow(signature, pubkey.e, pubkey.n))
 ```
 
-You should see something like [TODO what should they see for our file].
+You should see something like `'0001fffff ... 22c1422dac3c4e5fdd87040b3fb156acd3d83d1f'`
 Verify that the last 20 bytes of this value match the SHA-1 hash of your file:
 
 ```python
-SHA.new("CSE 127 rul3z!").hexdigest()
+SHA.new(b"CSE 127 rul3z!").hexdigest()
 ```
 
 You don't need to submit anything for this part.
@@ -432,10 +433,24 @@ root over the integers, rounding as appropriate.
 
 ### 4c. Constructing forged signatures
 
-The National Bank of CSE 127 has a website at [TODO website] that its employees
+The National Bank of CSE 127 has a website that its employees
 use to initiate wire transfers between bank accounts. To authenticate each
 transfer request, the control panel requires a signature from a particular
-2048-bit RSA key that is listed on the website's home page. Unfortunately, this
+2048-bit RSA key:
+
+```
+-----BEGIN PUBLIC KEY-----
+MIIBIDANBgkqhkiG9w0BAQEFAAOCAQ0AMIIBCAKCAQEArBOrcgTp5r77Uz5CV1HX
+9w19lmmkMqlh81paBr4SvrkTqXTmevSlRQE5pSJ7Y3rz7I4HbdVpYq16nlaF9TIj
+ig5i1SzNMe4Uo+Plv/O5kYYZOM3Do69E8dujOqgoxwPxaAqRwA411k5egJd8VhJ+
+n6zilsTZ5QroSP/LEzKDku3OnXZKxzDKmdzs/nS4aHBK89b5IqwHOQFSbQA0tlkJ
+1BmFvGKc3WUfVk0KgdeS/b3zMX8OdKJxtJWYAo7BfJlxFU81/Gl1XEqr8dWUqZ7J
+8WaQ2fiBmoHSIOd5sQ9K6g3+tfeHfnvV8vkrqV1J9jAp6yirGCbyuy+jrUac5CJg
+zwIBAw==
+-----END PUBLIC KEY-----
+```
+
+Unfortunately, this
 control panel is running old software that has not been patched to fix the
 signature forgery vulnerability.
 
@@ -456,25 +471,26 @@ library NSS was found to be vulnerable to this type of attack:
 1. Accepts a double-quoted string as command-line argument.
 2. Prints a base64-encoded forged signature of the input string.
 
-You have our permission to use the control panel at [TODO panel] to test
-your signatures.  We have provided a Python library, [TODO library], that
+We have provided a Python library, `roots.py`, that
 provides several useful functions that you may wish to use when implementing
-your solution.  You can download [TODO library] at [TODO url]. Your program
-may assume that PyCrypto and [TODO library] are available, and may use standard
+your solution.  You can [download the library here](../resources/roots.py). Your program
+may assume that PyCrypto and `roots.py` are available, and may use standard
 Python libraries, but should otherwise be self-contained.
 
-In order to use these functions, you will have to import [TODO library]. You
+In order to use these functions, you will have to import `roots.py`. You
 may wish to use the following template:
 
 ```python
-from roots import *
+from Crypto.PublicKey import RSA
 from Crypto.Hash import SHA
+from roots import *
 import sys
 
 message = sys.argv[1]
 
 # Your code to forge a signature goes here.
 
+# some example functions from roots
 root, is_exact = integer_nthroot(27, 3)
 print(integer_to_base64(root))
 ```
