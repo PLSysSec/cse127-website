@@ -68,7 +68,9 @@ English plaintext]
 The _population variance_ of a finite population _X_ of size _N_ and mean _mu_
 is given by
 
-[TODO: equation]
+```
+  [ Sum(i=1..N) of (x\_i - mu)^2 ] / N
+```
 
 For this assignment, you should write your own code to calculate variance.
 
