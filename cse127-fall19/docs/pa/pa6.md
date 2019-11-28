@@ -17,7 +17,9 @@ signature scheme.
 For this problem, solve by hand or write a program (perhaps in Python).
 
 You can read about how the Vigenere cipher works [on
-Wikipedia](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher#Description).
+Wikipedia](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher#Description). 
+Vigenere ciphers can be generally deciphered using Kasiski Examination, which is
+discussed on the wikipedia page.
 
 You can find some ciphertext produced with the Vigenere cipher under a certain
 key on Gradescope as the assignment "Assignment 6 ciphertext".
@@ -26,7 +28,8 @@ Assume that encrypting the letter `A` with the key results in no change, encrypt
 the letter `B` results in an increment by one place in the alphabet, encrypting `C`
 resulting in an increment by two places, etc.
 
-What is the key?  (Please show your work.)
+What is the key? 
+**What to submit** A text file named `vigenere.key` containing your key. 
 
 _Historical note_: This November, it was discovered that the security company
 Fortinet was using "XOR encryption with a static key" in some products, which
@@ -144,6 +147,10 @@ Using the techniques that you learned in the previous section and without
 guessing the password, apply length extension to create a URL ending with
 `&command3=UnlockAllSafes` that would be treated as valid by the server API.
 
+_Note_: Because of its bad security practices, the National Bank of CSE 127 has 
+taken down its website. So you'll have to use gradescope to test if your attack
+URL would work
+
 _Hint_: You might want to use the `quote()` function from Python's `urllib.parse`
 module to encode non-ASCII characters in the URL.
 
@@ -151,7 +158,7 @@ _Historical fact_: In 2009, security researchers found that the API used by
 the photo-sharing site Flickr suffered from a length-extension vulnerability
 almost exactly like the one in this exercise.
 
-*What to submit* A Python 3.x script named `len_ext_attack.py` that:
+**What to submit** A Python 3.x script named `len_ext_attack.py` that:
 
 1. Accepts a valid URL in the same form as the one above as a command line argument.
 2. Modifies the URL so that it will execute the `UnlockAllSafes` command as the user.
@@ -207,6 +214,7 @@ d8823e3156348f5bae6dacd436c919c6 dd53e23487da03fd02396306d248cda0
 e99f33420f577ee8ce54b67080280d1e c69821bcb6a8839396f965ab6ff72a70
 ```
 
+Copy the above hex strings into file1.hex and file2.hex. 
 Convert each group of hex strings into a binary file.
 (On Linux, run `xxd -r -p file.hex > file`.)
 
@@ -235,9 +243,7 @@ or
 (source code)
 
 If you are compiling `fastcoll` from source, you can compile
-using this makefile:
-[TODO update url]
-`https://www.cis.upenn.edu/~cis331/project4/Makefile`.  You will also need to
+using this [makefile](../../resources/fastcoll_Makefile).  You will also need to
 have installed the Boost libraries.  On Ubuntu, you can install using `apt-get
 install libboost-all-dev`.  On OS X, you can install Boost via the [Homebrew
 package manager](http://brew.sh) using `brew install boost`.
@@ -251,8 +257,8 @@ package manager](http://brew.sh) using `brew install boost`.
 
 4. What are their SHA-256 hashes? Verify that they're different.
 
-*What to submit* A text file named `generating_collisions.txt` containing your
-answers.
+**What to submit** Write your answers in `writeup.txt`. This file will also be 
+used for part 5. 
 
 ### 3b. A hash collision attack
 
@@ -292,7 +298,7 @@ also share the same MD5 hash.  One program should execute a benign payload: echo
 or print `"I mean no harm."` The second should execute a pretend malicious payload:
 echo or print `"You are doomed!"`
 
-*What to submit* Two scripts, `good` and `evil`, that have the same MD5 hash, have
+**What to submit** Two scripts, `good` and `evil`, that have the same MD5 hash, have
 different SHA-256 hashes, and print the specified messages.
 
 ## Part 4: RSA signature forgery
@@ -464,7 +470,7 @@ to be vulnerable to this attack, including OpenSSL.  In 2014, the Mozilla
 library NSS was found to be vulnerable to this type of attack:
 [https://www.mozilla.org/security/advisories/mfsa2014-73/](https://www.mozilla.org/security/advisories/mfsa2014-73).
 
-*What to submit* A Python 3.x script called `bleichenbacher.py` that:
+**What to submit** A Python 3.x script called `bleichenbacher.py` that:
 
 1. Accepts a double-quoted string as command-line argument.
 2. Prints a base64-encoded forged signature of the input string.
@@ -509,8 +515,17 @@ the programs.)
 2^16 + 1.  Briefly explain why Bleichenbacher's attack would not work for these
 keys.
 
-*What to submit* A text file named `writeup.txt` containing your answers.
+**What to submit** Write your  answers in `writeup.txt`.
 
 ## Submission Checklist
+Submit the following to gradescope:
 
-[TODO specifics of how to turn in to Gradescope]
+* `vigenere.key` to **Assignment 6 vigenere key** (for part 1)
+
+* `good` and `evil` to **Assignment 6 hash collision** (for part 3)
+
+* `len_ext_attack.py` to  **Assignment 6 length extension** (for part 2)
+
+* `bleichenbacher.py` to **Assignment 6 signature forgery** (for part 4)
+
+* `writeup.txt` to **Assignment 6 writeup** (with answers to parts 3a and 5) 
