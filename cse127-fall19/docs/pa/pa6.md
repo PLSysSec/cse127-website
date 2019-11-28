@@ -20,7 +20,7 @@ You can read about how the Vigenere cipher works [on
 Wikipedia](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher#Description).
 
 You can find some ciphertext produced with the Vigenere cipher under a certain
-key on Gradescope as the assignment "PA6 Ciphertext".
+key on Gradescope as the assignment "Assignment 6 ciphertext".
 
 Assume that encrypting the letter `A` with the key results in no change, encrypting
 the letter `B` results in an increment by one place in the alphabet, encrypting `C`
