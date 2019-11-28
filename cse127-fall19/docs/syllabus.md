@@ -22,7 +22,7 @@ Nov 13      | [Network defenses](slides/12-networkdefenses.pdf)
 Nov 18      | [Symmetric-key crypto](slides/13-symmetriccrypto.pdf)
 Nov 20      | [Public-key crypto](slides/14-pubkeycrypto.pdf)
 Nov 25      | [TLS and PKI](slides/15-tls.pdf)
-Nov 27      | Advanced Topics: Breaking Crypto + Language-based Crypto
+Nov 27      | [Side channels](slides/16-sidechannels.pdf)
             | **Assignment 6: Crypto**
 Dec  2      | Privacy/Anonymity
 Dec  4      | Ethics/Law/Policy
