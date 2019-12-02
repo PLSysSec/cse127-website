@@ -27,8 +27,11 @@ key on Gradescope as the assignment "Assignment 6 ciphertext".
 Assume that encrypting the letter `A` with the key results in no change, encrypting
 the letter `B` results in an increment by one place in the alphabet, encrypting `C`
 resulting in an increment by two places, etc.
+Also assume that the original plaintext contains only uppercase letters (A-Z)
+and no spaces or punctuation.
 
-What is the key? 
+What is the key?
+
 **What to submit** A text file named `vigenere.key` containing your key. 
 
 _Historical note_: This November, it was discovered that the security company
@@ -39,7 +42,7 @@ is similar to a Vigenere cipher and has similar (lack of) security properties.
 ## Part 2: Length extension
 
 In most applications, you should use MACs such as HMAC-SHA256 instead of plain
-cryptographic has functions (e.g., MD5, SHA-1, or SHA-256) because hashes, also
+cryptographic hash functions (e.g., MD5, SHA-1, or SHA-256) because hashes, also
 known as digests, fail to match our intuitive security expectations.  What we
 really want is something that behaves like a pseudorandom function, which HMACs
 seem to approximate and hash functions do not.
@@ -149,7 +152,7 @@ guessing the password, apply length extension to create a URL ending with
 
 _Note_: Because of its bad security practices, the National Bank of CSE 127 has 
 taken down its website. So you'll have to use gradescope to test if your attack
-URL would work
+URL would work.
 
 _Hint_: You might want to use the `quote()` function from Python's `urllib.parse`
 module to encode non-ASCII characters in the URL.
