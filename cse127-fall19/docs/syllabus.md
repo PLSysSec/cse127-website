@@ -24,5 +24,5 @@ Nov 20      | [Public-key crypto](slides/14-pubkeycrypto.pdf)
 Nov 25      | [TLS and PKI](slides/15-tls.pdf)
 Nov 27      | [Side channels](slides/16-sidechannels.pdf)
             | **Assignment 6: Crypto**
-Dec  2      | Privacy/Anonymity
+Dec  2      | [Privacy/Anonymity](slides/17-privacy.pdf)
 Dec  4      | Ethics/Law/Policy

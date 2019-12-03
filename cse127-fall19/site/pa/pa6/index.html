@@ -629,16 +629,18 @@ discussed on the wikipedia page.</p>
 key on Gradescope as the assignment "Assignment 6 ciphertext".</p>
 <p>Assume that encrypting the letter <code>A</code> with the key results in no change, encrypting
 the letter <code>B</code> results in an increment by one place in the alphabet, encrypting <code>C</code>
-resulting in an increment by two places, etc.</p>
-<p>What is the key? 
-<strong>What to submit</strong> A text file named <code>vigenere.key</code> containing your key. </p>
+resulting in an increment by two places, etc.
+Also assume that the original plaintext contains only uppercase letters (A-Z)
+and no spaces or punctuation.</p>
+<p>What is the key?</p>
+<p><strong>What to submit</strong> A text file named <code>vigenere.key</code> containing your key. </p>
 <p><em>Historical note</em>: This November, it was discovered that the security company
 Fortinet was using "XOR encryption with a static key" in some products, which
 is similar to a Vigenere cipher and has similar (lack of) security properties.
 <a href="https://seclists.org/bugtraq/2019/Nov/38">https://seclists.org/bugtraq/2019/Nov/38</a></p>
 <h2 id="part-2-length-extension">Part 2: Length extension<a class="headerlink" href="#part-2-length-extension" title="Permanent link">&para;</a></h2>
 <p>In most applications, you should use MACs such as HMAC-SHA256 instead of plain
-cryptographic has functions (e.g., MD5, SHA-1, or SHA-256) because hashes, also
+cryptographic hash functions (e.g., MD5, SHA-1, or SHA-256) because hashes, also
 known as digests, fail to match our intuitive security expectations.  What we
 really want is something that behaves like a pseudorandom function, which HMACs
 seem to approximate and hash functions do not.</p>
@@ -725,7 +727,7 @@ guessing the password, apply length extension to create a URL ending with
 <code>&amp;command3=UnlockAllSafes</code> that would be treated as valid by the server API.</p>
 <p><em>Note</em>: Because of its bad security practices, the National Bank of CSE 127 has 
 taken down its website. So you'll have to use gradescope to test if your attack
-URL would work</p>
+URL would work.</p>
 <p><em>Hint</em>: You might want to use the <code>quote()</code> function from Python's <code>urllib.parse</code>
 module to encode non-ASCII characters in the URL.</p>
 <p><em>Historical fact</em>: In 2009, security researchers found that the API used by
