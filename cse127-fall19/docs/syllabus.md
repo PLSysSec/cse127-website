@@ -25,4 +25,4 @@ Nov 25      | [TLS and PKI](slides/15-tls.pdf)
 Nov 27      | [Side channels](slides/16-sidechannels.pdf)
             | **Assignment 6: Crypto**
 Dec  2      | [Privacy/Anonymity](slides/17-privacy.pdf)
-Dec  4      | Ethics/Law/Policy
+Dec  4      | [Ethics/Law/Policy](slides/18-policy.pdf)
