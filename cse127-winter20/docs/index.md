@@ -1,0 +1,113 @@
+This course focuses on computer security, covering a wide range of topics on
+both the "defensive" and "offensive" side of this field. Among these will be
+systems security and exploitation (buffer overflows, race conditions, SQL
+injection, etc), access control and authentication, covert channels, network
+security, language-based security, denial-of-service, privacy and anonymity.
+The goal of the course is to provide an appreciation of how to think
+adversarially with respect to computer systems as well as an appreciation of
+how to reason about attacks and defenses. 
+
+To complete the projects in this course, you will need the ability to develop
+software programs using the C language, and some understanding of x86 assembly,
+JavaScript, PHP and SQL. We will not reach these in class and you will be
+expected to learn them on your own. If you don't know C, K&R's [The C
+Programming Language](https://en.wikipedia.org/wiki/The_C_Programming_Language)
+is a great go to, but the [Hacking](https://nostarch.com/hacking2.htm) book is
+probably enough and covers some x86 assembly too.
+
+#### Class details
+
+* **Lectures:** Mondays and Wednesdays, 5pm - 6:20pm in CENTR 109
+
+* **Section:** Fridays, 2pm-2:50pm in CENTR 216
+
+* **Piazza:** [https://piazza.com/ucsd/winter2020/cse127/home](https://piazza.com/ucsd/winter2020/cse127/home)
+
+* **Gradescope**
+    - [https://www.gradescope.com/courses/79259](https://www.gradescope.com/courses/79259)
+    - **Access Code:** 9J8GW6
+
+
+#### Textbook
+
+We will occasionally be assinging readings from Ross Anderson's [Security
+Engineering](https://www.cl.cam.ac.uk/~rja14/book.html) and various other
+online resources and papers.  We may also assign optional reading from Jon
+Erickson's [Hacking: The Art of
+Exploitation](https://nostarch.com/hacking2.htm).
+
+#### Grading
+
+- 40% Assignments
+- 25% Midterm exam
+- 35% Final exam
+- &le;10% Participation in class and online
+
+##### Programming assignments
+
+We will have assignments that are meant to both reinforce your
+knowledge of the concepts covered in lecture and get you to think about
+security in more depth, beyond what is covered lecture.
+
+You are expected to work on the assignments by yourself. You may discuss
+the assignments with students from the course, in general, but not any specific
+solution. There are no late days, but you will receive an additional 10% if you
+turn in your assignment by the early date.
+
+If you consult anything (books, academic papers, internet resources, people not
+in your group) when working on the assignments, note this in your submission.
+We encourage outside learning but expect you to not seek out specific details
+about a solution -- anything submitted should be considered your own work.
+Similarly, you are expected to not publish or otherwise share your solutions at
+any point (even after the class is over).  If you are unsure about what is
+allowed, please ask the course staff.
+
+##### Exams
+
+The midterm is
+**closed-book**, but you may use a double-sided cheat sheet (letter-size).
+
+The final is
+**closed-book**, but you may use 2 double-sided cheat sheets (letter-size).
+
+The exams will make up 60% of your grade. Since the final is cumulative your
+midterm grade will be calculated as:
+
+```
+midterm > 0 ?  max(final, midterm) : 0
+```
+
+This means that (1) you basically get a second chance if you don't so well on
+the midterm and (2) you must show up to both the midterm and the final.  If you
+need to miss either exam because of a documented medical emergency, contact the
+instructor immediately.
+
+##### Participation/pre-lecture readings
+
+Before each class there will be some assigned reading. You are expected to do
+the reading and have at least a vague understanding of the concepts that will
+be discussed in class. This will allow us to spend the lecture time to solidify
+your understanding.  Asking and answering questions in class, on Piazza, or
+during office hours counts towards your class participation. Contributing to
+the class lecture notes will similarly be rewarded with extra points.
+
+#### Acknowledgements
+
+The course structure and many of the ideas and slides are influenced or directly from
+other courses taught at
+Berkeley ([David Wagner](https://people.eecs.berkeley.edu/~daw/) and [Raluca Popa](https://people.eecs.berkeley.edu/~raluca/)),
+Oberlin ([Stephen Checkoway](https://checkoway.net/)),
+Stanford ([Dan Boneh](https://crypto.stanford.edu/~dabo/), [John Mitchell](https://theory.stanford.edu/people/jcm/), and [Zakir Durumeric](https://zakird.com)),
+UT Austin ([Hovav Shacham](https://www.cs.utexas.edu/directory/hovav-shacham)),
+UCSD ([Stefan Savage](https://cseweb.ucsd.edu/~savage/), [Nadia Heninger](https://cseweb.ucsd.edu/~nadiah/)) and
+UIUC ([Kirill Levchenko](https://klevchen.ece.illinois.edu/)).
+(If we're missing anybody please let us know!)
+
+#### Academic integrity and student conduct
+
+By taking this course, you implicitly agree to abide by the UCSD policies on <a
+href="https://senate.ucsd.edu/Operating-Procedures/Senate-Manual/appendices/2">Integrity
+of Scholarship</a> and <a
+href="https://students.ucsd.edu/sponsor/student-conduct/">Student Conduct</a>.
+University rules on integrity of scholarship and code of conduct are taken
+seriously and will be enforced.

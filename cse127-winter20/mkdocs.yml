@@ -1,0 +1,32 @@
+site_name: 'Computer Security'
+site_author: 'Deian Stefan'
+
+theme:
+  name: 'material'
+  language: 'en'
+  palette:
+    primary: 'indigo'
+    accent: 'indigo'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+  favicon: 'images/favicon.png'
+
+extra:
+  social:
+    - type: 'github'
+      link: 'https://github.com/PLSysSec/cse127-website'
+
+markdown_extensions:
+  - admonition
+  - footnotes
+  - toc:
+      permalink: true
+
+extra_css:
+  - css/extra.css
+
+nav:
+  - About: index.md
+  - Syllabus: syllabus.md
+  - Contact Info and Office Hours: contact.md
