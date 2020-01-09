@@ -1,0 +1,49 @@
+Write your answers in between the square brackets.
+They will be used to detect your answer.
+DON'T modify anything else in this file!
+
+---
+QUESTION #1 - 2 pts
+
+What is the value, in hex, of the ecx register when the function f is called?
+
+Sample Answer: [0xffff]
+
+Your Answer: []
+
+---
+QUESTION #2 - 2 pts
+
+Which register stores the value of the variable i in the function main?
+
+Sample Answer: [eip]
+
+Your Answer: []
+
+---
+QUESTION #3 - 2 pts
+
+What is the address, in hex, of the function f?
+
+Sample Answer: [0xffff]
+
+Your Answer: []
+
+---
+QUESTION #4 - 2 pts
+
+What is the name of the 6th instruction of the function f?
+
+Sample Answer: [mov]
+
+Your Answer: []
+
+---
+QUESTION #5 - 2 pts
+
+When f completes after being called from main, to which address in main does
+control return? Write your answer in hex form.
+
+Sample Answer: [0xffff]
+
+Your Answer: []
