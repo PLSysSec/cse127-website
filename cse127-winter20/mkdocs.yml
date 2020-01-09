@@ -30,3 +30,5 @@ nav:
   - About: index.md
   - Syllabus: syllabus.md
   - Contact Info and Office Hours: contact.md
+  - Assignments:
+    - Assignment 1: pa/pa1.md
