@@ -20,6 +20,7 @@ extra:
 markdown_extensions:
   - admonition
   - footnotes
+  - codehilite
   - toc:
       permalink: true
 
@@ -32,3 +33,5 @@ nav:
   - Contact Info and Office Hours: contact.md
   - Assignments:
     - Assignment 1: pa/pa1.md
+  - Notes:
+    - Stack smashing: notes/bufferoverflow.md
