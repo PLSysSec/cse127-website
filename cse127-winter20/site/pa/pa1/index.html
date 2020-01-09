@@ -355,6 +355,42 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Notes
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/bufferoverflow/" title="Stack smashing" class="md-nav__link">
+      Stack smashing
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -484,16 +520,19 @@ password <code>hackallthethings</code>. The VM is configured with SSH on port 22
 disabled for <code>root</code>, so you can only SSH in as the <code>student</code> user. You can still log in as <code>root</code>
 using <code>su</code> or by logging into the VM directly.</p>
 <p>To SSH into the VM:</p>
-<pre><code>ssh -p 2222 student@127.0.0.1
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">2222</span> <span class="n">student</span><span class="mf">@127.0.0.1</span>
+</pre></div>
+
 
 <p>To copy files from your computer to the VM:</p>
-<pre><code>scp -P 2222 -r /path/to/files/ student@127.0.0.1:/home/student
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="n">scp</span> <span class="o">-</span><span class="n">P</span> <span class="mi">2222</span> <span class="o">-</span><span class="n">r</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">files</span><span class="o">/</span> <span class="n">student</span><span class="mf">@127.0.0.1</span><span class="o">:/</span><span class="n">home</span><span class="o">/</span><span class="n">student</span>
+</pre></div>
+
 
 <p>To copy files from the VM to your computer:</p>
-<pre><code>scp -P 2222 student@127.0.0.1:/path/to/files/ /destination/path
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="n">scp</span> <span class="o">-</span><span class="n">P</span> <span class="mi">2222</span> <span class="n">student</span><span class="mf">@127.0.0.1</span><span class="o">:/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">files</span><span class="o">/</span> <span class="o">/</span><span class="n">destination</span><span class="o">/</span><span class="n">path</span>
+</pre></div>
+
 
 <h2 id="part-1-using-gdb-10-pts">Part 1: Using GDB <em>(10 pts)</em><a class="headerlink" href="#part-1-using-gdb-10-pts" title="Permanent link">&para;</a></h2>
 <p>Files for this sub-assignment are located in the <code>gdb</code> subdirectory of the <code>student</code> user's home
@@ -623,6 +662,20 @@ newline) to stdout. Your job is to modify this program to meet the specification
             </div>
           </a>
         
+        
+          <a href="../../notes/bufferoverflow/" title="Stack smashing" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Stack smashing
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>

