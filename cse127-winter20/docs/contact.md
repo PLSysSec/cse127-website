@@ -16,11 +16,11 @@ ____
 ##### Teaching Assistants
 
 - **Name:** Sunjay Cauligi
-- **Office Hours:** Tuesday 4:00pm-5:00pm in B215 EBU3B
+- **Office Hours:** Tuesday 4:00-5:00pm in B215 EBU3B
 ____
 
 - **Name:** Riley Hadden
-- **Office Hours:** Thursday TBA
+- **Office Hours:** Thursday 3:30-4:30pm in B275 EBU3B
 ____
 
 - **Name:** Zaki Siddiqui
