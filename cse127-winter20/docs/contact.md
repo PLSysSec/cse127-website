@@ -20,7 +20,7 @@ ____
 ____
 
 - **Name:** Riley Hadden
-- **Office Hours:** Thursday 3:30-4:30pm in B275 EBU3B
+- **Office Hours:** Thursday 8:00-9:00am in B275 EBU3B
 ____
 
 - **Name:** Zaki Siddiqui
