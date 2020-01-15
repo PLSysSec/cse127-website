@@ -7,22 +7,22 @@ Jan 13      | [Buffer overflow defenses](slides/3-lowlevelmitigations.pdf) (Stac
             | **Assignment 2: Buffer overflows**
 Jan 15      | More memory safety attacks and defenses <br/> Reading: [The Geometry of Innocent Flesh on the Bone:Return-into-libc without Function Calls (on the x86)](papers/shacham:rop.pdf) by Shacham and [Control-Flow Integrity](papers/abadi:cfi.pdf) by Abadi et al.
 Jan 20      | Martin Luther King, Jr. Holiday
-Jan 22      | OS Security/Isolation
+Jan 22      | Review and wrap up low-level attacks and defenses (online)
+Jan 27      | OS Security/Isolation
             | **Assignment 3: Side channels**
-Jan 27      | Web security model
-Jan 29      | Web attacks and defenses
+Jan 29      | Web security model
+Feb  3      | Web attacks and defenses
             | **Assignment 4: Web**
-Feb  3      | Modern client-side web defenses
-Feb  5      | Network intro
+Feb  5      | Modern client-side web defenses
 Feb 10      | **Midterm**
-Feb 12      | Network attacks
-            | **Assignment 5: Networks**
+Feb 12      | Network intro
 Feb 17      | Presidents' Day Holiday
-Feb 19      | Network defenses
-Feb 24      | Symmetric-key crypto
-Feb 26      | Public-key crypto
-Mar  2      | TLS and PKI
-Mar  5      | Side channels
+Feb 19      | Network attacks
+            | **Assignment 5: Networks**
+Feb 24      | Network defenses
+Feb 26      | Symmetric-key crypto
+Mar  2      | Public-key crypto
+Mar  5      | TLS and PKI
             | **Assignment 6: Crypto**
-Mar  9      | Privacy/Anonymity
-Mar 11      | Guest lecture
+Mar  9      | Side channels
+Mar 11      | Privacy/Anonymity
