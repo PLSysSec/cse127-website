@@ -5,9 +5,9 @@ Jan  6      |[Intro/Threat Modeling](slides/1-introduction.pdf) <br/> Optional r
 Jan  8      | [Buffer overflow attacks](slides/2-bufferoverflows.pdf) <br/> Reading: Aleph One's [Smashing the Stack for Fun and Profit](http://phrack.org/issues/49/14.html#article) <br/> Optional reading: 0x300-0x320 from Hacking. 0x200-0x270 if you don't have a strong C background.
 Jan 13      | [Buffer overflow defenses](slides/3-lowlevelmitigations.pdf) (Stack canaries/W^X/ASLR) <br/> Reading: [Eternal War in Memory](https://www.nebelwelt.net/publications/files/13Oakland.pdf) by Szekeres et al., [ASLR](https://pax.grsecurity.net/docs/aslr.txt), and [NOEXEC](https://pax.grsecurity.net/docs/noexec.txt)
             | **Assignment 2: Buffer overflows**
-Jan 15      | More memory safety attacks and defenses <br/> Reading: [The Geometry of Innocent Flesh on the Bone:Return-into-libc without Function Calls (on the x86)](papers/shacham:rop.pdf) by Shacham and [Control-Flow Integrity](papers/abadi:cfi.pdf) by Abadi et al.
+Jan 15      | [More memory safety attacks and defenses](slides/4-ropcfimisc.pdf) <br/> Reading: [The Geometry of Innocent Flesh on the Bone:Return-into-libc without Function Calls (on the x86)](papers/shacham:rop.pdf) by Shacham and [Control-Flow Integrity](papers/abadi:cfi.pdf) by Abadi et al.
 Jan 20      | Martin Luther King, Jr. Holiday
-Jan 22      | Review and wrap up low-level attacks and defenses (online)
+Jan 22      | More memory safety attacks and defenses (cont)
 Jan 27      | OS Security/Isolation
             | **Assignment 3: Side channels**
 Jan 29      | Web security model
