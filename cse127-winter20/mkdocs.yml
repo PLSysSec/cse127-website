@@ -33,5 +33,6 @@ nav:
   - Contact Info and Office Hours: contact.md
   - Assignments:
     - Assignment 1: pa/pa1.md
+    - Assignment 2: pa/pa2.md
   - Notes:
     - Stack smashing: notes/bufferoverflow.md
