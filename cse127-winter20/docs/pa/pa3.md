@@ -1,8 +1,8 @@
 # Assignment 3 *100pts*
 
-**Deadline: Wednesday, February 5, 2020 by 1:59:59 PM**
+**Deadline: Wednesday, February 5, 2020 by 13:59:59**
 
-**Early Turn-In: Sunday, February 2, 2020 by 11:59:59 PM (10% bonus)**
+**Early Turn-In: Sunday, February 2, 2020 by 23:59:59 (10% bonus)**
 
 The goal of this assignment is to gain hands-on experience exploiting side channels. This assignment will demonstrate how side channels can be just as dangerous as the control flow vulnerabilities you exploited in Assignment 2.
 

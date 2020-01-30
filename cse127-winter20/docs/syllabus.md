@@ -10,7 +10,7 @@ Jan 20      | Martin Luther King, Jr. Holiday
 Jan 22      | More memory safety attacks and defenses (cont)
 Jan 27      | [Isolation and side channels](slides/5-isolation.pdf) <br/> Reading: [Efficient Cache Attacks on AES, and Countermeasures](https://link.springer.com/content/pdf/10.1007/s00145-009-9049-y.pdf) by Tromer, Osvik, and Shamir.
             | **Assignment 3: Side channels**
-Jan 29      | Web security model
+Jan 29      | [Web security model](slides/6-webmodel.pdf)
 Feb  3      | Web attacks and defenses
             | **Assignment 4: Web**
 Feb  5      | Modern client-side web defenses
