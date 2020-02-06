@@ -13,7 +13,7 @@ Jan 27      | [Isolation and side channels](slides/5-isolation.pdf) <br/> Readin
 Jan 29      | [Web security model](slides/6-webmodel.pdf)
 Feb  3      | [Web attacks and defenses](slides/7-webattacks.pdf)
             | **Assignment 4: Web**
-Feb  5      | Modern client-side web defenses
+Feb  5      | [Modern client-side web defenses](slides/8-webdefenses.pdf)
 Feb 10      | **Midterm**
 Feb 12      | Network intro
 Feb 17      | Presidents' Day Holiday
