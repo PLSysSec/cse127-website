@@ -14,15 +14,15 @@ Jan 29      | [Web security model](slides/6-webmodel.pdf)
 Feb  3      | [Web attacks and defenses](slides/7-webattacks.pdf)
             | **Assignment 4: Web**
 Feb  5      | [Modern client-side web defenses](slides/8-webdefenses.pdf)
-Feb 10      | **Midterm**
-Feb 12      | Network intro
+Feb 10      | Midterm review
+Feb 12      | **Midterm** 
 Feb 17      | Presidents' Day Holiday
-Feb 19      | Network attacks
+Feb 19      | Network intro
             | **Assignment 5: Networks**
-Feb 24      | Network defenses
-Feb 26      | Symmetric-key crypto
-Mar  2      | Public-key crypto
-Mar  5      | TLS and PKI
+Feb 24      | Network attacks
+Feb 26      | Network defenses
+Mar  2      | Symmetric-key crypto
+Mar  5      | Public-key crypto (TLS and PKI)
             | **Assignment 6: Crypto**
 Mar  9      | Side channels
 Mar 11      | Privacy/Anonymity

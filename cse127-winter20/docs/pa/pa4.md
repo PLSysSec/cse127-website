@@ -1,8 +1,8 @@
 # Assignment 4 *80pts*
 
-**Deadline: Wednesday, February 19, 2029 by 13:59:59 PM**
+**Deadline: Wednesday, February 19, 2029 by 13:59:59**
 
-**Early Turn-In: Sunday, February 16, 2019 by 23:59:59 PM (10% bonus)**
+**Early Turn-In: Sunday, February 16, 2019 by 23:59:59(10% bonus)**
 
 ## Overview
 
