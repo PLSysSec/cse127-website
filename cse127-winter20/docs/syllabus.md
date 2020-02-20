@@ -17,7 +17,7 @@ Feb  5      | [Modern client-side web defenses](slides/8-webdefenses.pdf)
 Feb 10      | Midterm review
 Feb 12      | **Midterm** 
 Feb 17      | Presidents' Day Holiday
-Feb 19      | Network intro
+Feb 19      | [Network intro](slides/9-networkintro.pdf)
             | **Assignment 5: Networks**
 Feb 24      | Network attacks
 Feb 26      | Network defenses
