@@ -36,5 +36,6 @@ nav:
     - Assignment 2: pa/pa2.md
     - Assignment 3: pa/pa3.md
     - Assignment 4: pa/pa4.md
+    - Assignment 5: pa/pa5.md
   - Notes:
     - Stack smashing: notes/bufferoverflow.md
