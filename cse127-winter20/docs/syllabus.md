@@ -20,7 +20,7 @@ Feb 17      | Presidents' Day Holiday
 Feb 19      | [Network intro](slides/9-networkintro.pdf)
             | **Assignment 5: Networks**
 Feb 24      | [Network attacks](slides/10-networkattacks.pdf)
-Feb 26      | Network defenses
+Feb 26      | [Network defenses](slides/11-networkdefenses.pdf)
 Mar  2      | Symmetric-key crypto
 Mar  5      | Public-key crypto (TLS and PKI)
             | **Assignment 6: Crypto**
