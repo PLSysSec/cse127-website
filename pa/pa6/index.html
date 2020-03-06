@@ -1,0 +1,1198 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="Deian Stefan">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.5.0">
+    
+    
+      
+        <title>Assignment 6 - Computer Security</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#assignment-6" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="Computer Security" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Computer Security
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Assignment 6
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="Computer Security" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Computer Security
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../syllabus/" title="Syllabus" class="md-nav__link">
+      Syllabus
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contact/" title="Contact Info and Office Hours" class="md-nav__link">
+      Contact Info and Office Hours
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Assignments
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Assignments
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pa1/" title="Assignment 1" class="md-nav__link">
+      Assignment 1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pa2/" title="Assignment 2" class="md-nav__link">
+      Assignment 2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pa3/" title="Assignment 3" class="md-nav__link">
+      Assignment 3
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pa4/" title="Assignment 4" class="md-nav__link">
+      Assignment 4
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pa5/" title="Assignment 5" class="md-nav__link">
+      Assignment 5
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Assignment 6
+      </label>
+    
+    <a href="./" title="Assignment 6" class="md-nav__link md-nav__link--active">
+      Assignment 6
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-vigenere-ciphers" class="md-nav__link">
+    Part 1: Vigenere ciphers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-length-extension" class="md-nav__link">
+    Part 2: Length extension
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2a-experimenting" class="md-nav__link">
+    2a. Experimenting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2b-conduct-a-length-extension-attack" class="md-nav__link">
+    2b. Conduct a length extension attack
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-md5-collisions" class="md-nav__link">
+    Part 3: MD5 collisions
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3a-generating-collisions-yourself" class="md-nav__link">
+    3a. Generating collisions yourself
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3b-a-hash-collision-attack" class="md-nav__link">
+    3b. A hash collision attack
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-rsa-signature-forgery" class="md-nav__link">
+    Part 4: RSA signature forgery
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4a-validating-rsa-signatures" class="md-nav__link">
+    4a. Validating RSA signatures
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4b-pkcs-1-v15-signature-padding" class="md-nav__link">
+    4b. PKCS #1 v1.5 signature padding
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4c-constructing-forged-signatures" class="md-nav__link">
+    4c. Constructing forged signatures
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-writeup" class="md-nav__link">
+    5. Writeup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submission-checklist" class="md-nav__link">
+    Submission Checklist
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Notes
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/bufferoverflow/" title="Stack smashing" class="md-nav__link">
+      Stack smashing
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-vigenere-ciphers" class="md-nav__link">
+    Part 1: Vigenere ciphers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-length-extension" class="md-nav__link">
+    Part 2: Length extension
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2a-experimenting" class="md-nav__link">
+    2a. Experimenting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2b-conduct-a-length-extension-attack" class="md-nav__link">
+    2b. Conduct a length extension attack
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-md5-collisions" class="md-nav__link">
+    Part 3: MD5 collisions
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3a-generating-collisions-yourself" class="md-nav__link">
+    3a. Generating collisions yourself
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3b-a-hash-collision-attack" class="md-nav__link">
+    3b. A hash collision attack
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-rsa-signature-forgery" class="md-nav__link">
+    Part 4: RSA signature forgery
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4a-validating-rsa-signatures" class="md-nav__link">
+    4a. Validating RSA signatures
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4b-pkcs-1-v15-signature-padding" class="md-nav__link">
+    4b. PKCS #1 v1.5 signature padding
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4c-constructing-forged-signatures" class="md-nav__link">
+    4c. Constructing forged signatures
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-writeup" class="md-nav__link">
+    5. Writeup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submission-checklist" class="md-nav__link">
+    Submission Checklist
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="assignment-6">Assignment 6<a class="headerlink" href="#assignment-6" title="Permanent link">&para;</a></h1>
+<p><strong>Deadline Friday, March 13, 2020 by 23:59:59</strong></p>
+<p><strong>Early Turn-In: Wednesday, March 11, 2020 by 23:59:59</strong></p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>In this project, we'll start by investigating Vigenere ciphers, then
+move on to investigating vulnerabilities in widely used
+cryptographic hash functions, including length-extension attacks and collision
+vulnerabilities, and an implementation vulnerability in a popular digital
+signature scheme.</p>
+<h2 id="part-1-vigenere-ciphers">Part 1: Vigenere ciphers<a class="headerlink" href="#part-1-vigenere-ciphers" title="Permanent link">&para;</a></h2>
+<p>For this problem, solve by hand or write a program (perhaps in Python).</p>
+<p>You can read about how the Vigenere cipher works <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher#Description">on
+Wikipedia</a>. 
+Vigenere ciphers can be generally deciphered using Kasiski Examination, which is
+discussed on the wikipedia page.</p>
+<p>You can find some ciphertext produced with the Vigenere cipher under a certain
+key on Gradescope as the assignment "Assignment 6 ciphertext".</p>
+<p>Assume that encrypting the letter <code>A</code> with the key results in no change, encrypting
+the letter <code>B</code> results in an increment by one place in the alphabet, encrypting <code>C</code>
+resulting in an increment by two places, etc.
+Also assume that the original plaintext contains only uppercase letters (A-Z)
+and no spaces or punctuation.</p>
+<p>What is the key?</p>
+<p><strong>What to submit</strong> A text file named <code>vigenere.key</code> containing your key. </p>
+<p><em>Historical note</em>: This November, it was discovered that the security company
+Fortinet was using "XOR encryption with a static key" in some products, which
+is similar to a Vigenere cipher and has similar (lack of) security properties.
+<a href="https://seclists.org/bugtraq/2019/Nov/38">https://seclists.org/bugtraq/2019/Nov/38</a></p>
+<h2 id="part-2-length-extension">Part 2: Length extension<a class="headerlink" href="#part-2-length-extension" title="Permanent link">&para;</a></h2>
+<p>In most applications, you should use MACs such as HMAC-SHA256 instead of plain
+cryptographic hash functions (e.g., MD5, SHA-1, or SHA-256) because hashes, also
+known as digests, fail to match our intuitive security expectations.  What we
+really want is something that behaves like a pseudorandom function, which HMACs
+seem to approximate and hash functions do not.</p>
+<p>One difference between hash functions and pseudorandom functions is that many
+hashes are subject to <em>length extension</em>.  Many common hash functions use a
+design called the Merkle-Damgard construction.  Each is built around a
+<em>compression function</em> <em>f</em> and maintains an internal state <em>s</em>, which is
+initialized to a fixed constant.  Messages are processed in fixed-size blocks
+by applying the compression function to the current state and current block to
+compute an updated internal state, i.e., s_{i+1} = f(s_i, b_i).  The result
+of the final application of the compression function becomes the output of the
+hash function.</p>
+<p>A consequence of this design is that if we know the hash of an <em>n</em>-block
+message, we can find the hash of longer messages by applying the compression
+function for each block b_{n+1}, b_{n+2}, ... that we want to add.  This
+process is called length extension, and it can be used to attack many
+applications of hash functions.</p>
+<h3 id="2a-experimenting">2a. Experimenting<a class="headerlink" href="#2a-experimenting" title="Permanent link">&para;</a></h3>
+<p>To experiment with this idea, we'll use a Python implementation of the MD5 hash
+function, though SHA-1 and SHA-256 are vulnerable to length extension in the
+same way.  You can <a href="../../resources/pymd5.py">download the <code>pymd5</code> module here</a> and
+learn how to use it by running <code>pydoc pymd5</code>.  To follow
+along with these examples, run Python in interactive mode and run the command
+<code>from pymd5 import md5, padding</code>.</p>
+<p>Consider the string "Use HMAC, not hashes".  We can compute its MD5 hash by
+running:</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">pymd5</span> <span class="kn">import</span> <span class="n">md5</span><span class="p">,</span> <span class="n">padding</span>
+<span class="n">m</span> <span class="o">=</span> <span class="s2">&quot;Use HMAC, not hashes&quot;</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">md5</span><span class="p">()</span>
+<span class="n">h</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span>
+</pre></div>
+
+
+<p>or, more compactly,</p>
+<div class="codehilite"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">md5</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span>
+</pre></div>
+
+
+<p>The output should be <code>3ecc68efa1871751ea9b0b1a5b25004d</code>.</p>
+<p>MD5 processes messages in 512-bit blocks, so internally, the hash function
+pads <em>m</em> to a multiple of that length.  The padding consists of the bit 1,
+followed by as many 0 bits as necessary, followed by a 64-bit count of the
+number of bits in the unpadded message.  (If the 1 and the count won't fit in
+the current block, an additional block is added.)  You can use the function
+<code>padding(count)</code> in the <code>pymd5</code> module to compute the padding that will be
+added to a <em>count</em>-bit message.</p>
+<p>Even if we didn't know <em>m</em>, we could compute the hash of longer messages of the
+general form <code>m + padding(len(m)*8) + suffix</code> by setting the initial internal
+state of our MD5 function to <code>MD5(m)</code>, instead of the default initialization
+value, and setting the function's message length counter to the size of <em>m</em>
+plus the padding (a multiple of the block size).  To find the padded message
+length, guess the length of <em>m</em> and run <code>bits = (length_of_m +
+len(padding(length_of_m * 8))) * 8</code>.</p>
+<p>The <code>pymd5</code> module lets you specify these parameters as additional arguments
+to the <code>md5</code> object:</p>
+<div class="codehilite"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">md5</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">codecs</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;3ecc68efa1871751ea9b0b1a5b25004d&quot;</span><span class="p">,</span> <span class="s2">&quot;hex&quot;</span><span class="p">),</span> <span class="n">count</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Now you can use length extension to find the hash of a longer string that
+appends the suffix "Good advice".  Simply run:</p>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Good advice&quot;</span>
+<span class="n">h</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span>
+</pre></div>
+
+
+<p>to execute the compression function over <em>x</em> and output the resulting hash.
+Verify that it equals the MD5 hash of <code>m + padding(len(m)*8) + x</code>.  Notice
+that, due to the length-extension property of MD5, we didn't need to know
+the value of <code>m</code> to compute the hash of the longer string - all we needed to
+know was <code>m</code>'s length and its MD5 hash.</p>
+<p>This part of the assignment is intended to introduce length extension and
+familiarize you with the Python MD5 module we will be using; you will not
+need to submit anything for it.</p>
+<h3 id="2b-conduct-a-length-extension-attack">2b. Conduct a length extension attack<a class="headerlink" href="#2b-conduct-a-length-extension-attack" title="Permanent link">&para;</a></h3>
+<p>Length extension attacks can cause serious vulnerabilities when people
+mistakenly try to construct something like an HMAC by using <em>hash(secret
+|| message)</em>. The National Bank of CSE 127, which is not up-to-date on
+its security practices, hosts an API that allows its client-side applications
+to perform actions on behalf of a user by loading URLs of the form:</p>
+<p><code>http://bank.cse127.ucsd.edu/pa6/api?token=d6613c382dbb78b5592091e08f6f41fe&amp;user=nadiah&amp;command1=ListSquirrels&amp;command2=NoOp</code></p>
+<p>where <code>token</code> is MD5(<em>user's 8-character password</em> || <code>user=...</code> <em>[the rest of
+the decoded URL starting from user= and ending with the last command]</em>).</p>
+<p>Using the techniques that you learned in the previous section and without
+guessing the password, apply length extension to create a URL ending with
+<code>&amp;command3=UnlockAllSafes</code> that would be treated as valid by the server API.</p>
+<p><em>Note</em>: Because of its bad security practices, the National Bank of CSE 127 has 
+taken down its website. So you'll have to use gradescope to test if your attack
+URL would work.</p>
+<p><em>Hint</em>: You might want to use the <code>quote()</code> function from Python's <code>urllib.parse</code>
+module to encode non-ASCII characters in the URL.</p>
+<p><em>Historical fact</em>: In 2009, security researchers found that the API used by
+the photo-sharing site Flickr suffered from a length-extension vulnerability
+almost exactly like the one in this exercise.</p>
+<p><strong>What to submit</strong> A Python 3.x script named <code>len_ext_attack.py</code> that:</p>
+<ol>
+<li>Accepts a valid URL in the same form as the one above as a command line argument.</li>
+<li>Modifies the URL so that it will execute the <code>UnlockAllSafes</code> command as the user.</li>
+<li>Prints the new URL to the command line.</li>
+</ol>
+<p>You should make the following assumptions:</p>
+<ul>
+<li>
+<p>The input URL will have the same form as the sample above, but we may change the
+server hostname and the values of <code>token</code>, <code>user</code>, <code>command1</code>, and <code>command2</code>.
+These values may be of substantially different lengths than in the sample.</p>
+</li>
+<li>
+<p>The input URL may be for a user with a different password, but the length of the
+password will be unchanged.</p>
+</li>
+</ul>
+<p>You can base your code on the following example:</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">urllib.parse</span>
+<span class="kn">from</span> <span class="nn">pymd5</span> <span class="kn">import</span> <span class="n">md5</span><span class="p">,</span> <span class="n">padding</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Your code to modify url goes here</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">new_url</span><span class="p">)</span>
+</pre></div>
+
+
+<h2 id="part-3-md5-collisions">Part 3: MD5 collisions<a class="headerlink" href="#part-3-md5-collisions" title="Permanent link">&para;</a></h2>
+<p>MD5 was once the most widely used cryptographic hash function, but today it is
+considered dangerously insecure.  This is because cryptanalysts have discovered
+efficient algorithms for finding <em>collisions</em>---pairs of messages with the
+same MD5 hash value.</p>
+<p>The first known collisions were announced on August 17, 2004 by Xiaoyun Wang,
+Dengguo Feng, Xuejia Lai, and Hongbo Yu. Here's one pair of colliding messages
+they published:</p>
+<p>Message 1:</p>
+<div class="codehilite"><pre><span></span><span class="err">d131dd02c5e6eec4693d9a0698aff95c 2fcab58712467eab4004583eb8fb7f89</span>
+<span class="err">55ad340609f4b30283e488832571415a 085125e8f7cdc99fd91dbdf280373c5b</span>
+<span class="err">d8823e3156348f5bae6dacd436c919c6 dd53e2b487da03fd02396306d248cda0</span>
+<span class="err">e99f33420f577ee8ce54b67080a80d1e c69821bcb6a8839396f9652b6ff72a70</span>
+</pre></div>
+
+
+<p>Message 2:</p>
+<div class="codehilite"><pre><span></span><span class="err">d131dd02c5e6eec4693d9a0698aff95c 2fcab50712467eab4004583eb8fb7f89</span>
+<span class="err">55ad340609f4b30283e4888325f1415a 085125e8f7cdc99fd91dbd7280373c5b</span>
+<span class="err">d8823e3156348f5bae6dacd436c919c6 dd53e23487da03fd02396306d248cda0</span>
+<span class="err">e99f33420f577ee8ce54b67080280d1e c69821bcb6a8839396f965ab6ff72a70</span>
+</pre></div>
+
+
+<p>Copy the above hex strings into file1.hex and file2.hex. 
+Convert each group of hex strings into a binary file.
+(On Linux, run <code>xxd -r -p file.hex &gt; file</code>.)</p>
+<ol>
+<li>What are the MD5 hashes of the two binary files? Verify that they're the same.
+(<code>openssl dgst -md5 file1 file2</code>)</li>
+<li>What are their SHA-256 hashes? Verify that they're different.
+(<code>openssl dgst -sha256 file1 file2</code>)</li>
+</ol>
+<p>You don't need to submit anything for the above questions.</p>
+<h3 id="3a-generating-collisions-yourself">3a. Generating collisions yourself<a class="headerlink" href="#3a-generating-collisions-yourself" title="Permanent link">&para;</a></h3>
+<p>In 2004, Wang's method took more than 5 hours to find a collision on a desktop
+PC.  Since then, researchers have introduced vastly more efficient collision
+finding algorithms.  You can compute your own MD5 collisions using a tool
+written by Marc Stevens that uses a more advanced technique.</p>
+<p>You can download the <code>fastcoll</code> tool here:</p>
+<p><a href="http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5.exe.zip">http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5.exe.zip</a>
+(Windows executable)</p>
+<p>or</p>
+<p><a href="http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5-1_source.zip">http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5-1_source.zip</a>
+(source code)</p>
+<p>If you are compiling <code>fastcoll</code> from source, you can compile
+using this <a href="../../resources/fastcoll_Makefile">makefile</a>.  You will also need to
+have installed the Boost libraries.  On Ubuntu, you can install using <code>apt-get
+install libboost-all-dev</code>.  On OS X, you can install Boost via the <a href="http://brew.sh">Homebrew
+package manager</a> using <code>brew install boost</code>.</p>
+<ol>
+<li>
+<p>Generate your own collision with this tool.  How long did it take?
+(<code>time ./fastcoll -o file1 file2</code>)</p>
+</li>
+<li>
+<p>What are your files? To get a hex dump, run <code>xxd -p file</code>.</p>
+</li>
+<li>
+<p>What are their MD5 hashes? Verify that they're the same.</p>
+</li>
+<li>
+<p>What are their SHA-256 hashes? Verify that they're different.</p>
+</li>
+</ol>
+<p><strong>What to submit</strong> Write your answers in <code>writeup.txt</code>. This file will also be 
+used for part 5. </p>
+<h3 id="3b-a-hash-collision-attack">3b. A hash collision attack<a class="headerlink" href="#3b-a-hash-collision-attack" title="Permanent link">&para;</a></h3>
+<p>The collision attack lets us generate two messages with the same MD5 hash and
+any chosen (identical) prefix.  Due to MD5's length-extension behavior, we can
+append any suffix to both messages and know that the longer messages will also
+collide.  This lets us construct files that differ only in a binary "blob" in
+the middle and have the same MD5 hash, i.e. <em>prefix</em> || <em>blobA</em> || <em>suffix</em>
+and <em>prefix</em> || <em>blobB</em> || <em>suffix</em>.</p>
+<p>We can leverage this to create two programs (shell scripts) that have identical
+MD5 hashes but wildly different behaviors.  We're using shell scripts, but this
+could be done using a program in almost any language.  Put the following two
+lines into a file called <code>prefix</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+cat &lt;&lt; <span class="s2">&quot;EOF&quot;</span> <span class="p">|</span> openssl dgst -sha256 &gt; DIGEST
+</pre></div>
+</td></tr></table>
+
+<p>and put these four lines (starting with a blank line) into a file called <code>suffix</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">EOF</span>
+<span class="err">digest=$(cat DIGEST | sed &#39;s/(stdin)= //&#39; )</span>
+<span class="err">echo &quot;The sha256 digest is $digest&quot;</span>
+</pre></div>
+
+
+<p>Now use <code>fastcoll</code> to generate two files with the same MD5 hash that both begin
+with <code>prefix</code>. (<code>fastcoll -p prefix -o col1 col2</code>.)  Then append the suffix to both
+(<code>cat col1 suffix &gt; file1.sh; cat col2 suffix &gt; file2.sh</code>).  Verify that <code>file1.sh</code>
+and <code>file2.sh</code> have the same MD5 hash but generate different output.</p>
+<p>Extend this technique to produce another pair of programs, <code>good</code> and <code>evil</code>, that
+also share the same MD5 hash.  One program should execute a benign payload: echo
+or print <code>"I mean no harm."</code> The second should execute a pretend malicious payload:
+echo or print <code>"You are doomed!"</code></p>
+<p><strong>What to submit</strong> Two scripts, <code>good</code> and <code>evil</code>, that have the same MD5 hash, have
+different SHA-256 hashes, and print the specified messages.</p>
+<h2 id="part-4-rsa-signature-forgery">Part 4: RSA signature forgery<a class="headerlink" href="#part-4-rsa-signature-forgery" title="Permanent link">&para;</a></h2>
+<p>A secure implementation of RSA encryption or digital signatures requires a
+proper padding scheme.  RSA without padding, also known as <em>textbook RSA</em>,
+has several undesirable properties. For example, it is trivial for an attacker
+with only an RSA public key pair <em>(n,e)</em> to produce a mathematically valid
+message, signature pair by choosing an <em>s</em> and returning <em>(s^e, s)</em>.</p>
+<p>In order to prevent an attacker from being able to forge valid signatures in
+this way, RSA implementations use a padding scheme to provide structure to the
+messages that are encrypted or signed.  The most commonly used padding scheme
+in practice is defined by the PKCS #1 v1.5 standard, which can be found at
+<a href="https://tools.ietf.org/html/rfc2313">https://tools.ietf.org/html/rfc2313</a>.
+The standard defines, among other things, the format of RSA keys and signatures
+and the procedures for generating and validating RSA signatures.</p>
+<h3 id="4a-validating-rsa-signatures">4a. Validating RSA signatures<a class="headerlink" href="#4a-validating-rsa-signatures" title="Permanent link">&para;</a></h3>
+<p>You can experiment with validating RSA signatures yourself.  Create a file called
+<code>key.pub</code> that contains the following RSA public key:</p>
+<div class="codehilite"><pre><span></span><span class="err">-----BEGIN PUBLIC KEY-----</span>
+<span class="err">MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALB8X0rLPrfgAfXMW73LjKYb5V9QG5LU</span>
+<span class="err">DrmsA9CAittsLvh2c082wHwVyCIiWQ8S3AA/jfW839sFN4zAZkW2S3cCAQM=</span>
+<span class="err">-----END PUBLIC KEY-----</span>
+</pre></div>
+
+
+<p>You can view the modulus and public exponent of this key by running:</p>
+<div class="codehilite"><pre><span></span><span class="err">openssl rsa -in key.pub -pubin -text -noout</span>
+</pre></div>
+
+
+<p>Create a file containing only the text <code>CSE 127 rul3z!</code>.</p>
+<div class="codehilite"><pre><span></span><span class="err">echo -n &#39;CSE 127 rul3z!&#39; &gt; message</span>
+</pre></div>
+
+
+<p>The following is a base64-encoded signature of the file <code>message</code> using the public
+key above.</p>
+<div class="codehilite"><pre><span></span><span class="err">RaHHC2E0qm1sauuhlV3KBGiaTb5IGmaaNFQn22ykTSu88EIBkBG48gjiamc3l+4HJYUwpZDefcT2</span>
+<span class="err">dLPyaOHA/w==</span>
+</pre></div>
+
+
+<p>Convert this signature into a binary file:</p>
+<div class="codehilite"><pre><span></span><span class="err">base64 -d -i sig.b64 &gt; sig</span>
+</pre></div>
+
+
+<p>Now verify the signature against the file you created.</p>
+<div class="codehilite"><pre><span></span><span class="err">openssl dgst -sha1 -verify key.pub -signature sig message</span>
+</pre></div>
+
+
+<p>We can also use basic math operations in Python to explore this signature further.
+Remember, RSA ciphertexts, plaintexts, exponents, moduli, and signatures are actually
+all integers.</p>
+<p>Open a Python shell and run the following commands to import the signature as an integer:</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">Crypto.PublicKey</span> <span class="kn">import</span> <span class="n">RSA</span>
+<span class="kn">from</span> <span class="nn">Crypto.Hash</span> <span class="kn">import</span> <span class="n">SHA</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;sig&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">hex</span><span class="p">(),</span> <span class="mi">16</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Next, import the public key file that you created earlier:</p>
+<div class="codehilite"><pre><span></span><span class="n">pubkey</span> <span class="o">=</span> <span class="n">RSA</span><span class="o">.</span><span class="n">importKey</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;key.pub&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+
+
+<p>The modulus and exponent are then accessible as <code>pubkey.n</code> and <code>pubkey.e</code>, respectively.
+Now reverse the signing operation and examine the resulting value in hex:</p>
+<div class="codehilite"><pre><span></span><span class="s2">&quot;</span><span class="si">{:0128x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">signature</span><span class="p">,</span> <span class="n">pubkey</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="n">pubkey</span><span class="o">.</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+
+
+<p>You should see something like <code>'0001fffff ... 22c1422dac3c4e5fdd87040b3fb156acd3d83d1f'</code>
+Verify that the last 20 bytes of this value match the SHA-1 hash of your file:</p>
+<div class="codehilite"><pre><span></span><span class="n">SHA</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;CSE 127 rul3z!&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</pre></div>
+
+
+<p>You don't need to submit anything for this part.</p>
+<h3 id="4b-pkcs-1-v15-signature-padding">4b. PKCS #1 v1.5 signature padding<a class="headerlink" href="#4b-pkcs-1-v15-signature-padding" title="Permanent link">&para;</a></h3>
+<p>The signed value you examined in the previous section had been padded using the
+PKCS #1 v1.5 signature scheme.  PKCS #1 v1.5 padding for RSA signatures is
+structured as follows: one <code>00</code> byte, one <code>01</code> byte, some
+<code>FF</code> bytes, another <code>00</code> byte, some special ASN.1 bytes denoting
+which hash algorithm was used to compute the hash digest, then the bytes of the
+hash digest itself. The number of <code>FF</code> bytes varies such that the size
+of <em>m</em> is equal to the size of the RSA key.</p>
+<p>A <em>k</em>-bit RSA key used to sign a SHA-1 hash digest will generate the following
+padded value of <em>m</em>:</p>
+<div class="codehilite"><pre><span></span><span class="err">  00 01 FF...FF 00 3021300906052B0E03021A05000414 XX...XX</span>
+<span class="err">        ^^^^^^^    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ^^^^^^^</span>
+<span class="err">    k/8 - 38 bytes wide         ||            20-byte SHA-1 digest</span>
+<span class="err">                        ASN.1 &quot;magic&quot; bytes</span>
+</pre></div>
+
+
+<p>When PKCS padding is used, it is important for implementations to verify that
+every bit of the padded, signed message is exactly as it should be.  It is
+tempting for an implementer to validate the signature by first stripping off
+the <code>00 01</code> bytes, then some number of padding <code>FF</code> bytes, then
+<code>00</code>, and then parse the ASN.1 and verify the hash.  If the
+implementation does not check the length of the <code>FF</code> bytes and that the
+hash is in the least significant bits of the message, then it is possible for
+an attacker to forge values that pass this validation check.</p>
+<p>This possibility is particularly troubling for signatures generated with <em>e =
+3</em>. If the length of the required padding, ASN.1 bytes, and hash value is
+significantly less than <em>n^{1/3}</em> then an attacker can construct a cube root
+over the integers whose most significant bits will validate as a correct
+signature, ignoring the actual key.  To construct a "signature" that will
+validate against such implementations, an attacker simply needs to construct an
+integer whose most significant bytes have the correct format, including the
+hashed message, pad the remainder of this value with zeros or other garbage
+that will be ignored by the vulnerable implementation, and then take a cube
+root over the integers, rounding as appropriate.</p>
+<h3 id="4c-constructing-forged-signatures">4c. Constructing forged signatures<a class="headerlink" href="#4c-constructing-forged-signatures" title="Permanent link">&para;</a></h3>
+<p>The National Bank of CSE 127 has a website that its employees
+use to initiate wire transfers between bank accounts. To authenticate each
+transfer request, the control panel requires a signature from a particular
+2048-bit RSA key:</p>
+<div class="codehilite"><pre><span></span><span class="err">-----BEGIN PUBLIC KEY-----</span>
+<span class="err">MIIBIDANBgkqhkiG9w0BAQEFAAOCAQ0AMIIBCAKCAQEArBOrcgTp5r77Uz5CV1HX</span>
+<span class="err">9w19lmmkMqlh81paBr4SvrkTqXTmevSlRQE5pSJ7Y3rz7I4HbdVpYq16nlaF9TIj</span>
+<span class="err">ig5i1SzNMe4Uo+Plv/O5kYYZOM3Do69E8dujOqgoxwPxaAqRwA411k5egJd8VhJ+</span>
+<span class="err">n6zilsTZ5QroSP/LEzKDku3OnXZKxzDKmdzs/nS4aHBK89b5IqwHOQFSbQA0tlkJ</span>
+<span class="err">1BmFvGKc3WUfVk0KgdeS/b3zMX8OdKJxtJWYAo7BfJlxFU81/Gl1XEqr8dWUqZ7J</span>
+<span class="err">8WaQ2fiBmoHSIOd5sQ9K6g3+tfeHfnvV8vkrqV1J9jAp6yirGCbyuy+jrUac5CJg</span>
+<span class="err">zwIBAw==</span>
+<span class="err">-----END PUBLIC KEY-----</span>
+</pre></div>
+
+
+<p>Unfortunately, this
+control panel is running old software that has not been patched to fix the
+signature forgery vulnerability.</p>
+<p>Using the signature forgery technique described above, produce an RSA signature
+that validates against the National Bank of CSE 127 site.</p>
+<p><em>Historical fact:</em> This attack was discovered by Daniel Bleichenbacher, who
+presented it in a lightning talk at the rump session at the Crypto 2006
+conference.  His talk is described in this mailing list posting:
+<a href="https://www.ietf.org/mail-archive/web/openpgp/current/msg00999.html">https://www.ietf.org/mail-archive/web/openpgp/current/msg00999.html</a>.
+At the time, many important implementations of RSA signatures were discovered
+to be vulnerable to this attack, including OpenSSL.  In 2014, the Mozilla
+library NSS was found to be vulnerable to this type of attack:
+<a href="https://www.mozilla.org/security/advisories/mfsa2014-73">https://www.mozilla.org/security/advisories/mfsa2014-73/</a>.</p>
+<p><strong>What to submit</strong> A Python 3.x script called <code>bleichenbacher.py</code> that:</p>
+<ol>
+<li>Accepts a double-quoted string as command-line argument.</li>
+<li>Prints a base64-encoded forged signature of the input string.</li>
+</ol>
+<p>We have provided a Python library, <code>roots.py</code>, that
+provides several useful functions that you may wish to use when implementing
+your solution.  You can <a href="../../resources/roots.py">download the library here</a>. Your program
+may assume that PyCrypto and <code>roots.py</code> are available, and may use standard
+Python libraries, but should otherwise be self-contained.</p>
+<p>In order to use these functions, you will have to import <code>roots.py</code>. You
+may wish to use the following template:</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">Crypto.PublicKey</span> <span class="kn">import</span> <span class="n">RSA</span>
+<span class="kn">from</span> <span class="nn">Crypto.Hash</span> <span class="kn">import</span> <span class="n">SHA</span>
+<span class="kn">from</span> <span class="nn">roots</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">message</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Your code to forge a signature goes here.</span>
+
+<span class="c1"># some example functions from roots</span>
+<span class="n">root</span><span class="p">,</span> <span class="n">is_exact</span> <span class="o">=</span> <span class="n">integer_nthroot</span><span class="p">(</span><span class="mi">27</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">integer_to_base64</span><span class="p">(</span><span class="n">root</span><span class="p">))</span>
+</pre></div>
+
+
+<h2 id="5-writeup">5. Writeup<a class="headerlink" href="#5-writeup" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>With reference to the construction of HMAC, explain how changing the design
+of the API in 2b to use <code>token=HMAC(_user's password_)(user=...)</code> would avoid
+the length extension vulnerability.</p>
+</li>
+<li>
+<p>Briefly explain why the technique you explored in 3b poses a danger
+to systems that rely on digital signatures to verify the integrity of programs
+before they are installed or executed.  Examples include Microsoft Authenticode
+and most Linux package managers.  (Assume that these systems sign MD5 hashes of
+the programs.)</p>
+</li>
+<li>
+<p>Since 2010, NIST has specified that RSA public exponents must be at least
+2^16 + 1.  Briefly explain why Bleichenbacher's attack would not work for these
+keys.</p>
+</li>
+</ol>
+<p><strong>What to submit</strong> Write your  answers in <code>writeup.txt</code>.</p>
+<h2 id="submission-checklist">Submission Checklist<a class="headerlink" href="#submission-checklist" title="Permanent link">&para;</a></h2>
+<p>Submit the following to gradescope:</p>
+<ul>
+<li>
+<p><code>vigenere.key</code> to <strong>Assignment 6 vigenere key</strong> (for part 1)</p>
+</li>
+<li>
+<p><code>good</code> and <code>evil</code> to <strong>Assignment 6 hash collision</strong> (for part 3)</p>
+</li>
+<li>
+<p><code>len_ext_attack.py</code> to  <strong>Assignment 6 length extension</strong> (for part 2)</p>
+</li>
+<li>
+<p><code>bleichenbacher.py</code> to <strong>Assignment 6 signature forgery</strong> (for part 4)</p>
+</li>
+<li>
+<p><code>writeup.txt</code> to <strong>Assignment 6 writeup</strong> (with answers to parts 3a and 5) </p>
+</li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../pa5/" title="Assignment 5" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Assignment 5
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../notes/bufferoverflow/" title="Stack smashing" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Stack smashing
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/PLSysSec/cse127-website" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.a8b5e56f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
