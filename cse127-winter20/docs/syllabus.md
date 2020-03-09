@@ -24,5 +24,5 @@ Feb 26      | [Network defenses](slides/11-networkdefenses.pdf)
 Mar  2      | [Symmetric-key crypto](slides/12-symmetriccrypto.pdf)
 Mar  5      | [Public-key crypto](slides/13-pubkeycrypto.pdf)
             | **Assignment 6: Crypto**
-Mar  9      | TLS/PKI/Side channels
+Mar  9      | [TLS/PKI](slides/14-tls.pdf)
 Mar 11      | Privacy/Anonymity
