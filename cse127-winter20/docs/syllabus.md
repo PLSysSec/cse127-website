@@ -25,4 +25,4 @@ Mar  2      | [Symmetric-key crypto](slides/12-symmetriccrypto.pdf)
 Mar  5      | [Public-key crypto](slides/13-pubkeycrypto.pdf) <br/> Reading: [Bleichenbacher's RSA signature forgery based on implementation error](https://mailarchive.ietf.org/arch/msg/openpgp/5rnE9ZRN1AokBVj3VqblGlP63QE/) by Finney
             | **Assignment 6: Crypto**
 Mar  9      | [TLS/PKI](slides/14-tls.pdf)
-Mar 11      | Privacy/Anonymity
+Mar 11      | [Privacy/Anonymity/Ethics/Policy](slides/15-privacy.pdf)
