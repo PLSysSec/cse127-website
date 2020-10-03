@@ -1,3 +1,10 @@
+## Markdeep version
+
+1. Modify .html files
+2. Tell deian to publish
+
+## Mkdocs version (pre fall2020)
+
 ### How to work with this repo:
 
 1. Modify/add files in `docs`. Don't ever modify things under `site` directly.
@@ -6,6 +13,6 @@
 4. Tell deian to publish
 
 
-## First time?
+### First time?
 
 Install mkdocs and extension via: `make install`
