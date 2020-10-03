@@ -1,0 +1,244 @@
+<meta charset="utf-8"><!-- -*- markdown -*- -->
+    **CSE 127: Computer Security**
+         [*Deian Stefan*](https://cseweb.ucsd.edu/~dstefan/)
+    **The online, bad-haircut version**
+
+About
+==============================================================
+
+This course focuses on computer security, covering a wide range of topics on
+both the _defensive_ and _offensive_ side of this field. Among these will be
+systems security and exploitation (e.g., buffer overflows and return-oriented
+programming), sandboxing and isolation, covert channels, network security,
+language-based security, cryptography, privacy and anonymity.  The goal of the
+course is to provide an appreciation of how to think adversarially with respect
+to computer systems as well as an appreciation of how to reason about attacks
+and defenses. 
+
+To complete the projects in this course, you will need to be able to write code
+in C and (some) C++, and have some understanding of x86 assembly, JavaScript,
+PHP and SQL. We will not teach these in lecture; you are expected to learn them
+on your own or ask for help in section or office hours. If you don't know C,
+K&R's [The C Programming
+Language](https://en.wikipedia.org/wiki/The_C_Programming_Language) is a go to,
+but the [Hacking](https://nostarch.com/hacking2.htm) book is probably enough
+and covers x86 assembly and many of the topics in this class.
+
+Class details
+==============================================================
+
+Lectures:
+: Monday and Wednesday, 5:00--6:20 PM PDT
+Staff:
+: **Instructor**: Deian Stefan <deian+cse127@cs.ucsd.edu>
+
+: **Teaching Assistants**: Sunjay Cauligi, Evan Johnson, Sam Liu, and Kevin Yu
+
+Section:
+: Monday, 11:00--11:50 AM PDT
+
+Office hours:
+: **Deian**: Friday, 9:00--10:00 AM PDT
+
+: **Sunjay**: Thursday, 7:00-8:00 PM PDT
+
+: **Evan**: Monday, 7:00-8:00 PM PDT
+
+: **Kevin**: Wednesday, 10:00--11 AM PDT
+
+: **Sam**: Tuesday, 1:00-2:00 PM PDT
+
+Web tools:
+: [Piazza](**https://piazza.com/ucsd/fall2020/cse127**) for all communication.
+  ([Configure your piazza privacy settings](https://piazza.com/myprofile).)
+
+: [Gradescope](**https://www.gradescope.com/courses/195955**) (entry code: KY5K8Z) for assignments and exam.
+
+: [Zoom (via Canvas)](https://canvas.ucsd.edu/courses/18853) for lecture, section, and all office hours.
+
+
+Calendar and readings
+==============================================================
+
+Mon Oct  5 2020: Introduction
+  - *Read*: [This World of Ours](https://www.usenix.org/system/files/1401_08-12_mickens.pdf) by James Mickens
+  - *Watch*: [USENIX Security 2018 Keynote](https://www.usenix.org/conference/usenixsecurity18/presentation/mickens) by James Mickens
+
+Tue Oct  6 2020: PA1: GDB + x86
+
+Wed Oct  7 2020: Buffer overflow attacks
+  - *Read*: [Smashing the Stack for Fun and Profit](http://phrack.org/issues/49/14.html#article) by Aleph One
+  - *Optional:* 0x300-0x320 from [Hacking](https://nostarch.com/hacking2.htm). 0x200-0x270 if you don't have a strong C background.
+
+Mon Oct 12 2020: Buffer overflow defenses
+  - *Read*: [ASLR](https://pax.grsecurity.net/docs/aslr.txt) and [NOEXEC](https://pax.grsecurity.net/docs/noexec.txt)
+
+Tue Oct 13 2020: PA2: Buffer overflows
+
+Wed Oct 14 2020: Memory (un)safety
+  - *Read*: [Low-Level Software Security by Example](papers/erlingsson:low.pdf) by Ulfar Erlingsson et al.
+  - *Optional*: [The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls (on the x86)](papers/shacham:rop.pdf) by Hovav Shacham and [Control-Flow Integrity](papers/abadi:cfi.pdf) by Martin Abadi et al.
+
+Mon Oct 19 2020: More memory (un)safety
+  - *Optional*: [Hacking Blind](papers/bittau:brop.pdf) by Andrea Bittau et al.
+
+Wed Oct 21 2020: Sandboxing and isolation
+  - *Read*: [The Road to Less Trusted Code: Lowering the Barrier to In-process Sandboxing](https://cseweb.ucsd.edu/~dstefan/noindex/login2020/) by Garfinkel et al.
+  - *Optional*: [Retrofitting Fine Grain Isolation in the Firefox Renderer](https://cseweb.ucsd.edu/~dstefan/pubs/narayan:2020:rlbox.pdf) by Narayan et al.
+
+Thu Oct 22 2020: PA3: Sandboxing
+
+Mon Oct 26 2020: Bugfinding (with guest: [Fraser Brown](https://web.stanford.edu/~mlfbrown/))
+  - *Read*: [A Few Billion Lines of Code Later: Using Static Analysis to Find Bugs in the Real World](papers/bessey:a-few.pdf) by Al Bessey et al.
+
+Wed Oct 28 2020: Side channels (with [Sunjay](https://www.sysnet.ucsd.edu/~scauligi/))
+  - *Read*: [Efficient Cache Attacks on AES, and Countermeasures](papers/tromer:cache.pdf) by Eram Tromer et al.
+  - *Optional*: [Chapter 19](https://www.cl.cam.ac.uk/~rja14/Papers/SEv3-ch19-7sep.pdf) of Security Engineering
+
+Thu Oct 29 2020: PA4: Side channels
+
+Mon Nov  2 2020: Web intro
+
+Tue Nov  3 2020: Vote (if you can and haven't voted already)
+  - *Watch*: [USENIX Security 2020 Panel on Voting](https://www.usenix.org/conference/usenixsecurity20/presentation/panel-voting)
+
+Wed Nov  4 2020: Web attacks and defenses 
+
+Thu Nov  5 2020: PA5: Web
+
+Mon Nov  9 2020: Modern client-side web defenses
+
+Wed Nov 11 2020: Network intro
+
+Mon Nov 16 2020: No class
+
+Tue Nov 17 2020: PA6: Networking
+
+Wed Nov 18 2020: Network attacks
+
+Mon Nov 23 2020: Network defenses
+
+Wed Nov 25 2020: Symmetric-key crypto
+  - *Read*: [Chapter 5](https://www.cl.cam.ac.uk/~rja14/Papers/SEv3-ch5-7sep.pdf) (skip 5.2.3, 5.2.5, 5.3.4, 5.3.5, 5.4, 5.7, 5.8) of Security Engineering
+
+Thu Nov 26 2020: PA7: Crypto
+
+Mon Nov 30 2020: Public-key crypto
+  - *Read*: Sections 5.2.5, 5.3.4, 5.3.5, 5.7, 5.8 of Security Engineering
+  - *Read*: [Bleichenbacher's RSA signature forgery based on implementation error](https://mailarchive.ietf.org/arch/msg/openpgp/5rnE9ZRN1AokBVj3VqblGlP63QE/) by Hal Finney
+
+Wed Dec  2 2020: TLS, PKI, and CT
+
+Thu Dec  3 2020: PA8: TLS
+
+Mon Dec  7 2020: More TLS, PKI, and CT
+
+Wed Dec  9 2020: Privacy, anonymity, and ethics  
+  - *Watch*: [Crypto 2020 Invited talk](https://www.youtube.com/watch?v=Ygq9ci0GFhA) by Seny Kamara
+  - *Read*: [Chapter 26](https://www.cl.cam.ac.uk/~rja14/Papers/SEv3-ch26-7sep.pdf) of Security Engineering
+  - *Optional*: [Chapter 20](https://www.cl.cam.ac.uk/~rja14/Papers/SEv3-ch20-7sep.pdf) (skip 20.5-20.7) of Security Engineering
+Mon Dec 17 2020: Final exam
+
+
+<!-- Assignment 1: Intro [Sunjay + Sam] -->
+<!-- Assignment 2: Buffer overflows [Kevin] -->
+<!-- Assignment 3: Sandboxing [Evan + Deian + Shravan] -->
+<!-- Assignment 4: Side channels [Evan + Sam/Sunjay] -->
+<!-- Assignment 5: Web [Sam + Kevin] -->
+<!-- Assignment 6: Network [Kevin + Sunjay] -->
+<!-- Assignment 7: Crypto attacks [Kevin + Evan] -->
+<!-- Assignment 8: TLS [Sunjay + Deian + Stanford] -->
+
+Textbook
+==============================================================
+
+We will occasionally be assigning readings from Ross Anderson's [Security
+Engineering](https://www.cl.cam.ac.uk/~rja14/book.html) and various other
+online resources and research papers.  We may also assign optional reading from
+Jon Erickson's [Hacking: The Art of
+Exploitation](https://nostarch.com/hacking2.htm).
+
+Evaluation and grading
+==============================================================
+
+Beyond lectures, we will reinforce concepts and explore new ones via
+programming assignments, a final exam, and online discussions. Each of these
+will be used towards your final grade, as further described below.
+
+Programming assignments (80%)
+-----------------------
+
+We will have eight programming assignments. These assignments are meant to both
+reinforce your knowledge of the concepts covered in lecture and get you to
+think about security in more depth, beyond what is covered lecture.
+
+You are expected to work on the assignments by yourself. You may discuss the
+assignments with students from the course---in general--but not any specific
+solution. There are no late days, but you will receive an additional 10% if you
+turn in your assignment by the early date.
+
+If you consult anything (books, academic papers, internet resources, people)
+when working on the assignments, note this in your submission.  We encourage
+outside learning but expect you to not seek out specific details about a
+solution---anything submitted should be considered your own work.  Similarly,
+you are expected to not publish or otherwise share your solutions at any point
+(even after the class is over).  If you are unsure about what is allowed,
+please ask the course staff.
+
+Exam (15%)
+-----------------------
+
+The final exam will be used (1) to revisit core concepts at the end of the
+quarter and (2) apply your knowledge in new settings.  The final exam will be
+open for 24 hours (though it should only take you 1-3 hours). The exam is open
+notes and open book. You are allowed to use the web, but not permitted to
+collaborate.
+
+Participation (5% + 10% bonus)
+-----------------------
+
+We will assign readings with most lectures. You are expected to have a vague
+understanding of the concepts that will be discussed in class. This will allow
+us to spend the lecture time to solidify your understanding. But we recommend
+re-reading after class as well.
+
+Asking and answering questions in lecture, on Piazza, or during office hours
+counts towards your class participation. Starting discussions (e.g., around the
+readings) online also counts is encouraged!
+
+**Bonus: Lecture notes** We hope to develop written notes that can be used in
+future versions of this class.  If you summarize lectures into self-contained,
+well-written notes you can earn up to 10% extra credit. If you do a very good
+job, we will try to hire you after this quarter to continue working on these
+notes.
+
+Academic integrity and student conduct
+==============================================================
+
+By taking this course, you implicitly agree to abide by the UCSD policies on
+[Integrity of
+Scholarship](https://senate.ucsd.edu/Operating-Procedures/Senate-Manual/appendices/2)
+and [Student Conduct](https://students.ucsd.edu/sponsor/student-conduct/).  See
+the [Academic Integrity Support for Remote
+Learning](https://academicintegrity.ucsd.edu/take-action/covid-19-students.html).
+University rules on integrity of scholarship and code of conduct are taken
+seriously and will be enforced.
+
+Acknowledgements
+==============================================================
+
+The course structure and many of the ideas and slides are influenced or directly from
+other courses taught at
+Berkeley ([David Wagner](https://people.eecs.berkeley.edu/~daw/) and [Raluca Popa](https://people.eecs.berkeley.edu/~raluca/)),
+Oberlin ([Stephen Checkoway](https://checkoway.net/)),
+Stanford ([Dan Boneh](https://crypto.stanford.edu/~dabo/), [John Mitchell](https://theory.stanford.edu/people/jcm/), and [Zakir Durumeric](https://zakird.com)),
+UT Austin ([Hovav Shacham](https://www.cs.utexas.edu/directory/hovav-shacham)),
+UCSD ([Stefan Savage](https://cseweb.ucsd.edu/~savage/), [Nadia Heninger](https://cseweb.ucsd.edu/~nadiah/)) and
+UIUC ([Kirill Levchenko](https://klevchen.ece.illinois.edu/)).
+If we missed anybody please let us know!
+
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js"></script>
+<script>
+  window.alreadyProcessedMarkdeep || (document.body.style.visibility="visible");
+  markdeepOptions= {tocStyle: 'long', sortScheduleLists: false };
+</script>
