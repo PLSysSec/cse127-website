@@ -3,6 +3,7 @@ combined layouts:
 
   webcam:
     crop: left 60, right 40, top 100, bottom 60
+    resolution: 640x480
     position (top left): (20, 45)
   ipad:
     crop: left 122, right 122
