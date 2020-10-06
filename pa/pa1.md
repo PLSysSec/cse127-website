@@ -49,7 +49,7 @@ directory in the VM image; that is, `/home/student/gdb`. SSH into the VM and `cd
 directory to begin working on it.
 
 Inside the `gdb` directory, you'll find `fib.c`, a C program demonstrating the Fibonacci sequence;
-a `Makefile`; and `hw1.txt`. **Ignore hw1.txt and use the questions on Gradescope instead, as these questions are more updated.**. The
+a `Makefile`; and `hw1.txt`. **Ignore hw1.txt and use the questions on Gradescope instead, as these questions are more updated.** The
 first step is to compile `fib` by running `make` on the command line.
 
 To run the `fib` executable in GDB, run `gdb fib`.
