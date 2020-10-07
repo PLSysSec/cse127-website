@@ -20,7 +20,7 @@ pre-populated with the assignment files.
 
 In order to match the environment in which your submission will be graded, all work for this
 assignment must be done on the VirtualBox VM we provide, named `pa1box`. You can download the VM
-image [**here**](https://drive.google.com/uc?id=1thaE-D_uMTqgGl6xdcTrE19lgAgkb2H-&export=download).
+image [**here**](https://drive.google.com/uc?id=1_BnDzeOYWvbNUxZ3c-XSIxrIyN-sx4Lg&export=download).
 
 The VM is configured with two users: `student`, with password `hacktheplanet`; and `root`, with
 password `hackallthethings`. The VM is configured with SSH on port 2222. Please note that SSH is
@@ -52,19 +52,19 @@ directory in the VM image; that is, `/home/student/gdb`. SSH into the VM and `cd
 directory to begin working on it.
 
 Inside the `gdb` directory, you'll find `fib.c`, a C program demonstrating the Fibonacci sequence;
-a `Makefile`; and `hw1.txt`. **Ignore hw1.txt and use the questions on Gradescope instead, as these questions are more updated.** The
+a `Makefile`; and `hw1.txt`, in which you'll record your responses to the questions below. The
 first step is to compile `fib` by running `make` on the command line.
 
 To run the `fib` executable in GDB, run `gdb fib`.
 I recommend the following workflow in GDB:
 
 1. **Starting.** Set breakpoints that you can later use for analysis:
-    - `b foo` &mdash; break at function `foo`
+    - `b f` &mdash; break at function `f`
     - `b *0x08048489` &mdash; break at the instruction at address 0x08048489
     - `r` &mdash; run the executable
 2. **Analyzing.** Examine memory, registers, etc; disassemble code; show stack frames, backtrace,
    etc; and more:
-    - `disas foo` &mdash; disassemble function `foo`
+    - `disas f` &mdash; disassemble function `f`
     - `i r` &mdash; view registers
     - `where` &mdash; view stack frames
     - `x <loc>` &mdash; examine memory
@@ -72,7 +72,7 @@ I recommend the following workflow in GDB:
     - `x /10x $esp` &mdash; examine 10 words at top of stack
     - `x /10x buf` &mdash; examine 10 words in `buf`
     - `x /10i $eip` &mdash; examine 10 instructions starting at instruction pointer
-    - `x /10i foo` &mdash; examine 10 instructions starting at `foo`
+    - `x /10i f` &mdash; examine 10 instructions starting at `f`
 3. **Continuing.** Continue analysis:
     - `c` &mdash; continue execution until next breakpoint/watchpoint
     - `si` &mdash; step to the next instruction
@@ -83,8 +83,8 @@ resources.
 
 ## Assignment Instructions
 
-Complete the following exercises on Gradescope. 
-**Again, ignore the hw1.txt file the VM image**
+Complete the following exercises and **fill out [`hw1.txt`](../resources/hw1.txt)** with your answers. 
+**Follow the directions in the template, do not delete the square brackets**
 
 1. What is the value, in hex, of the `ecx` register when the function f is called for the first time? *(2 pts)*
 2. Which register stores the value of the variable `i` in the function main (before f is called)? *(2 pts)*
@@ -95,9 +95,7 @@ Complete the following exercises on Gradescope.
 
 ## Submission
 
-Submit your answers to "PA1: gdb" on Gradescope.  Gradescope will check that it
-has successfully detected your answers, but it will not give you your grade
-until the due date.
+Submit `hw1.txt` to "PA1: gdb" on Gradescope. Gradescope will check that it has successfully detected your answers, but it will not give you your grade until the due date.
 
 # Part 2: `echo` in x86 *(10 pts)*
 
