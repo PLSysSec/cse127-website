@@ -1,19 +1,22 @@
-# Assignment 1 *(20 pts)*
+<meta charset="utf-8"><!-- -*- markdown -*- -->
+    **PA 1:  GDB + x86 (20 pts)**
 
-**Deadline: October 13, 2020 by 11:59:59 PM PDT**
+**Early turn-in:** Monday, October 12, 2020 by 23:59:59 PDT (10% bonus)
 
-**Early Turn-In: Saturday, October 10, 2020 by 11:59:59 PM PDT(10% bonus)**
+**Hard deadline:** Wednesday, October 14, 2020 by 23:59:59 PDT
+
+# Goal
 
 The goal of this assignment is to become familiar with the setup that will be used for future
 assignments, such as the use of a virtual machine and the included turn-in script, as well as the
 basics of working with gdb and writing programs in x86 assembly.
 
-## Getting Started
+# Getting Started
 
-To complete this assignment, you will be provided with a VirtualBox VM pre-populated with the
-assignment files.
+To complete this assignment, you are provided with a VirtualBox VM
+pre-populated with the assignment files.
 
-### VM Image
+## VM Image
 
 In order to match the environment in which your submission will be graded, all work for this
 assignment must be done on the VirtualBox VM we provide, named `pa1box`. You can download the VM
@@ -42,7 +45,7 @@ To copy files from the VM to your computer:
 scp -P 2222 student@127.0.0.1:/path/to/files/ /destination/path
 ```
 
-## Part 1: Using GDB *(10 pts)*
+# Part 1: Using GDB *(10 pts)*
 
 Files for this sub-assignment are located in the `gdb` subdirectory of the `student` user's home
 directory in the VM image; that is, `/home/student/gdb`. SSH into the VM and `cd` into that
@@ -78,7 +81,7 @@ I recommend the following workflow in GDB:
 Note that this is only a cursory overview of GDB; much more info is available from online
 resources.
 
-### Assignment Instructions
+## Assignment Instructions
 
 Complete the following exercises on Gradescope. 
 **Again, ignore the hw1.txt file the VM image**
@@ -90,13 +93,13 @@ Complete the following exercises on Gradescope.
 5. When `f` completes after being called from `main`, to which address in `main` does control
    return? Write your answer in hex form. *(2 pts)*
 
-### Submission
+## Submission
 
-Submit your answers to "PA1: gdb" on Gradescope. 
-Gradescope will check that it has successfully detected your answers, but it will not give you your grade
+Submit your answers to "PA1: gdb" on Gradescope.  Gradescope will check that it
+has successfully detected your answers, but it will not give you your grade
 until the due date.
 
-## Part 2: `echo` in x86 *(10 pts)*
+# Part 2: `echo` in x86 *(10 pts)*
 
 Files for this sub-assignment are located in the `x86` subdirectory of the `student` user's home
 directory in the VM image; that is, `/home/student/x86`. SSH into the VM and `cd` into that
@@ -124,7 +127,7 @@ newline) to stdout. Your job is to modify this program to meet the specification
 
 A `Makefile` is included, so you can build the `echo` binary by running `make` from the command line.
 
-### Helpful Hints
+## Helpful Hints
 
 - In a Linux program, stdout is file descriptor number 1 and stderr is number 2.
 - Linux programs start with `argc` at the top of the stack, accessible at `0(%esp)` from
@@ -136,9 +139,12 @@ A `Makefile` is included, so you can build the `echo` binary by running `make` f
   not passed any arguments, 2 if it was passed 1 argument, and so on.
 - This [table of Linux system calls](https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md#x86-32_bit) may come in handy.
 
-### Submission
-
+## Submission
 
 Submit `echo.s` to "PA1: x86 echo" on Gradescope.
 
-
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="../markdeep.min.js"></script>
+<script>
+  window.alreadyProcessedMarkdeep || (document.body.style.visibility="visible");
+  markdeepOptions= {tocStyle: 'long', sortScheduleLists: false };
+</script>
