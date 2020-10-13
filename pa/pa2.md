@@ -2,7 +2,7 @@
 
 **Early Turn-In: Wednesday, October 21, 2020 by 11:59:59 PM (10% bonus)**
 
-**Hard Deadline: Friday, October 23, 2020 by 12:30:00 PM Pacific Time**
+**Hard Deadline: Friday, October 23, 2020 by 11:59:59 PM Pacific Time**
 
 The goal of this assignment is to gain hands-on experience with the effects of buffer overflows and other memory-safety bugs. You are allowed to work in teams for this assignment.
 
