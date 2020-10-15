@@ -12,11 +12,11 @@ The goal of this assignment is to gain hands-on experience with the effects of b
 - You will be provided a skeleton for implementing these exploits in C.
 - You must not discuss your solution with other students until seven days after the assignment deadline.
 
-## Getting Started
+# Getting Started
 
 To complete this assignment you will be provided with a VirtualBox VM and a set of files.
 
-### VM Image
+## VM Image
 
 In order to match the environment in which your submission will be graded, all work for this assignment must be done on the VirtualBox VM we have provided, named `pa2box`. You can download the VM image [**here**](https://drive.google.com/file/d/1jgRPY8E4I2lv1uNCGQpeo0sl9RshvdRK/view?usp=sharing).
 
@@ -44,7 +44,7 @@ scp -P 2222 student@127.0.0.1:/path/to/files/ /destination/path
 
 Please note that SSH is disabled for `root`, so you can only SSH in as the `student` user. You can still log in as `root` using `su` or by logging into the VM directly.
 
-### Assignment Files
+## Assignment Files
 
 Starter files are included inside the `student` home directory of the VM image.
 
@@ -56,11 +56,11 @@ You will be writing an exploit for each of the four vulnerable programs provided
 
 For each exploit, in addition to your `.c` file, please also create a corresponding file `writeup.txt` containing a brief description of how the exploit works.
 
-## Exploit Generation
+# Exploit Generation
 
 To complete the assignment, you will need to: generate targets specific to your PID; use GDB to find vulnerabilities in the targets; and, finally, craft your exploit programs.
 
-### Generating the Targets
+## Generating the Targets
 
 Run `make generate` in the `targets` directory to create the four target source files specific to you. This will prompt you for your student ID (`A########` or `U########`), which will be used to randomize portions of the contents of `target1.c`-`target4.c`.
 
@@ -70,7 +70,7 @@ Run `sudo make install` to copy the binaries into the `/tmp` directory.
 
 Finally, run `sudo make setuid` to mark the binaries as setuid-root. If you forget this step, then your exploits will end up launching a normal shell instead of a root shell!
 
-### Exploit Notes
+## Exploit Notes
 
 For this assignment you should read and have a solid understanding of Aleph One's “Smashing the Stack for Fun and Profit”.
 
@@ -80,10 +80,10 @@ You should not use a function such as `get_sp()` in the exploits you hand in. Yo
 
 Shutting down the VM removes the files in /tmp; if you want to keep them, pause the VM and save its state!
 
-## IMPORTANT: Using the shellcode
+# IMPORTANT: Using the shellcode
 The shellcode is defined for you in `shellcode.h` inside each `sploitN/` directory. To use the shellcode in your sploit buffers, please **import the shellcode with `#include` and copy the contents programatically**. You can do this with `memcpy`, `strcpy`, or even just a `for` loop with array assignments. **Please do NOT manually copy-paste the shellcode string literal into your sploitN.c file**. While the sploit will still work, it may break grading.
 
-## Using GDB
+# Using GDB
 
 To run an exploit in GDB, run, e.g., `gdb sploit1` to execute `sploit1`.
 
@@ -119,7 +119,7 @@ Note that this is only a cursory overview of GDB; much more info is available fr
 resources.
 
 
-### Submission
+## Submission
 1. Create a file named `PID` in the student home directory on the VM, and put your PID in it (ex: `A12345678`)
 2. Run the following command from the student home directory `tar -czvf pa2.tar.gz PID sploit[1-4]/ targets/` This will create a `pa2.tar.gz` in the home directory with all your files in it. You can see what files were zipped by running `tar -tf pa2.tar.gz`
 3. `scp` the `pa2.tar.gz` file to your local computer and submit to gradescope.
