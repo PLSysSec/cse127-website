@@ -1,0 +1,226 @@
+<meta charset="utf-8"><!-- -*- markdown -*- -->
+    **PA 3: Library sandboxing (100 points)**
+
+**Early Turn-In: Monday, November 2, 2020 by 11:59:59 PM (10% bonus)**
+
+**Hard Deadline: Wednesday, November 4, 2020 by 11:59:59 PM Pacific Time**
+
+The goal of this assignment is to gain hands-on experience with library
+sandboxing---and exploiting sandboxed libraries using confused deputy attacks!
+Specifically:
+
+- You are provided a C++ application that uses a vulnerable, unsandboxed C library.  
+
+- Your task is to (1) retrofit the application to run the library in a sandbox (without validating values from the sandbox), (2) turn a vulnerability in the sandboxed library into an application exploit, and (3) properly validate all data coming from the sandbox to prevent such exploitation.
+
+As usual, you may collaborate but not discuss your solution with other students
+until seven days after the assignment deadline.
+
+# Getting Started
+
+Download the [VM
+image](https://drive.google.com/file/d/15ifWoVBR3ZzfXRhCdf70Xi4Dz5hiS9oE/view?usp=sharing)
+containing the application and library source code, as well as a Makefile that
+will compile the library with and without sandboxing.
+
+## Assignment Files
+
+The `pa3` directory in VM contains several files and directories to get you
+started:
+
+- *The C library:* The `lib.c` and `lib.h` files are the source code for the
+  library. Compiling the library will produce a shared library file `my_lib.so`.
+  You will load this compiled library when creating the sandbox with the
+  `create_sandbox()` method.
+
+- *The C++ application:* The source for the application is in `app.cpp`.
+  **This is the only file you will modify throughout this assignment.**
+
+- *Build files:* The Makefile (which you should NOT modify) has two commands. The
+  first, `app`, will attempt to compile the application with the library
+  _unsandboxed_. Second, `app_sandboxed` will compile the application with the
+  library sandboxed.  Note: Running `make app_sandboxed` will not successfully
+  compile until you modify the application to sandbox the library.
+
+- *Dependencies:* The `include` and `archive` directories contain files
+  necessary for compiling the application with sandboxing. Do NOT modify these
+  files.
+
+You will submit the following files for the 3 parts of the assignment:
+
+1. `sol1.cpp`: This is your first sandboxed version of `app.cpp`. The provided
+   crashing inputs should not cause a segfault on this (now sandboxed)
+   application.
+2. `sol2.txt`: This should contain the command-line arguments to your
+    now-sandboxed application (`sol1.cpp`) that causes the application to segfault.
+    We will test it against our reference solution.
+3. `sol3.cpp`: This will be your improved version of `sol1.cpp`, which
+    addresses the confused deputy attack vector from step 2. Neither the original
+    vulnerability, nor the vulnerability you exploite in part 2 should cause this
+    version of the application to segfault. We will test your `sol3.cpp`
+    against our reference solution to part 2.
+
+Along with each of these files, you should also submit `writeup1.txt`,
+`writeup2.txt`, and `writeup3.txt`, briefly explaining how you came to the
+solution for each of the 3 parts.  In particular, for writeup2.txt, explicitly
+explain why the arguments to the program cause the application to segfault even
+though you sandboxed the library.
+
+
+## Building the Project
+
+Run `make bootstrap` before running any other `make` commands.
+Run `make app` to build the unsandboxed application.
+Run `make app_sandboxed` to build the sandboxed application (this will not build
+until you have sandboxed the library).
+
+# Building, Breaking, Building Better
+## Part 1: Isolating the library
+
+We have provided you with an application that uses a contrived hashing library.
+Among other things, the application directly calls the `get_hash` library
+function with command line arguments, and prints the resulting hash.  The first
+argument is the string to hash and the second argument is the completion
+message.
+
+For example, after we build the application we can run it as such:
+
+```
+$./app "I love to hash strings" Completed!
+
+VERSION: 1.0.0
+Done: Completed!
+Hash = 30162623
+
+```
+
+This library is buggy though, and as an attacker you feed the application---and,
+in turn, the library---bad input that will cause it crash:
+
+```
+$ ./app AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA Completed!
+
+VERSION: 1.0.0
+Done: Completed!
+[1]    4168 segmentation fault (core dumped)  ./app  Completed!
+```
+
+In part 1, you will modify `app.cpp` to isolate the library from the rest of
+the application.  This will ensure that that the bug in the library cannot
+directly compromise the host application.
+To do this, you will be using the
+RLBox sandboxing tool.
+
+You will want to read the [RLBox documentation page](https://docs.rlbox.dev/)
+and maybe even play with another [example sandboxed
+library](https://github.com/PLSysSec/rlbox_sandboxing_api/tree/master/examples/hello-world-noop).
+In the RLBox documentation and example, we use the noop-sandbox
+(`rlbox_noop_sandbox`) as the sandbox type. For this assignment, you will use a
+*real* sandbox. To this end, use `rlbox_lucet_sandbox` type.  In your `app.cpp`
+you'll want to declare the sandbox as:
+
+```
+rlbox::rlbox_sandbox<rlbox::rlbox_lucet_sandbox> sandbox;
+```
+
+You don't need to include any special header files for this. We have included
+all the necessary header files in `app.cpp`.
+
+**Subtasks** We recommend tackling this part in several steps:
+
+1. Create and destroy the sandbox in `main()`.
+2. Wrap all library calls using `invoke_sandbox_function`. Remember that all
+   inputs to sandboxed function calls must be tainted (e.g., the type of a tainted
+   `char*` is `rlbox::tainted<char*,rlbox::rlbox_lucet_sandbox>`) and that all
+   return values are tainted.
+   You can find an example of a string being copied into the sandbox and being used as an input here: https://github.com/PLSysSec/rlbox_sandboxing_api/blob/master/examples/hello-world-noop/main.cpp#L36-L39 
+3. Rewrite the `on_completion` callback---the function that is called by the
+   library---to have type:
+
+   ```
+    void on_completion(rlbox::rlbox_sandbox<rlbox::rlbox_lucet_sandbox>& _,
+                       rlbox::tainted<char*,rlbox::rlbox_lucet_sandbox> tainted_str);
+   ```
+   It would be unsafe for the sanboxed library to be able to call arbitrary
+   functions in the application. So, you must also register this function so
+   the library can call it via `register_callback`.
+4. Test that the valid input above still gives the same result.
+5. Test that the crashing input above does not crash the application.
+
+*Note*: Since the library is isolated it won't be able to access pointers in
+the application. For example, it can't access `argv[1]`. Instead you need to
+allocate a buffer in the sandbox using `malloc_in_sandbox<T>()` and copy
+values from the application into the library.
+
+In this part of the assignment, you will need untaint values. To do this, use
+the `UNSAFE_unverified()` method.
+
+Once you have sandboxed the application and the crashing input no longer causes
+the program to segfault, copy `app.cpp` to `sol1.cpp`; you will turn this in.
+
+## Part 2: Using the isolated library to break the application
+
+In part 1, you sandboxed the library so that a failure in the library cannot
+directly compromise the host application. But what if the sandbox returns bad
+data that then confuses the application into compromising itself?
+
+In this part, you goal is to find a confused deputy vulnerability in your
+application code that the compromised sandboxed library can use to compromise
+the host application.  This is possible because in part 1 you used
+`UNSAFE_unverified()` to untaint data coming from the sandbox.  This function
+just removes the taint; it does not validate the data received by the library.
+
+Once you find the vulnerability, your task is to craft arguments to the program
+that can be used to crash the sandboxed application. In `sol2.txt`, you need to
+just give us the arguments. For example, if `./app aaaa bbb` crashes, then
+`sol2.txt` contents should only be `aaaa bbb`. (Make sure it's in this format
+since we'll be automatically grading this.)
+
+## Part 3: Isolating the library correctly
+
+In part 3, you will improve your application by actually validating data copied
+from the sandboxed library. If the library returns erroneous data, this input
+validation should prevent the erroneous data from crashing or otherwise
+compromising the host application. After you have completed this portion, you
+will no longer use any `UNSAFE_unverified()` functions.
+
+You will want to replace your calls to `UNSAFE_unverified()` with
+`copy_and_verify` for tainted primitives (e.g., `long long`s) and
+`copy_and_verify_string` for tainted string. You can find an example of a
+verifier
+[here](https://github.com/PLSysSec/rlbox_sandboxing_api/blob/master/examples/hello-world-noop/main.cpp#L29-L33)
+
+Once you are done, copy `app.cpp` to `sol3.cpp`.
+
+## Notes and hints
+
+- Read the RLBox docs and example mentioned above.
+- Invoking a sandbox function requires all of it's arguments to be tainted.
+- You will need to change the type signature of `on_completion()`.
+- When you create the sandbox you need to supply the path of the `.so` file,
+  make sure to use `./mu_lib.so` instead of just `my_lib.so`.
+- It is probably not a good idea to try to interpret the huge compiler errors
+  that RLBox will throw at you. A better idea would be to look at your code and
+  try to work out what values are tainted at which point.
+
+# Submission
+
+1. Create a directory.
+2. Create a file named `PID` in this directory, and put your PID in it (ex: `A12345678`).
+3. Add `sol1.cpp`, `sol2.txt`, and `sol3.cpp` to this directory.
+4. Run the following command from the directory `tar -czvf pa3.tar.gz <dirname>`. 
+   This will create a `pa3.tar.gz` with all your files in it.
+   You can see what files were zipped by running `tar -tf pa3.tar.gz`.
+5. Submit `pa3.tar.gz` via gradescope.
+
+Note: The autograder expects the above file names. It also expects `sol2.txt`
+to be correctly formatted ad described above. We will use your writeups for
+partial credit.
+
+
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="../markdeep.min.js"></script>
+<script>
+  window.alreadyProcessedMarkdeep || (document.body.style.visibility="visible");
+  markdeepOptions= {tocStyle: 'long', sortScheduleLists: false };
+</script>
+
