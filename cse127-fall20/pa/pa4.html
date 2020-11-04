@@ -1,5 +1,4 @@
 <meta charset="utf-8"><!-- -*- markdown -*- -->
-# Assignment 4 *100pts*
     **PA 4: Side channels (100 points)**
 
 **Early Turn-In: Monday, November 9, 2020 by 11:59:59 PM (10% bonus)**
@@ -17,7 +16,7 @@ you use any code in your answer that you did not write yourselves, you must
 document that fact. Failure to do so will be considered a violation of the
 academic integrity policy.
 
-## Getting Started
+# Getting Started
 
 Just like previous assignments, for this assignment you will be provided with a
 VirtualBox VM containing all the files you need.  The VM is named `pa4box`, and
@@ -34,7 +33,7 @@ and `root`, with password `hackallthethings`. We recommend you use the VM via
 disabled for `root`, so you can only SSH in as the `student` user. You can
 still log in as `root` using `su` or by logging into the VM directly.
 
-### Assignment Files
+## Assignment Files
 
 Starter files are included inside the `student` user's home directory within the VM image.
 
@@ -46,7 +45,7 @@ functionality vulnerable to side-channel attacks. You should *not* modify
 `sysapp.c`, only `memhack.c` and `timehack.c`. Each subdirectory contains a
 `Makefile` for building your exploits.
 
-### Assignment Instructions
+## Assignment Instructions
 
 You will be writing two exploits, each of which takes advantage of a side
 channel, to obtain the password in `sysapp.c`. In `memhack.c`, you will exploit
@@ -57,7 +56,7 @@ your exploits can determine the password in `sysapp.c` and call the
 Additionally, for each exploit, provide a brief description of how it works in
 its corresponding `writeup.txt` file.
 
-### Submitting Your Solutions
+## Submitting Your Solutions
 
 Submit `memhack.c` and `timehack.c` to the corresponding assignments on
 Gradescope, and submit a combined writeup to the writeup assignment on
@@ -66,9 +65,9 @@ Gradescope.
 The score that you receive on Gradescope will be your grade for the PA, so
 please make sure that your code is working on Gradescope.
 
-## Exploit Construction
+# Exploit Construction
 
-### Memory-Based Side Channel
+## Memory-Based Side Channel
 
 We recommend you start with the memory-based side channel because it is
 deterministic and doesn't have problems with noise. Look at the `check_pass()`
@@ -101,7 +100,7 @@ Other hints:
 2. The `demonstrate_signals` function handles all the segfaults for you. You
    can re-use almost all of it in your code.
 
-#### Note on `sigsetjmp`/`siglongjmp`
+### Note on `sigsetjmp`/`siglongjmp`
 
 We **highly advise** reading the man pages for `sigsetjmp`/`siglongjmp` so you
 understand how they work.
@@ -114,7 +113,7 @@ An excerpt from `man sigsetjmp`:
 > If the function which called setjmp() returns before longjmp() is called, the
 > behavior is undefined.  Some kind of subtle or unsubtle chaos is sure to result.
 
-### Timing-Based Side Channel
+## Timing-Based Side Channel
 
 Unlike the memory-based side channel, the timing-based side channel will deal
 with noise. Go back and look at `check_pass()`. An artificial delay has been
@@ -155,7 +154,7 @@ before you reach your conclusion about each character. Other hints:
    print them at the end.
 6. Be sure to test a bunch of different passwords. We will when we grade.
 
-### Final Notes
+# Final Notes
 
 **Do not write a solution that simply checks all passwords exhaustively.** You
 will not get credit for this. The timing side-channel should be exploitable in
