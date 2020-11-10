@@ -12,7 +12,7 @@ In this assignment, you have 8 'levels' or 'challenges' (each worth 10 points). 
 
 ## Getting Started/Logging In
 
-Visit [https://c10-32.sysnet.ucsd.edu/challenges/](https://c10-32.sysnet.ucsd.edu/challenges/). In this page, you will be asked to enter your PID and a password. You can find your password in your Gradescope account for this class (look for the "Assignment 4 userinfo" assignment).
+Visit [https://c10-32.sysnet.ucsd.edu/challenges/](https://c10-32.sysnet.ucsd.edu/challenges/). In this page, you will be asked to enter your PID and a password. You can find your password in your Gradescope account for this class (look for the "Assignment 5 userinfo" assignment).
 
 ## A Word of Caution
 
