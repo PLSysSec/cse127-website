@@ -158,7 +158,7 @@ taken down its website. So you'll have to use gradescope to test if your attack
 URL would work.
 
 _Hint_: You might want to use the `quote()` function from Python's `urllib.parse`
-module to encode non-ASCII characters in the URL.
+module to encode non-ASCII characters in the URL. Also consider using `bytes.fromhex()` when passing in the state to md5()
 
 _Historical fact_: In 2009, security researchers found that the API used by
 the photo-sharing site Flickr suffered from a length-extension vulnerability
