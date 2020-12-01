@@ -23,7 +23,7 @@ Vigenere ciphers can be generally deciphered using Kasiski Examination, which is
 discussed on the wikipedia page.
 
 You can find some ciphertext produced with the Vigenere cipher under a certain
-key on Gradescope as the assignment "Assignment 7 ciphertext".
+key on Gradescope as the assignment "PA 7: ciphertext".
 
 Assume that encrypting the letter `A` with the key results in no change, encrypting
 the letter `B` results in an increment by one place in the alphabet, encrypting `C`
@@ -142,7 +142,7 @@ mistakenly try to construct something like an HMAC by using _hash(secret
 its security practices, hosts an API that allows its client-side applications
 to perform actions on behalf of a user by loading URLs of the form:
 
-`http://bank.cse127.ucsd.edu/pa6/api?token=d6613c382dbb78b5592091e08f6f41fe&user=nadiah&command1=ListSquirrels&command2=NoOp`
+`http://bank.cse127.ucsd.edu/pa7/api?token=d6613c382dbb78b5592091e08f6f41fe&user=nadiah&command1=ListSquirrels&command2=NoOp`
 
 where `token` is MD5(_user's 8-character password_ || `user=...` _[the rest of
 the decoded URL starting from user= and ending with the last command]_).
@@ -524,15 +524,15 @@ keys.
 ## Submission Checklist
 Submit the following to gradescope:
 
-* `vigenere.key` to **Assignment 7 vigenere key** (for part 1)
+* `vigenere.key` to **PA 7: vigenere key** (for part 1)
 
-* `good` and `evil` to **Assignment 7 hash collision** (for part 3)
+* `good` and `evil` to **PA 7: hash collision** (for part 3)
 
-* `len_ext_attack.py` to  **Assignment 7 length extension** (for part 2)
+* `len_ext_attack.py` to  **PA 7: length extension** (for part 2)
 
-* `bleichenbacher.py` to **Assignment 7 signature forgery** (for part 4)
+* `bleichenbacher.py` to **PA 7: signature forgery** (for part 4)
 
-* `writeup.txt` to **Assignment 7 writeup** (with answers to parts 3a and 5) 
+* `writeup.txt` to **PA 7: writeup** (with answers to parts 3a and 5) 
 
 <style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="../markdeep.min.js"></script>
 <script>
