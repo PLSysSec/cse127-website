@@ -1,11 +1,10 @@
 <meta charset="utf-8"><!-- -*- markdown -*- -->
-**PA 7:  Cryptography (100 points)**
+    **PA 7:  Cryptography (100 points)**
 
 **Early Turn-In: Monday, December 7, 2020 by 11:59:59 PM (10% bonus)**
 
 **Hard Deadline: Wednesday, December 9, 2020 by 11:59:59 PM Pacific Time**
 
-## Overview
 
 In this project, we'll start by investigating Vigenere ciphers, then
 move on to investigating vulnerabilities in widely used
@@ -13,7 +12,7 @@ cryptographic hash functions, including length-extension attacks and collision
 vulnerabilities, and an implementation vulnerability in a popular digital
 signature scheme.
 
-## Part 1: Vigenere ciphers
+# Part 1: Vigenere ciphers
 
 For this problem, solve by hand or write a program (perhaps in Python).
 
@@ -42,7 +41,7 @@ Fortinet was using "XOR encryption with a static key" in some products, which
 is similar to a Vigenere cipher and has similar (lack of) security properties.
 [https://seclists.org/bugtraq/2019/Nov/38](https://seclists.org/bugtraq/2019/Nov/38)
 
-## Part 2: Length extension
+# Part 2: Length extension
 
 In most applications, you should use MACs such as HMAC-SHA256 instead of plain
 cryptographic hash functions (e.g., MD5, SHA-1, or SHA-256) because hashes, also
@@ -66,7 +65,7 @@ function for each block b\_{n+1}, b\_{n+2}, ... that we want to add.  This
 process is called length extension, and it can be used to attack many
 applications of hash functions.
 
-### 2a. Experimenting
+## 2a. Experimenting
 
 To experiment with this idea, we'll use a Python implementation of the MD5 hash
 function, though SHA-1 and SHA-256 are vulnerable to length extension in the
@@ -136,7 +135,7 @@ This part of the assignment is intended to introduce length extension and
 familiarize you with the Python MD5 module we will be using; you will not
 need to submit anything for it.
 
-### 2b. Conduct a length extension attack
+## 2b. Conduct a length extension attack
 
 Length extension attacks can cause serious vulnerabilities when people
 mistakenly try to construct something like an HMAC by using _hash(secret
@@ -186,12 +185,12 @@ import sys, urllib.parse
 from pymd5 import md5, padding
 url = sys.argv[1]
 
-# Your code to modify url goes here
+ Your code to modify url goes here
 
 print(new_url)
 ```
 
-## Part 3: MD5 collisions
+# Part 3: MD5 collisions
 
 MD5 was once the most widely used cryptographic hash function, but today it is
 considered dangerously insecure.  This is because cryptanalysts have discovered
@@ -231,7 +230,7 @@ Convert each group of hex strings into a binary file.
 
 You don't need to submit anything for the above questions.
 
-### 3a. Generating collisions yourself
+## 3a. Generating collisions yourself
 
 In 2004, Wang's method took more than 5 hours to find a collision on a desktop
 PC.  Since then, researchers have introduced vastly more efficient collision
@@ -266,7 +265,7 @@ package manager](http://brew.sh) using `brew install boost`.
 **What to submit** Write your answers in `writeup.txt`. This file will also be 
 used for part 5. 
 
-### 3b. A hash collision attack
+## 3b. A hash collision attack
 
 The collision attack lets us generate two messages with the same MD5 hash and
 any chosen (identical) prefix.  Due to MD5's length-extension behavior, we can
@@ -281,7 +280,7 @@ could be done using a program in almost any language.  Put the following two
 lines into a file called `prefix`:
 
 ```
-#!/bin/bash
+!/bin/bash
 cat << "EOF" | openssl dgst -sha256 > DIGEST
 ```
 
@@ -307,7 +306,7 @@ echo or print `"You are doomed!"`
 **What to submit** Two scripts, `good` and `evil`, that have the same MD5 hash, have
 different SHA-256 hashes, and print the specified messages.
 
-## Part 4: RSA signature forgery
+# Part 4: RSA signature forgery
 
 A secure implementation of RSA encryption or digital signatures requires a
 proper padding scheme.  RSA without padding, also known as _textbook RSA_,
@@ -323,7 +322,7 @@ in practice is defined by the PKCS #1 v1.5 standard, which can be found at
 The standard defines, among other things, the format of RSA keys and signatures
 and the procedures for generating and validating RSA signatures.
 
-### 4a. Validating RSA signatures
+## 4a. Validating RSA signatures
 
 You can experiment with validating RSA signatures yourself.  Create a file called
 `key.pub` that contains the following RSA public key:
@@ -401,7 +400,7 @@ SHA.new(b"CSE 127 rul3z!").hexdigest()
 
 You don't need to submit anything for this part.
 
-### 4b. PKCS #1 v1.5 signature padding
+## 4b. PKCS #1 v1.5 signature padding
 
 The signed value you examined in the previous section had been padded using the
 PKCS \#1 v1.5 signature scheme.  PKCS \#1 v1.5 padding for RSA signatures is
@@ -441,7 +440,7 @@ hashed message, pad the remainder of this value with zeros or other garbage
 that will be ignored by the vulnerable implementation, and then take a cube
 root over the integers, rounding as appropriate.
 
-### 4c. Constructing forged signatures
+## 4c. Constructing forged signatures
 
 The National Bank of CSE 127 has a website that its employees
 use to initiate wire transfers between bank accounts. To authenticate each
@@ -498,14 +497,14 @@ import sys
 
 message = sys.argv[1]
 
-# Your code to forge a signature goes here.
+ Your code to forge a signature goes here.
 
-# some example functions from roots
+ some example functions from roots
 root, is_exact = integer_nthroot(27, 3)
 print(integer_to_base64(root).decode())
 ```
 
-## 5. Writeup
+# 5. Writeup
 
 1. With reference to the construction of HMAC, explain how changing the design
 of the API in 2b to use `token=HMAC(_user's password_)(user=...)` would avoid
@@ -523,7 +522,7 @@ keys.
 
 **What to submit** Write your  answers in `writeup.txt`.
 
-## Submission Checklist
+# Submission Checklist
 Submit the following to gradescope:
 
 * `vigenere.key` to **PA 7: vigenere key** (for part 1)
