@@ -114,7 +114,7 @@ The `pymd5` module lets you specify these parameters as additional arguments
 to the `md5` object:
 
 ```python
-h = md5(state=codecs.decode("3ecc68efa1871751ea9b0b1a5b25004d", "hex"), count=512)
+h = md5(state=bytes.fromhex("3ecc68efa1871751ea9b0b1a5b25004d"), count=512)
 ```
 
 Now you can use length extension to find the hash of a longer string that
