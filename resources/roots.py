@@ -1,10 +1,10 @@
-# CIS 331 Project 1 helper functions
+# CSE 127 helper functions
 
 # The below code is taken from SymPy
 # Used under fair-use.
 # https://raw.githubusercontent.com/sympy/sympy/733da515a7638bba4e08be366bf24c996ad84a61/sympy/core/power.py
 
-from math import log as _log
+from math import sqrt, trunc, log as _log
 
 def integer_nthroot(y, n):
     """
@@ -29,7 +29,8 @@ def integer_nthroot(y, n):
     if n == 1:
         return y, True
     if n == 2:
-        x, rem = _sqrtrem_python(y)
+        x = trunc(sqrt(y))
+        rem = y - x*x
         return int(x), not rem
     if n > y:
         return 1, False
@@ -64,12 +65,13 @@ def integer_nthroot(y, n):
         t = x**n
     return x, t == y
 
-# This code written by David Adrian, make fun of it!
 import base64
 
 def integer_to_base64(z):
     '''Converts an arbitrarily long integer to a big-endian base64 encoding'''
-    s = ("%x"%z); s = (('0'*(len(s)%2))+s).decode('hex')
+    s = ("%x"%z)
+    s = (('0'*(len(s)%2))+s)
+    s = bytes.fromhex(s)
     return base64.b64encode(s)
 
 
@@ -78,19 +80,19 @@ def integer_to_bytes(n):
     negative = True if n < 0 else False
     out = list()
     while n > 0:
-        out.append(chr(n & 0xFF))
+        out.append(n & 0xFF)
         n >>= 8
     if not negative:
-        out.append(chr(0x00))
-    return ''.join(reversed(out))
+        out.append(0x00)
+    return bytes(reversed(out))
 
 def bytes_to_integer(b):
     '''Converts big-endian bytes to an arbitrarily long integer'''
     out = 0
-    for c in b:
+    for digit in b:
         out <<= 8
-        assert(ord(c) >= 0)
-        out += ord(c)
+        assert(digit >= 0)
+        out += digit
         assert(out >= 0)
     return out
 
