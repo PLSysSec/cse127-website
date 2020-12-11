@@ -27,7 +27,7 @@ this assignment: *parties* and *cryptographic primitives*.
 
 ### Parties
 
-Protocols in this language are defined in terms of *parties* which can send an
+Protocols in this language are defined in terms of *parties* which can send and
 receive messages. Parties look like functions, but begin with the keyword
 `party`. Parties defined in the same file can communicate by
 calling `<other_party>.send(value);` and `value = other_party.receive();`.
