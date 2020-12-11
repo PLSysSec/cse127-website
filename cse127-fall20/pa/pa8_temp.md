@@ -44,13 +44,13 @@ Assigns the expression on the right hand side to the variable on the left hand s
 if <expression> { 
 <true_branch> 
 } else {
-	<false_branch>
+    <false_branch>
 }
 
 if not valid {
-	print(“invalid”);
+    print(“invalid”);
 } else {
-	print(“valid”);
+    print(“valid”);
 }
 ```
 
@@ -60,11 +60,11 @@ Evaluates the expression after `if` and executes the first branch if it is `true
 
 ```
 def <fn_name>(<arg1>, <arg2>, ...) {
-	<fn_body>
+    <fn_body>
 }
 
 def validate(material) {
-	return material == 123;
+    return material == 123;
 }
 ```
 
@@ -74,11 +74,11 @@ Defines a function with named arguments that can return a value. Variables defin
 
 ```
 party <party_name>(<arg1>, <arg2>, ...) {
-	<party_body>
+    <party_body>
 }
 
 party alice() {
-	bob.send(“hello”);
+    bob.send(“hello”);
 }
 ```
 
@@ -88,11 +88,11 @@ Defines a party that can have named arguments, like a function. Parties are the 
 
 ```
 party alice() {
-	bob.send(“hi”);
+    bob.send(“hi”);
 }
 
 party bob() {
-	print(alice.receive());
+    print(alice.receive());
 }
 ```
 
@@ -102,15 +102,15 @@ Parties are able to communicate by calling `<party_name>.send(..)` and `.. = <pa
 
 ```
 party alice() {
-	...
+    ...
     sig = schnorr::sign(sk, (x, y, z));
     bob.send((sig, x, y, z));
 }
 
 party bob() {
-	...
-	(sig, x, y, z) = alice.receive();
-	valid = schnorr::verify(pk, (x, y, z));
+    ...
+    (sig, x, y, z) = alice.receive();
+    valid = schnorr::verify(pk, (x, y, z));
 }
 ```
 
@@ -129,8 +129,8 @@ Protocols can be separated into files and imported with the `prot` keyword. Then
 
 ```
 struct Rectangle {
-	length,
-	width,
+    length,
+    width,
 }
 ```
 
@@ -139,7 +139,7 @@ Defines a struct named `Rectangle` that has two named fields `length` and `width
 ```
 x = Rectangle {
     length: 10,
-	field2 : 20
+    field2 : 20
 };
 ```
 
@@ -147,11 +147,11 @@ Creates an instance of the `Rectangle` struct and assigns it to `x`. Struct fiel
 
 ```
 impl Foo {
-	def area(self) {
-		return self.length * self.width;
-	}
-	def set_len(self, len) {
-		Self.len = len;
+    def area(self) {
+        return self.length * self.width;
+    }
+    def set_len(self, len) {
+        Self.len = len;
     }
 }
 ```
