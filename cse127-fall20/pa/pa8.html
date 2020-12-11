@@ -1,5 +1,5 @@
 <meta charset="utf-8"><!-- -*- markdown -*- -->
-    **Optional PA 8:  TLS Implementation (90 points)**
+    **Optional PA 8:  MicroTLS (90 points)**
 
 **NO Early Turn-In Bonus**
 
@@ -55,7 +55,7 @@ ct = C.encrypt(key, plaintext);
 decrypted = C.decrypt(key, ct);
 ```
 
-`key` and `plaintext` can be any value that can be serialized, which means we can
+The `key` and `plaintext` can be any value that can be serialized, which means we can
 pass pretty much anything as these two arguments: You can encrypt an
 `Integer`, a `String`, a `Tuple`, or even an `AuthenticatedCipher`. This also
 means that the order of arguments is important, as it is easy to accidentally
@@ -102,8 +102,8 @@ If all goes well, you should see each party's message print from the other party
 
 Protocol 0 is obviously insecure: We're sending messages in the clear, and
 anyone can snoop on the traffic and see our messages. To fix this, we
-will use a Diffie-Hellman key exchange to derive a shared key without
-revealing it to a third party.
+will use a Diffie-Hellman key exchange to derive a shared key that we will
+use to symmetrically encrypt messages between the client and server.
 
 Implement the party `client1`. The client should initiate a Diffie-Hellman key
 exchange with the server and print out the decrypted message it receives.
@@ -132,8 +132,8 @@ the client and server scripts.
 
 ## Protocol 3: Verifying with a CA (20 points)
 
-Protocol 2 is more secure than Protocol 1, but the client still implicitly
-trusts the server's identity. A man-in-the-middle can still impersonate the
+Protocol 2 is more secure than Protocol 1, but the client still blindly
+trusts the server's public key. A man-in-the-middle can still impersonate the
 server. For Protocol 3, we introduce a certificate authority (CA) that will
 help the client trust the identity of the server.
 
@@ -208,11 +208,13 @@ g = G.generator;
 ```
 
 A `MultiplicativeCyclicGroup` has two fields, `order`, an integer equal to the
-number of elements in the group, and `generator`, a group element.
-`MultiplicativeCyclicGroup` also overloads two operators, `*` and `**`.
-Specifically, `*` is overloaded for two group elements, and `**` is overloaded
-for a group element, and an integer mod the group order. For example, the
-following are valid expressions:
+number of elements in the group, and `generator`, a element of the group.  (See
+the [Wikipedia
+entry](https://en.wikipedia.org/wiki/Multiplicative_group_of_integers_modulo_n)
+if you are curious.) `MultiplicativeCyclicGroup` also overloads two operators,
+`*` and `**`.  Specifically, `*` is overloaded for two group elements, and `**`
+is overloaded for a group element, and an integer mod the group order. For
+example, the following are valid expressions:
 
 ```
 g_squared = g * g;
@@ -237,7 +239,7 @@ Assigns the expression on the right hand side to the variable on the left hand s
 
 ```
 if <expression> {
-<true_branch>
+    <true_branch>
 } else {
     <false_branch>
 }
