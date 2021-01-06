@@ -1,0 +1,118 @@
+<h1 id="assignment-1-20-pts-">Assignment 1 <em>(20 pts)</em></h1>
+<p><strong>Deadline: January 13, 2021 by 11:59:59 PM</strong></p>
+<p><strong>Early Turn-In: January 10, 2021 by 11:59:59 PM (10% bonus)</strong></p>
+<p>The goal of this assignment is to become familiar with the setup that will be used for future
+assignments, such as the use of a virtual machine and the included turn-in script, as well as the
+basics of working with gdb and writing programs in x86 assembly.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>To complete this assignment, you will be provided with a VirtualBox VM pre-populated with the
+assignment files.</p>
+<h3 id="vm-image">VM Image</h3>
+<p>In order to match the environment in which your submission will be graded, all work for this
+assignment must be done on the VirtualBox VM we provide, named <code>pa1box</code>. You can download the VM
+image <a href="https://drive.google.com/file/d/16Gx5QgNf60_NhbCPfWnmmZEbcWlfzFUA/view?usp=sharing"><strong>here</strong></a>.</p>
+<p>The VM is configured with two users: <code>student</code>, with password <code>hacktheplanet</code>; and <code>root</code>, with
+password <code>hackallthethings</code>. The VM is configured with SSH on port 2222. Please note that SSH is
+disabled for <code>root</code>, so you can only SSH in as the <code>student</code> user. You can still log in as <code>root</code>
+using <code>su</code> or by logging into the VM directly.</p>
+<p>To SSH into the VM:</p>
+<pre><code><span class="hljs-selector-tag">ssh</span> <span class="hljs-selector-tag">-p</span> 2222 <span class="hljs-selector-tag">student</span>@<span class="hljs-keyword">127</span>.<span class="hljs-keyword">0</span>.<span class="hljs-keyword">0</span>.<span class="hljs-keyword">1</span>
+</code></pre><p>To copy files from your computer to the VM:</p>
+<pre><code>scp -P <span class="hljs-number">2222</span> -r /path/to/files/ student<span class="hljs-variable">@127</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">1</span><span class="hljs-symbol">:/home/student</span>
+</code></pre><p>To copy files from the VM to your computer:</p>
+<pre><code>scp -P <span class="hljs-number">2222</span> student<span class="hljs-variable">@127</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">1</span><span class="hljs-symbol">:/path/to/files/</span> /destination/path
+</code></pre><h2 id="part-1-using-gdb-10-pts-">Part 1: Using GDB <em>(10 pts)</em></h2>
+<p>Files for this sub-assignment are located in the <code>gdb</code> subdirectory of the <code>student</code> user&#39;s home
+directory in the VM image; that is, <code>/home/student/gdb</code>. SSH into the VM and <code>cd</code> into that
+directory to begin working on it.</p>
+<p>Inside the <code>gdb</code> directory, you&#39;ll find <code>fib.c</code>, a C program demonstrating the Fibonacci sequence;
+a <code>Makefile</code>; and <code>hw1.txt</code>, in which you&#39;ll record your responses to the questions below. The
+first step is to compile <code>fib</code> by running <code>make</code> on the command line.</p>
+<p>To run the <code>fib</code> executable in GDB, run <code>gdb fib</code>.
+I recommend the following workflow in GDB:</p>
+<ol>
+<li><strong>Starting.</strong> Set breakpoints that you can later use for analysis:<ul>
+<li><code>b foo</code> &mdash; break at function <code>foo</code></li>
+<li><code>b *0x08048489</code> &mdash; break at the instruction at address 0x08048489</li>
+<li><code>r</code> &mdash; run the executable</li>
+</ul>
+</li>
+<li><strong>Analyzing.</strong> Examine memory, registers, etc; disassemble code; show stack frames, backtrace,
+etc; and more:<ul>
+<li><code>disas foo</code> &mdash; disassemble function <code>foo</code></li>
+<li><code>i r</code> &mdash; view registers</li>
+<li><code>where</code> &mdash; view stack frames</li>
+<li><code>x &lt;loc&gt;</code> &mdash; examine memory</li>
+<li><code>x $eip</code> &mdash; examine current instruction pointer</li>
+<li><code>x /10x $esp</code> &mdash; examine 10 words at top of stack</li>
+<li><code>x /10x buf</code> &mdash; examine 10 words in <code>buf</code></li>
+<li><code>x /10i $eip</code> &mdash; examine 10 instructions starting at instruction pointer</li>
+<li><code>x /10i foo</code> &mdash; examine 10 instructions starting at <code>foo</code></li>
+</ul>
+</li>
+<li><strong>Continuing.</strong> Continue analysis:<ul>
+<li><code>c</code> &mdash; continue execution until next breakpoint/watchpoint</li>
+<li><code>si</code> &mdash; step to the next instruction</li>
+<li><code>s</code> &mdash; step to the next line of source code</li>
+</ul>
+</li>
+</ol>
+<p>Note that this is only a cursory overview of GDB; much more info is available from online
+resources.</p>
+<h3 id="assignment-instructions">Assignment Instructions</h3>
+<p>Complete the following exercises and <strong>fill out <a href="../resources/hw1.txt"><code>hw1.txt</code></a></strong> with your answers. 
+<strong>Follow the directions in the template, do not delete the square brackets</strong></p>
+<ol>
+<li>What is the value, in hex, of the <code>ecx</code> register when the function <code>f</code> is called? <em>(2 pts)</em></li>
+<li>Which register stores the value of the variable <code>i</code> in the function main? <em>(2 pts)</em></li>
+<li>What is the address, in hex, of the function <code>f</code>? <em>(2 pts)</em></li>
+<li>What is the name of the 6th instruction of the function <code>f</code>? <em>(2 pts)</em></li>
+<li>When <code>f</code> completes after being called from <code>main</code>, to which address in <code>main</code> does control
+return? Write your answer in hex form. <em>(2 pts)</em></li>
+</ol>
+<h3 id="submission">Submission</h3>
+<p>Submit <code>hw1.txt</code> to &quot;1a. gdb&quot; on Gradescope. 
+Gradescope will check that it has successfully detected your answers, but it will not give you your grade
+until the due date.</p>
+<h2 id="part-2-echo-in-x86-10-pts-">Part 2: <code>echo</code> in x86 <em>(10 pts)</em></h2>
+<p>Files for this sub-assignment are located in the <code>x86</code> subdirectory of the <code>student</code> user&#39;s home
+directory in the VM image; that is, <code>/home/student/x86</code>. SSH into the VM and <code>cd</code> into that
+directory to begin working on it.</p>
+<p>For this part, you will be implementing a simplified version of the familiar <code>echo</code> command, using
+raw x86 assembly code. The goal of this assignment is to familiarize you with writing programs
+directly in x86.</p>
+<p>Your <code>echo</code> command must behave as follows:</p>
+<ul>
+<li>When run with a single command line argument (e.g., <code>./echo Hello</code>):<ol>
+<li>Prints that argument back to the console&#39;s standard output (stdout).</li>
+<li>Prints a trailing newline (<code>\n</code>).</li>
+<li>Exits with code 0.</li>
+</ol>
+</li>
+<li>When run with too few command line arguments (e.g., <code>./echo</code>) or too many (e.g., <code>./echo Hello
+World</code>):<ol>
+<li>Prints <em>exactly</em> the error message <code>This command expects exactly one argument.</code> &mdash;
+followed by a trailing newline (<code>\n</code>) &mdash; to the console&#39;s standard <em>error</em> (stderr).</li>
+<li>Exits with code 1.</li>
+</ol>
+</li>
+</ul>
+<p>Your code should be written in the file <code>echo.s</code> inside the <code>x86</code> directory. A heavily-commented
+example <code>echo.s</code> is provided, which simply prints the message <code>Hello World</code> (followed by a trailing
+newline) to stdout. Your job is to modify this program to meet the specification for <code>echo</code> above.</p>
+<p>A <code>Makefile</code> is included, so you can build the <code>echo</code> binary by running <code>make</code> from the command line.</p>
+<h3 id="helpful-hints">Helpful Hints</h3>
+<ul>
+<li>In a Linux program, stdout is file descriptor number 1 and stderr is number 2.</li>
+<li>Linux programs start with <code>argc</code> at the top of the stack, accessible at <code>0(%esp)</code> from
+x86-assembly programs. Below it is <code>argv</code>, the array of pointers to <em>(null-terminated)</em> strings
+passed into the program as arguments. So <code>argv[0]</code> can be accessed from x86-assembly programs at
+<code>4(%esp)</code>, <code>argv[1]</code> at <code>8(%esp)</code>, <code>argv[2]</code> at <code>12(%esp)</code>, and so on.</li>
+<li><code>argv[0]</code> is the name of the program executed, <em>not</em> the first argument, which is <code>argv[1]</code> if
+supplied (or <code>8(%esp)</code> for our purposes). Then <code>argc</code> (or <code>0(%esp)</code>) will be 1 if the program was
+not passed any arguments, 2 if it was passed 1 argument, and so on.</li>
+<li>This <a href="https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md#x86-32_bit">table of Linux system calls</a> may come in handy.</li>
+</ul>
+<h3 id="submission">Submission</h3>
+<p>Submit <code>echo.s</code> to &quot;1b. x86 echo&quot; on Gradescope.</p>
+
