@@ -10,8 +10,8 @@
 <p>To complete this assignment you will be provided with a VirtualBox VM and a set of files.</p>
 <h3>VM Image</h3>
 <p>In order to match the environment in which your submission will be graded, all work for this assignment must be done on the VirtualBox VM we have provided, named <code>pa2box</code>. You can download the VM image <a href="https://drive.google.com/file/d/1jgRPY8E4I2lv1uNCGQpeo0sl9RshvdRK/view?usp=sharing"><strong>here</strong></a>.</p>
-<p>Import the <code>pa2box.vbox</code> file into VirtualBox via the <code>Machine</code> → <code>Add</code> menu item. <em>Don't</em> create a brand-new VirtualBox VM or import the <code>pa2box-data.vmdk</code> file on its own: if you do this, you won't have the correct configuration.</p>
-<p>After importing the VM, select it in the VirtualBox sidebar and start it with the green arrow button or the <code>Machine</code> → <code>Start</code> menu item. The VM is configured with two users: <code>student</code>, with password <code>hacktheplanet</code>; and <code>root</code>, with password <code>hackallthethings</code>. Instead of using the command line through VirtualBox, we recommend that you SSH into your VM from another client. The VM image is configured to expose an SSH server on port 2222 of your system's loopback address (<code>127.0.0.1</code>).</p>
+<p>Import the <code>pa2box.vbox</code> file into VirtualBox via the <code>Machine</code> -> <code>Add</code> menu item. <em>Don't</em> create a brand-new VirtualBox VM or import the <code>pa2box-data.vmdk</code> file on its own: if you do this, you won't have the correct configuration.</p>
+<p>After importing the VM, select it in the VirtualBox sidebar and start it with the green arrow button or the <code>Machine</code> -> <code>Start</code> menu item. The VM is configured with two users: <code>student</code>, with password <code>hacktheplanet</code>; and <code>root</code>, with password <code>hackallthethings</code>. Instead of using the command line through VirtualBox, we recommend that you SSH into your VM from another client. The VM image is configured to expose an SSH server on port 2222 of your system's loopback address (<code>127.0.0.1</code>).</p>
 <p>To SSH into the VM (from your host system running VirtualBox, <em><strong>not</strong></em> from inside the VM):</p>
 <pre><code>ssh -p 2222 student@127.0.0.1
 </code></pre>
@@ -36,8 +36,8 @@
 <p>Run <code>sudo make install</code> to copy the binaries into the <code>/tmp</code> directory.</p>
 <p>Finally, run <code>sudo make setuid</code> to mark the binaries as setuid-root. If you forget this step, then your exploits will end up launching a normal shell instead of a root shell!</p>
 <h3>Exploit Notes</h3>
-<p>For this assignment you should read and have a solid understanding of Aleph One's “Smashing the Stack for Fun and Profit”.</p>
-<p>Aleph One gives code that calculates addresses on the target’s stack based on addresses on the exploit’s stack. However, addresses on the exploit’s stack can change based on how the exploit is executed (working directory, arguments, environment, etc.). <strong>You must therefore hard-code target stack locations in your exploits.</strong></p>
+<p>For this assignment you should read and have a solid understanding of Aleph One's "Smashing the Stack for Fun and Profit".</p>
+<p>Aleph One gives code that calculates addresses on the target's stack based on addresses on the exploit's stack. However, addresses on the exploit's stack can change based on how the exploit is executed (working directory, arguments, environment, etc.). <strong>You must therefore hard-code target stack locations in your exploits.</strong></p>
 <p>You should not use a function such as <code>get_sp()</code> in the exploits you hand in. You should only modify the <code>sploitN.c</code> files and corresponding <code>writeup.txt</code> files; i.e., your exploits should work with unmodified Makefiles, targets, etc. In grading, the exploits may be run with a different working directory. Your exploits must work in these cases also.  If you hard-code the target's stack locations into your exploit you should be fine. Your exploit programs should not take any command-line arguments.</p>
 <p>Shutting down the VM removes the files in /tmp; if you want to keep them, pause the VM and save its state!</p>
 <h2>IMPORTANT: Using the shellcode</h2>
