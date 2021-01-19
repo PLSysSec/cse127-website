@@ -1,0 +1,53 @@
+<h1 id="assignment-3-100pts-">Assignment 3 <em>100pts</em></h1>
+<p><strong>Early Turn-in Deadline: Wednesday, January 27, 2021 by 11:59:59 PM Pacific Time</strong></p>
+<p><strong>Hard Deadline: Saturday, January 30, 2021 by 11:59:59 PM Pacific Time</strong></p>
+<p>The goal of this assignment is to gain hands-on experience exploiting side channels. This assignment will demonstrate how side channels can be just as dangerous as the control flow vulnerabilities you exploited in Assignment 2.</p>
+<p>You will be provided a two skeleton files (<code>memhack.c</code> and
+<code>timehack.c</code>) that you will use to exploit side channels
+present in a target library (<code>sysapp.c</code>) to obtain a protected key. You may consult any online references you wish to help you understand high level concepts and must document that fact. Failure to do so will be considered a violation of the academic integrity policy.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>Just like previous assignments, for this assignment you will be provided with a VirtualBox VM containing all the files you need.  The VM is named pa3box, and you can <a target="_blank" href="https://drive.google.com/open?id=1bxADyjl8HPbmeaSjwenEpAXJUnl0t9Q7">download the VM image here</a>.  As in previous assignments, import the pa3box.vbox file into VirtualBox via the Machine  Add menu item; don&#39;t create a brand-new VirtualBox VM or import the pa3box-data.vmdk file on its own: if you do this, you won&#39;t have the correct configuration.</p>
+<p>The VM is configured with two users: <code>student</code>, with password <code>hacktheplanet</code>; and <code>root</code>, with password <code>hackallthethings</code>. We recommend you use the VM via <code>ssh</code> and <code>scp</code>, just like previous assignments.  Please note that SSH is disabled for <code>root</code>, so you can only SSH in as the <code>student</code> user. You can still log in as <code>root</code> using <code>su</code> or by logging into the VM directly.</p>
+<h2 id="assignment-files">Assignment Files</h2>
+<p>Starter files are included inside the <code>student</code> user&#39;s home directory within the VM image.</p>
+<p>There are two parts to this assignment, eac  h with its own subdirectory, <code>memhack</code> and <code>timehack</code>. Each subdirectory contains exploit starter code (<code>memhack.c</code> or <code>timehack.c</code>), which imports a library (<code>sysapp.c</code>, with the same contents across the two subdirectories) with password-checking functionality vulnerable to side-channel attacks. You should <em>not</em> modify <code>sysapp.c</code>, only <code>memhack.c</code> and <code>timehack.c</code>. Each subdirectory contains a <code>Makefile</code> for building your exploits.</p>
+<h2 id="assignment-instructions">Assignment Instructions</h2>
+<p>You will be writing two exploits, each of which takes advantage of a side channel, to obtain the password in <code>sysapp.c</code>. In <code>memhack.c</code>, you will exploit a memory-based side channel, and in <code>timehack.c</code> you will exploit a timing-based side channel. See "Exploit Construction" section for specific details. Once both of your exploits can determine the password in <code>sysapp.c</code> and call the <code>hack_system()</code> function successfully, the assignment is complete. Additionally, for each exploit, provide a brief description of how it works in its corresponding <code>writeup.txt</code> file.</p>
+<h2 id="submitting-your-solutions">Submitting Your Solutions</h2>
+<p>Submit <code>memhack.c</code> and <code>timehack.c</code> to the corresponding assignments on Gradescope, and submit a combined writeup to the writeup assignment on Gradescope.</p>
+<h2 id="exploit-construction">Exploit Construction</h2>
+<h1 id="memory-based-side-channel">Memory-Based Side Channel</h1>
+<p>We recommend you start with the memory-based side channel because it is deterministic and doesn&#39;t have problems with noise. Look at the <code>check_pass()</code> function in <code>sysapp.c</code> and note two things:</p>
+<ol>
+<li>The password string is passed by reference</li>
+<li>The memory it points to is checked against the reference password one character at a time.</li>
+</ol>
+<p>Now look in <code>memhack.c</code> and note how a buffer is allocated such that the page starting at page start is protected (i.e., accessing it will caused a segmentation fault, or SEGV) and the previous 32 characters are allocated. Now look at the demonstration function <code>demonstrate_signals()</code>, which shows how referencing any memory in the protected page will produce a fault as well as how to catch that fault in your program. You do not need to use this function; it is merely there to show you how to use signals to capture whether a memory reference touched a page or not.</p>
+<p>Now you will want to create a framework (in <code>memhack.c</code>) to call <code>check_pass()</code> with different inputs and catching any resulting faults so you can determine if part of the password is correct. We suggest a loop over the maximum password size (32 characters) where for the first guess you store the password such that its first character is one byte before page start and then iterate between possible choices for the first character (when you get it right you will get a page fault). Repeat this to guess the entire password. Note that all ASCII symbols from ASCII 33 (<code>!</code>) to ASCII 126 (<code>∼</code>) can be used in the password. Other hints:</p>
+<ol>
+<li>You are already given a page protected buffer with enough memory to crack the password. All you
+need to do is use it appropriately for each guess you make. </li>
+<li>The <code>demonstrate_signals</code> function handles all the segfaults for you. You can re-use almost all of it
+in your code.</li>
+</ol>
+<br/>
+<h2 id="note-on-sigsetjmp-siglongjmp">Note on <code>sigsetjmp</code>/<code>siglongjmp</code></h2>
+<p>We <strong>highly advise</strong> reading the man pages for <code>sigsetjmp</code>/<code>siglongjmp</code> so you
+understand how they work.</p>
+<p>One frequent pitfall students run into is calling <code>sigsetjmp</code> inside of a helper function, which can cause undefined behavior (especially when running on Gradescope).</p>
+<p>An excerpt from <code>man sigsetjmp</code>:</p>
+<blockquote>If the function which called setjmp() returns before longjmp() is called, the behavior is undefined.  Some kind of subtle or unsubtle chaos is sure to result.</blockquote>
+<h1 id="timing-based-side-channel">Timing-Based Side Channel</h1>
+<p>Unlike the memory-based side channel, the timing-based side channel will deal with noise. Go back and look at <code>check_pass()</code>. An artificial delay has been added when each character is checked to make your life easier (it's possible to do the assignment without it but it would require a much more careful methodology). The execution time of <code>check_pass()</code> depends on how many characters you guess <strong>correctly</strong>.</p>
+<p>Look in <code>timehack.c</code> and find a macro there for a function called <code>rdtsc()</code> which invokes the processors cycle counter (a clock that increments by one for each processor cycle that passes). In general, treat <code>rdtsc()</code> as a free running timer that returns a <code>long</code>. Insert a call to <code>rdtsc()</code> before the call to <code>check_pass()</code> and afterwards. Print the difference between these values to see how long (in cycles) the password checking ran. Run the program a few times. Now change the guess string so the first character is correct. Run again and see how the time difference changes. </p>
+<p>Now automate this entire process, in the style of the original approach in <code>memhack.c</code>. Note that unlike the <code>memhack</code> attack, the <code>timehack</code> problem will have to deal with <strong>noise</strong>. Depending on things like what other programs are running, the status of the cache, the contents of the branch target buffer, etc... there can be significant variability in the amount of time each check takes. This <strong>will</strong> matter in practice. You will want to run a lot of trials before you reach your conclusion about each character. Other hints:</p>
+<ol>
+<li>Be careful in using <code>printf</code>'s.  These can blow out the instruction cache and data caches and perturb your results (i.e. overwhelm the timing effects you are trying to detect).</li>
+<li>Be careful in averaging across trials. If your process is descheduled in the middle of a measurement, the time cost of that individual trial will be so large that it overwhelms everything else. Instead, the <strong>median</strong> is your friend. However, feel free to experiment if something does not work for you.</li>
+<li>If time is not continuing to increase as you progress through characters, then you probably made a bad guess earlier. Backtrack.</li>
+<li><code>rdtsc()</code> will wrap around at some point. You may need to handle this outlier if it is causing issues.</li>
+<li>Debugging advice: make a big array to hold your timing measurements and print them at the end.</li>
+<li>Be sure to test a bunch of different passwords. We will when we grade.</li>
+</ol>
+<h2 id="final-notes">Final Notes</h2>
+<p><strong>Do not write a solution that simply checks all passwords exhaustively.</strong> You will not get credit for this. The timing side-channel should be exploitable in linear time (we will stop programs that are running for excessive periods) and it will basically feel instantaneous for passwords of 8 characters or less (note we will not test passwords over 12 characters).</p>
