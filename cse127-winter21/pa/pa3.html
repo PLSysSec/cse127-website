@@ -1,5 +1,5 @@
-<h1 id="assignment-3-100pts-">Assignment 3 <em>100pts</em></h1>
-<p><strong>Early Turn-in Deadline: Wednesday, January 27, 2021 by 11:59:59 PM Pacific Time</strong></p>
+<h1 id="assignment-3-100pts-">Assignment 3 <em>100 pts</em></h1>
+<p><strong>Early Turn-in Deadline: Wednesday, January 27, 2021 by 11:59:59 PM Pacific Time (10% extra credit)</strong></p>
 <p><strong>Hard Deadline: Saturday, January 30, 2021 by 11:59:59 PM Pacific Time</strong></p>
 <p>The goal of this assignment is to gain hands-on experience exploiting side channels. This assignment will demonstrate how side channels can be just as dangerous as the control flow vulnerabilities you exploited in Assignment 2.</p>
 <p>You will be provided a two skeleton files (<code>memhack.c</code> and
@@ -16,7 +16,7 @@ present in a target library (<code>sysapp.c</code>) to obtain a protected key. Y
 <h2 id="submitting-your-solutions">Submitting Your Solutions</h2>
 <p>Submit <code>memhack.c</code> and <code>timehack.c</code> to the corresponding assignments on Gradescope, and submit a combined writeup to the writeup assignment on Gradescope.</p>
 <h2 id="exploit-construction">Exploit Construction</h2>
-<h1 id="memory-based-side-channel">Memory-Based Side Channel</h1>
+<h1 id="memory-based-side-channel">Memory-Based Side Channel (50 pts)</h1>
 <p>We recommend you start with the memory-based side channel because it is deterministic and doesn&#39;t have problems with noise. Look at the <code>check_pass()</code> function in <code>sysapp.c</code> and note two things:</p>
 <ol>
 <li>The password string is passed by reference</li>
@@ -37,7 +37,7 @@ understand how they work.</p>
 <p>One frequent pitfall students run into is calling <code>sigsetjmp</code> inside of a helper function, which can cause undefined behavior (especially when running on Gradescope).</p>
 <p>An excerpt from <code>man sigsetjmp</code>:</p>
 <blockquote>If the function which called setjmp() returns before longjmp() is called, the behavior is undefined.  Some kind of subtle or unsubtle chaos is sure to result.</blockquote>
-<h1 id="timing-based-side-channel">Timing-Based Side Channel</h1>
+<h1 id="timing-based-side-channel">Timing-Based Side Channel (50 pts)</h1>
 <p>Unlike the memory-based side channel, the timing-based side channel will deal with noise. Go back and look at <code>check_pass()</code>. An artificial delay has been added when each character is checked to make your life easier (it's possible to do the assignment without it but it would require a much more careful methodology). The execution time of <code>check_pass()</code> depends on how many characters you guess <strong>correctly</strong>.</p>
 <p>Look in <code>timehack.c</code> and find a macro there for a function called <code>rdtsc()</code> which invokes the processors cycle counter (a clock that increments by one for each processor cycle that passes). In general, treat <code>rdtsc()</code> as a free running timer that returns a <code>long</code>. Insert a call to <code>rdtsc()</code> before the call to <code>check_pass()</code> and afterwards. Print the difference between these values to see how long (in cycles) the password checking ran. Run the program a few times. Now change the guess string so the first character is correct. Run again and see how the time difference changes. </p>
 <p>Now automate this entire process, in the style of the original approach in <code>memhack.c</code>. Note that unlike the <code>memhack</code> attack, the <code>timehack</code> problem will have to deal with <strong>noise</strong>. Depending on things like what other programs are running, the status of the cache, the contents of the branch target buffer, etc... there can be significant variability in the amount of time each check takes. This <strong>will</strong> matter in practice. You will want to run a lot of trials before you reach your conclusion about each character. Other hints:</p>
