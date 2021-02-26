@@ -286,7 +286,10 @@ appends the suffix "Good advice".  Simply run:</p>
 
 
 <p>to execute the compression function over <em>x</em> and output the resulting hash.
-Verify that it equals the MD5 hash of <code>m + padding(len(m)*8) + x</code>.  Notice
+  Verify that it equals the MD5 hash of <code>m.encode("utf-8") + padding(len(m)*8) + x.encode("utf-8")</code>.
+  In Python 3, we need to convert <code>m</code> and <code>x</code> from strings to bytes so that
+  we can add these to the padding, which is a <code>bytes</code> type.
+Notice
 that, due to the length-extension property of MD5, we didn't need to know
 the value of <code>m</code> to compute the hash of the longer string - all we needed to
 know was <code>m</code>'s length and its MD5 hash.</p>
