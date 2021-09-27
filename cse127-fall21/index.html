@@ -1,0 +1,271 @@
+<meta charset="utf-8"><!-- -*- markdown -*- -->
+    **CSE 127: Intro to Computer Security**
+         [*Deian Stefan*](https://cseweb.ucsd.edu/~dstefan/)
+
+About
+==============================================================
+
+This course focuses on computer security, covering a wide range of topics on
+both the _defensive_ and _offensive_ side of this field. Among these will be
+systems security and exploitation (e.g., buffer overflows and return-oriented
+programming), sandboxing and isolation, covert channels, network security,
+language-based security, cryptography, privacy and anonymity.  The goal of the
+course is to provide an appreciation of how to think adversarially with respect
+to computer systems as well as an appreciation of how to reason about attacks
+and defenses. 
+
+To complete the projects in this course, you will need to be able to write code
+in C and (some) C++, and have some understanding of x86 assembly, JavaScript,
+PHP and SQL. We will not teach these in lecture; you are expected to learn them
+on your own or ask for help in section or office hours. If you don't know C,
+K&R's [The C Programming
+Language](https://en.wikipedia.org/wiki/The_C_Programming_Language) is a go to,
+but the [Hacking](https://nostarch.com/hacking2.htm) book is probably enough
+and covers x86 assembly and many of the topics in this class.
+
+Class details
+==============================================================
+
+Lectures:
+: Monday and Wednesday, 5:00--6:20 PM PDT
+
+Staff:
+: **Instructor**: Deian Stefan <deian+cse127@cs.ucsd.edu>
+
+: **Teaching Assistants**: Evan Johnson, John Renner, David Thien, Zije Zhao
+
+Section:
+: Friday, 5:00-5:50 AM PDT
+
+Office hours:
+: **Evan**: Tuesday, 3:00-4:00 PM PDT
+
+: **John**: Wednesday, TBA
+
+: **David**: Thursday, TBA
+
+: **Zije**: Friday, 10:00-11:00 AM PDT
+
+: **Deian**: Monday, 1:30-2:30 PM PDT on Zoom
+
+Web tools:
+: [Piazza](https://piazza.com/ucsd/fall2021/cse127) for all communication.
+  ([Configure your piazza privacy settings](https://piazza.com/myprofile).)
+
+: [Gradescope](https://www.gradescope.com/courses/318577) for assignments and exam.
+
+: [Zoom (via Canvas)](https://canvas.ucsd.edu/courses/29606) for lecture, section, and all office hours.
+
+
+Calendar and readings
+==============================================================
+
+Mon Sept  27 2021: Introduction
+  - [*Old slides*](slides/1-introduction.pdf)
+  - *Read*: [This World of Ours](https://www.usenix.org/system/files/1401_08-12_mickens.pdf) by James Mickens
+  - *Watch*: [USENIX Security 2018 Keynote](https://www.usenix.org/conference/usenixsecurity18/presentation/mickens) by James Mickens
+
+Wed Sept 29 2021: Buffer overflow attacks
+  - [*Old slides*](slides/2-bufferoverflows.pdf)
+  - [*GDB buffer overflow notes*](notes/bufferoverflow.html)
+  - *Read*: [Smashing the Stack for Fun and Profit](http://phrack.org/issues/49/14.html#article) by Aleph One
+  - *Optional:* 0x300-0x320 from [Hacking](https://nostarch.com/hacking2.htm). 0x200-0x270 if you don't have a strong C background.
+  - *Resources mentioned in class:* [Project Zero exploits](https://googleprojectzero.blogspot.com/2020/07/mms-exploit-part-1-introduction-to-qmage.html), [finger daemon](https://minnie.tuhs.org/cgi-bin/utree.pl?file=4.3BSD/usr/src/etc/fingerd.c), [GEF](https://gef.readthedocs.io/en/master/), [Compiler explorer](https://godbolt.org/z/3iFhjy)
+
+Fri Oct  1 2021: PA1: GDB + x86
+
+Mon Oct 4 2021: Buffer overflow defenses
+  - [*Old slides*](slides/3-lowlevelmitigations.pdf)
+  - *Read*: [ASLR](https://pax.grsecurity.net/docs/aslr.txt) and [NOEXEC](https://pax.grsecurity.net/docs/noexec.txt)
+
+Wed Oct 6 2021: Memory (un)safety
+  - [*Old slides*](slides/4-ropcfi.pdf)
+  - *Read*: [Low-Level Software Security by Example](papers/erlingsson:low.pdf) by Ulfar Erlingsson et al.
+  - *Optional*: [The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls (on the x86)](papers/shacham:rop.pdf) by Hovav Shacham, [Hacking Blind](papers/bittau:brop.pdf) by Andrea Bittau et al.,  and [Control-Flow Integrity](papers/abadi:cfi.pdf) by Martin Abadi et al.
+
+Fri Oct  8 2021: PA2: Buffer overflows
+
+Mon Oct 11 2021: More memory (un)safety
+  - [*Old slides*](slides/5-heapint.pdf), [*Example code*](notes/heap)
+  - *Read*: [Understanding glibc malloc](https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/) by sploitfun
+  - *Optional*: [Advanced Doug lea's malloc exploits](http://phrack.org/issues/61/6.html) by jp, [Automatic Techniques to Systematically Discover New Heap Exploitation Primitives](https://www.usenix.org/conference/usenixsecurity20/presentation/yun) by Insu Yun et al.
+
+Wed Oct 13 2021: Sandboxing and isolation
+  - [*Old slides*](slides/7-isolation.pdf)
+  - *Watch*: [USENIX Security talk](https://www.usenix.org/conference/usenixsecurity20/presentation/narayan) by Shravan Narayan
+  - *Read*: [The Road to Less Trusted Code: Lowering the Barrier to In-process Sandboxing](https://cseweb.ucsd.edu/~dstefan/noindex/login2020/) by Garfinkel et al.
+  - *Optional*: [Retrofitting Fine Grain Isolation in the Firefox Renderer](https://cseweb.ucsd.edu/~dstefan/pubs/narayan:2020:rlbox.pdf) by Narayan et al., [Operating System Security](http://www.morganclaypool.com/doi/abs/10.2200/S00126ED1V01Y200808SPT001) by Trent Jaeger,  [Android System and kernel security](https://source.android.com/security/overview/kernel-security), and [https://www.apple.com/business/docs/iOS_Security_Guide.pdf](https://www.apple.com/business/docs/iOS_Security_Guide.pdf)
+
+Fri Oct 15 2021: PA3: Library sandboxing
+
+Mon Oct 18 2021: Side channels 
+  - [*Old slides*](slides/8-sidechannels.pdf)
+  - *Read*: [Efficient Cache Attacks on AES, and Countermeasures](papers/tromer:cache.pdf) by Eram Tromer et al.
+  - *Optional*: [Chapter 19](https://www.cl.cam.ac.uk/~rja14/Papers/SEv3-ch19-7sep.pdf) of Security Engineering
+
+Wed Oct 20 2021: Web intro
+  - [*Old slides*](slides/9-webmodel.pdf)
+  - *Read*: [CSRF, XSS, SQLi notes](https://cseweb.ucsd.edu/~dstefan/cse127-winter19/notes/lecture13/), php's [SQL Injection](https://www.php.net/manual/en/security.database.sql-injection.php)
+  - *Optional*: [Web technology for developers](https://developer.mozilla.org/en-US/docs/Web), and [Browser Security Handbook: Basic concepts behind web browsers](https://code.google.com/p/browsersec/wiki/Part1)
+
+Mon Oct 25 2021: Midterm
+
+Wed Oct 27 2021: Web attacks and defenses 
+  - [*Old slides*](slides/10-webattacks.pdf)
+  - *Read*: [Robust defenses for cross-site request forgery](papers/csrf.pdf) by Adam Barth, Collin Jackson, and John C. Mitchell
+
+Fri Oct 29 2021: PA4: Side channels
+
+Mon Nov 1 2021: Modern client-side web defenses
+  - [*Old slides*](slides/11-webdefenses.pdf)
+
+Wed Nov 3 2021: Network intro
+ - [*Old slides*](slides/12-networkintro.pdf)
+ - *Read*: [Security problems in the TCP/IP protocol suite](https://www.cs.columbia.edu/~smb/papers/ipext.pdf) by Steven Bellovin.  And [a look back](https://www.cs.columbia.edu/~smb/papers/acsac-ipext.pdf) at this paper.
+ - *Optional*: Wikipedia articles on [Autonomous System](http://en.wikipedia.org/wiki/Autonomous_system_%28Internet%29), [OSPF routing](http://en.wikipedia.org/wiki/Open_Shortest_Path_First), [Border Gateway Protocol](http://en.wikipedia.org/wiki/Border_Gateway_Protocol), [User Datagram Protocol](http://en.wikipedia.org/wiki/User_Datagram_Protocol), [Transmission Control Protocol](http://en.wikipedia.org/wiki/Transmission_Control_Protocol), and [Domain Name System](http://en.wikipedia.org/wiki/Domain_Name_System)
+
+Fri Nov  5 2021: PA5: Web security
+
+Mon Nov 8 2021: Network attacks
+ - [*Old slides*](slides/13-networkattacks.pdf)
+ - *Read*: [Security problems in the TCP/IP protocol suite](https://www.cs.columbia.edu/~smb/papers/ipext.pdf) by Steven Bellovin.  And [a look back](https://www.cs.columbia.edu/~smb/papers/acsac-ipext.pdf) at this paper.
+ - *Read*: [SAD DNS Explained](https://blog.cloudflare.com/sad-dns-explained/) by Marek Vavruša and Nick Sullivan
+
+Wed Nov 10 2021: Network defenses
+ - [*Old slides*](slides/14-networkdefenses.pdf)
+ - *Read*: [NAT Slipstreaming](https://samy.pl/slipstream/) by Samy Kamkar
+
+Fri Nov 12 2021: PA6: Networking
+
+Mon Nov 15 2021: Symmetric-key crypto
+  - [*Old slides*](slides/15-symmetriccrypto.pdf)
+  - *Read*: [Chapter 5](https://www.cl.cam.ac.uk/~rja14/Papers/SEv3-ch5-7sep.pdf) (skip 5.2.3, 5.2.5, 5.3.4, 5.3.5, 5.4, 5.7, 5.8) of Security Engineering
+  - *Optional*: [Communication Theory of Secrecy Systems](https://archive.org/stream/bstj28-4-656#page/n0/mode/2up) by Shannon
+
+Wed Nov 17 2021: Public-key crypto
+  - [*Old slides*](slides/16-pubkeycrypto.pdf)
+  - *Read*: Sections 5.2.5, 5.3.4, 5.3.5, 5.7, 5.8 of Security Engineering
+  - *Read*: [Bleichenbacher's RSA signature forgery based on implementation error](https://mailarchive.ietf.org/arch/msg/openpgp/5rnE9ZRN1AokBVj3VqblGlP63QE/) by Hal Finney
+
+Fri Nov 19 2021: PA7: Crypto
+
+Mon Nov 22 2021: TLS, PKI, and CT 
+  - [*Old slides*](slides/17-tls.pdf)
+  - *Read*: [The Illustrated TLS 1.2 Connection](https://tls.ulfheim.net/) and [TLS 1.3 edition](https://tls13.ulfheim.net/)
+
+Wed Nov 24 2021: Privacy, anonymity, and ethics  
+  - [*Old slides*](slides/18-privacy.pdf)
+  - *Watch*: [Crypto 2020 Invited talk](https://www.youtube.com/watch?v=Ygq9ci0GFhA) by Seny Kamara
+  - *Read*: [Chapter 26](https://www.cl.cam.ac.uk/~rja14/Papers/SEv3-ch26-7sep.pdf) of Security Engineering
+  - *Optional*: [Chapter 20](https://www.cl.cam.ac.uk/~rja14/Papers/SEv3-ch20-7sep.pdf) (skip 20.5-20.7) of Security Engineering, [Why Johnny Can't Encrypt: A Usability Evaluation of PGP 5.0](http://www.cs.berkeley.edu/~tygar/papers/Why_Johnny_Cant_Encrypt/OReilly.pdf), [Tor: The Second-Generation Onion Router](https://svn.torproject.org/svn/projects/design-paper/tor-design.pdf), [Bernstein v. United States](http://cr.yp.to/export.html), [Off-the-Record Communication, or, Why Not To Use PGP](https://otr.cypherpunks.ca/otr-wpes.pdf), [Forward Secrecy for Asynchronous Messages](https://whispersystems.org/blog/asynchronous-security/), and [Robust De-anonymization of Large Sparse Datasets](http://www.cs.utexas.edu/~shmat/shmat_oak08netflix.pdf)
+
+Fri Nov 26 2021: PA8: MicroTLS
+
+Mon Nov 29 2021: TBA
+
+Thu Dec  7 2021: Final exam
+
+Textbook
+==============================================================
+
+We will occasionally be assigning readings from Ross Anderson's [Security
+Engineering](https://www.cl.cam.ac.uk/~rja14/book.html) and various other
+online resources and research papers.  We may also assign optional reading from
+Jon Erickson's [Hacking: The Art of
+Exploitation](https://nostarch.com/hacking2.htm).
+
+Evaluation and grading
+==============================================================
+
+Beyond lectures, we will reinforce concepts and explore new ones via
+programming assignments, a final exam, and online discussions. Each of these
+will be used towards your final grade, as further described below.
+
+Programming assignments (60%)
+-----------------------
+
+We will have eight programming assignments. These assignments are meant to both
+reinforce your knowledge of the concepts covered in lecture and get you to
+think about security in more depth, beyond what is covered lecture.
+
+You are expected to work on the assignments by yourself. You may discuss the
+assignments with students from the course---in general--but not any specific
+solution. There are no late days, but you will receive an additional 10% if you
+turn in your assignment by the early date. Specifically, we'll compute each
+assignment grade as:
+
+```
+early ?  min(100%, grade + grade*10%) : grade
+```
+
+If you consult anything (books, academic papers, internet resources, people)
+when working on the assignments, note this in your submission.  We encourage
+outside learning but expect you to not seek out specific details about a
+solution---anything submitted should be considered your own work.  Similarly,
+you are expected to not publish or otherwise share your solutions at any point
+(even after the class is over).  If you are unsure about what is allowed,
+please ask the course staff.
+
+Exam (35%)
+-----------------------
+
+The midterm is
+**closed-book**, but you may use a double-sided cheat sheet (letter-size).
+
+The final is
+**closed-book**, but you may use 2 double-sided cheat sheets (letter-size).
+
+The exams will make up 40% of your grade. Since the final is cumulative your
+midterm grade will be calculated as:
+
+```
+midterm > 0 ?  max(final, midterm) : 0
+```
+
+This means that (1) you basically get a second chance if you don't so well on
+the midterm and (2) you must show up to both the midterm and the final.  If you
+need to miss either exam because of an emergency, contact the instructor.
+
+
+Participation (5%)
+-----------------------
+
+We will assign readings with most lectures. You are expected to have a vague
+understanding of the concepts that will be discussed in class. This will allow
+us to spend the lecture time to solidify your understanding. But we recommend
+re-reading after class as well.
+
+Asking and answering questions in lecture, on Piazza, or during office hours
+counts towards your class participation. Starting discussions (e.g., around the
+readings) online also counts is encouraged!
+
+Academic integrity and student conduct
+==============================================================
+
+By taking this course, you implicitly agree to abide by the UCSD policies on
+[Integrity of
+Scholarship](https://senate.ucsd.edu/Operating-Procedures/Senate-Manual/appendices/2)
+and [Student Conduct](https://students.ucsd.edu/sponsor/student-conduct/).  See
+the [Academic Integrity Support for Remote
+Learning](https://academicintegrity.ucsd.edu/take-action/covid-19-students.html).
+University rules on integrity of scholarship and code of conduct are taken
+seriously and will be enforced.
+
+Acknowledgements
+==============================================================
+
+The course structure and many of the ideas and slides are influenced or directly from
+other courses taught at
+Berkeley ([David Wagner](https://people.eecs.berkeley.edu/~daw/) and [Raluca Popa](https://people.eecs.berkeley.edu/~raluca/)),
+Oberlin ([Stephen Checkoway](https://checkoway.net/)),
+Stanford ([Dan Boneh](https://crypto.stanford.edu/~dabo/), [John Mitchell](https://theory.stanford.edu/people/jcm/), and [Zakir Durumeric](https://zakird.com)),
+UT Austin ([Hovav Shacham](https://www.cs.utexas.edu/directory/hovav-shacham)),
+UCSD ([Stefan Savage](https://cseweb.ucsd.edu/~savage/), [Nadia Heninger](https://cseweb.ucsd.edu/~nadiah/)) and
+UIUC ([Kirill Levchenko](https://klevchen.ece.illinois.edu/)).
+If we missed anybody please let us know!
+
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js"></script>
+<script>
+  window.alreadyProcessedMarkdeep || (document.body.style.visibility="visible");
+  markdeepOptions= {tocStyle: 'long', sortScheduleLists: false };
+</script>
