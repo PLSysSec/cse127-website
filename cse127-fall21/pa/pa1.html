@@ -45,6 +45,28 @@ To copy files from the VM to your computer:
 scp -P 2222 student@127.0.0.1:/path/to/files/ /destination/path
 ```
 
+## VM on M1 Machines
+Unfortunately, VirtualBox doesn't work for Apple's M1 chip. To use the vm image on M1 machines, you will have to install [qemu](https://www.qemu.org/) and run the vm with it.
+
+To install qemu:
+
+```bash
+brew install qemu
+```
+
+To run vm using qemu:
+
+```bash
+qemu-system-x86_64 \
+  -cpu qemu64 \
+  -m 4096 \
+  -device e1000,netdev=net0,mac=08:00:27:D3:23:52 \
+  -netdev user,id=net0,hostfwd=tcp::2222-:22 \
+  -drive file=/Path/to/pa1box/pa1box-data.vmdk
+```
+
+User and ssh settings are the same as using VirtualBox.
+
 # Part 1: Using GDB *(10 pts)*
 
 Files for this sub-assignment are located in the `gdb` subdirectory of the `student` user's home
