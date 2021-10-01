@@ -1,9 +1,9 @@
 <meta charset="utf-8"><!-- -*- markdown -*- -->
     **PA 1:  GDB + x86 (20 pts)**
 
-**Early turn-in:** Monday, October 12, 2020 by 23:59:59 PDT (10% bonus)
+**Early turn-in:** Friday, October 8, 2021 by  17:00:00 PDT (10% bonus)
 
-**Hard deadline:** Wednesday, October 14, 2020 by 23:59:59 PDT
+**Hard deadline:** Monday, October 11, 2020 by 17:00:00 PDT
 
 # Goal
 
@@ -44,28 +44,6 @@ To copy files from the VM to your computer:
 ```
 scp -P 2222 student@127.0.0.1:/path/to/files/ /destination/path
 ```
-
-## VM on M1 Machines
-Unfortunately, VirtualBox doesn't work for Apple's M1 chip. To use the vm image on M1 machines, you will have to install [qemu](https://www.qemu.org/) and run the vm with it.
-
-To install qemu:
-
-```bash
-brew install qemu
-```
-
-To run vm using qemu:
-
-```bash
-qemu-system-x86_64 \
-  -cpu qemu64 \
-  -m 4096 \
-  -device e1000,netdev=net0,mac=08:00:27:D3:23:52 \
-  -netdev user,id=net0,hostfwd=tcp::2222-:22 \
-  -drive file=/Path/to/pa1box/pa1box-data.vmdk
-```
-
-User and ssh settings are the same as using VirtualBox.
 
 # Part 1: Using GDB *(10 pts)*
 
@@ -147,7 +125,9 @@ newline) to stdout. Your job is to modify this program to meet the specification
 
 A `Makefile` is included, so you can build the `echo` binary by running `make` from the command line.
 
-## Helpful Hints
+# Help
+
+## Hints
 
 - In a Linux program, stdout is file descriptor number 1 and stderr is number 2.
 - Linux programs start with `argc` at the top of the stack, accessible at `0(%esp)` from
@@ -159,7 +139,31 @@ A `Makefile` is included, so you can build the `echo` binary by running `make` f
   not passed any arguments, 2 if it was passed 1 argument, and so on.
 - This [table of Linux system calls](https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md#x86-32_bit) may come in handy.
 
-## Submission
+## Doing the assignmenton M1 machines
+
+VirtualBox doesn't work on M1 machines. To use the vm image on M1 machines, you will have to install [qemu](https://www.qemu.org/) and run the vm with it.
+
+To install qemu:
+
+```
+brew install qemu
+```
+
+To run vm using qemu:
+
+```
+qemu-system-x86_64 \
+  -cpu qemu64 \
+  -m 4096 \
+  -device e1000,netdev=net0,mac=08:00:27:D3:23:52 \
+  -netdev user,id=net0,hostfwd=tcp::2222-:22 \
+  -drive file=/Path/to/pa1box/pa1box-data.vmdk
+```
+
+User and ssh settings are the same as using VirtualBox.
+
+
+# Submission
 
 Submit `echo.s` to "PA1: x86 echo" on Gradescope.
 
