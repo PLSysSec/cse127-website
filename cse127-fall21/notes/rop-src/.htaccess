@@ -1,0 +1,3 @@
+AddType text/plain .c
+AddType text/plain .pl
+AddDefaultCharset UTF-8
