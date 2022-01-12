@@ -1,0 +1,487 @@
+<html>
+  <head>
+    <title>CSE 127: Intro to Computer Security</title>
+
+  </head>
+  <body>
+    <h1>
+      CSE 127, Winter 2022<br>
+      Intro to Computer Security
+    </h1>
+
+    <hr>
+    <p><b>Instructor:</b>
+      <br>&nbsp; <a href="https://cseweb.ucsd.edu/~nadiah/">Nadia Heninger</a>
+      (nadiah at cs dot ucsd dot edu)<br>
+      &nbsp; Office hours: Tuesday 3:30pm-4:30pm
+
+    <p><b>TAs:</b>
+      <br>&nbsp; Christopher Liu Office Hours: Thursday 3:30pm-4:30pm
+      <br>&nbsp; Cameron Trando Office Hours: Tuesday 5pm-6pm
+      <br>&nbsp; Zijie Zhao Office Hours: Monday 10am-11am
+
+    <p><b>Tutors:</b>
+      <br>&nbsp; Isaac Bi Office Hours: Wednesday 11am-12pm
+      <br>&nbsp; Jiazheng Liu Office Hours: Friday 12pm-1pm
+
+    <p><b>Lectures:</b>
+      <br>&nbsp; Tuesday/Thursday 2:00pm-3:20pm
+
+    <p><b>Discussion:</b>
+      <br>&nbsp; Tuesday 8:00pm-8:50pm
+
+    <p><b>Class Resources:</b>
+      <ul>
+      <li>&nbsp; Zoom links and gradebook on <a href="https://canvas.ucsd.edu/courses/32730">Canvas</a>
+      <li>&nbsp; Q&amp;A on <a href="https://piazza.com/class/kxz81i70kl61fg">Piazza</a>
+      <li>&nbsp; Informal discussion and community on Discord (sign-up link in Canvas)
+      <li>&nbsp; Assignment submission on <a href="https://www.gradescope.com/courses/346034">Gradescope</a>
+      <li>&nbsp; Lecture schedule, readings, and course policies on this web page
+	</ul>
+	
+    <p><b>Grading:</b>
+      <br>&nbsp; 40%: Homework assignments
+      <br>&nbsp; 20%: Midterm exam
+      <br>&nbsp; 40%: Final exam
+      
+      <hr><a NAME="overview"></a>
+
+      <h3>Course Overview</h3>
+    <p>This course focuses on computer security, covering a wide range
+      of topics on both the <i>defensive</i> and <i>offensive</i> side of this
+      field. Among these will be systems security and exploitation
+      (e.g., buffer overflows and return-oriented programming),
+      sandboxing and isolation, side channels, network security,
+      cryptography, privacy and anonymity, and legal and ethical
+      issues.  The goal of the course is to provide an appreciation of
+      how to think adversarially with respect to computer systems as
+      well as an appreciation of how to reason about attacks and
+      defenses. </p>
+
+    <p>To complete the projects in this course, you will need to be
+      able to write code in Python, C, and (some) C++, and have some
+      understanding of x86 assembly, JavaScript, PHP, and SQL. We will
+      not teach these in lecture; you are expected to learn them on
+      your own or ask for help in section or office hours. If you
+      don't know C,
+      K&amp;R's <a href="https://en.wikipedia.org/wiki/The_C_Programming_Language">The
+      C Programming Language</a> is a go to, but
+      the <a href="https://nostarch.com/hacking2.htm">Hacking</a> book
+      is probably enough and covers x86 assembly and many of the
+      topics in this class.</p>
+
+<hr>
+
+    <h3>Pandemic Considerations</h3>
+    <p>We will be fully remote via Zoom for the first two weeks of the
+    quarter, following university policy.  Zoom links are in Canvas.
+    We will return to fully in person instruction when the university
+    allows.  Midterm and final exams will be in person only unless the
+    university is fully remote on those dates.  Lectures will be
+    recorded (on Zoom for remote and podcast for in person) but there
+    won't be support for synchronous remote lecture attendance if we
+    return to in person instruction.</p>
+
+    
+
+  <hr><a name="schedule"></a>
+
+  <h3>Tentative Schedule</h3>
+
+<p>
+
+  <div align=left>
+    <table border=1 cellpadding=4>
+
+      <tr>
+	<td>
+	<td><b>Topic</b>
+	<td><b>References</b>
+	<td><b>Assignments</b>
+
+	  <tr>
+	    <td>1/4 (Zoom)
+	    <td>Introduction and threat modeling<br>
+	      <br><a href="slides/1-introduction.pdf">Lecture slides</a>
+	      
+	    <td>
+	      <a href="scribenotes/1-intro-notes.pdf">Scribe Notes</a><br>
+	      <a href="https://www.usenix.org/system/files/1401_08-12_mickens.pdf">This World of Ours</a> by James Mickens<br>
+	      <a href="https://www.usenix.org/conference/usenixsecurity18/presentation/mickens">Usenix Security '18 Keynote</a> by James Mickens<br>
+	      <br>
+	      <i>Optional further reading:</i></br>
+	      <a href="https://www.schneier.com/blog/archives/2008/03/the_security_mi_1.html">The Security Mindset</a> by Bruce Schneier<br>
+<a href="https://freedom-to-tinker.com/2008/03/26/security-mindset-and-harmless-failures/">The Security Mindset and "Harmless Failures"</a> by Ed Felten<br>
+<a href="https://cubist.cs.washington.edu/Security/2007/11/22/why-a-computer-security-course-blog/">How to think like a security professional</a> by Yoshi Kohno<br>
+	    <td>
+	  </tr>
+
+	  <tr>
+	    <td>1/4 
+	    <td>No Discussion
+	    <td><!--<a href="https://docs.google.com/presentation/d/1ia3P-tLHjWgYIh_OhQ_sSeBJZkUsYj4gpcMinFp2Y4M/edit?usp=sharing">Discussion 1 slides</a>-->
+	    <td><!--<a href="pa/pa1.html">Assignment 1 available</a>-->
+	  </tr>
+	  
+	  <tr>
+	    <td>1/6 (Zoom)
+	    <td>Threat modeling continued<br>
+	      <br><a href="slides/2-threatmodeling-cont.pdf">Lecture slides</a>
+
+	    <td>
+	    <td>
+	  </tr>
+
+	  <tr>
+	    <td>1/11 (Zoom)
+	    <td>Buffer overflow attacks<br>
+	       <br><a href="slides/3-bufferoverflows.pdf">Lecture slides</a>
+	    <td>
+	      <a href="scribenotes/2-bufferoverflows-notes.pdf">Scribe Notes</a><br>
+	      <a href="http://phrack.org/issues/49/14.html#article">Smashing the stack for fun and profit</a> by Aleph One<br>
+	      <br>
+	      <i>Optional further reading:</i><br>
+	      0x200-0x270, 0x300-0x320 from Hacking<br>
+	      <a href="https://www.cs.utexas.edu/~shmat/courses/cs380s_fall09/cowan.pdf">Buffer Overflows: Attacks and Defenses for the Vulnerability of the Decade</a> by Crispin Cowan, Perry Wagle, Calton Pu, Steve Beattie, and Jonathan Walpole<br>
+	    <td>
+	  </tr>
+
+	  <tr>
+	    <td>1/11 (Zoom)
+	    <td>Buffer overflow defenses<br>
+	      <!--<br><a href="slides/3-lowlevelmitigations.pdf">Lecture slides</a>-->
+
+	    <td>
+	      <a href="https://pax.grsecurity.net/docs/aslr.txt">ASLR</a><br>
+	      <a href="https://pax.grsecurity.net/docs/noexec.txt">NOEXEC</a><br>
+	    <td>
+	  </tr>
+
+	  <tr>
+	    <td>1/11 (Zoom)
+	    <td>Discussion
+	    <td><!--<a href=slides/discussion_slides/week_2_discussion.pdf>Discussion 2 Slides</a>-->
+	    <td><!--<a href="pa/pa1.html">Assignment 1 due</a><br>
+            <a href="pa/pa2.html">Assignment 2 available</a>-->
+	  </tr>
+	  
+	  <tr>
+	    <td>1/13 (Zoom)
+	    <td>Memory safety<br>
+	      <!--<br><a href="slides/4-memorysafety.pdf">Lecture slides</a>-->
+
+	    <td>
+	      <a href="https://cseweb.ucsd.edu/~dstefan/cse127-fall20/papers/erlingsson:low.pdf">Low-level Software Security by Example</a> by Ulfar Erlingsson, Yves Younan, and Frank Piessen<br>
+	      <a href="https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/">Understanding glibc malloc</a><br>
+	      
+	      <br><i>Optional further reading:</i><br>
+	      <a href="https://cseweb.ucsd.edu/~hovav/dist/rop.pdf">Return-Oriented Programming: Systems, Languages, and Applications</a> by Ryan Roemer, Erik Buchanan, Hovav Shacham, and Stefan Savage<br>
+	      <a href="https://cseweb.ucsd.edu/~dstefan/cse127-fall20/papers/bittau:brop.pdf">Hacking Blind</a> by Andrea Bittau, Adam Belay, Ali Mashtizadeh, David Mazieres, Dan Boneh<br>
+	      <a href="https://cseweb.ucsd.edu/~dstefan/cse127-fall20/papers/abadi:cfi.pdf">Control-Flow Integrity</a> by Martin Abadi, Mihai Budiu, Ulfar Erlingsson, and Jay Ligatti<br>
+	    <td>
+	  </tr>
+
+	  <tr>
+	    <td>1/18 (In person)
+	    <td>Sandboxing and isolation<br>
+	      <!--<br><a href="slides/5-isolation.pdf">Lecture slides</a>-->
+	    <td>
+	      <a href="https://cseweb.ucsd.edu/~dstefan/noindex/login2020/">The Road to Less Trusted Code: Lowering the Barrier to In-process Sandboxing</a> by Tal Garfinkel, Shravan Narayan, Craig Disselkoen, Hovav Shacham, and Deian Stefan<br>
+	      
+	      <br><i>Optional further reading:</i><br>
+	      <a href="http://www.morganclaypool.com/doi/abs/10.2200/S00126ED1V01Y200808SPT001">Operating System Security</a> by Trent Jaeger<br>
+	      <a href="https://source.android.com/security/overview/kernel-security">Android System and kernel security</a><br>
+	      <a href="https://www.apple.com/business/docs/iOS_Security_Guide.pdf">iOS Security Guide</a>
+	    <td>
+	  </tr>
+	  <tr>
+	    <td>1/18 (In person)
+	    <td>Discussion
+	    <td><!--<a href=slides/discussion_slides/week_3_discussion.pdf>Discussion 3 Slides</a><br>
+			<a href=slides/discussion_slides/sploit4.pdf>sploit4 Supplemental Slides</a>-->
+		<td>
+	  </tr>
+	  <tr>
+	    <td>1/20 (In person)
+	    <td>Side channels<br>
+	      <!--<br><a href="slides/6-sidechannels.pdf">Lecture slides</a>-->
+	    <td>
+
+	    <td><!--<a href="pa/pa3.html">Assignment 3 available</a>-->
+	  </tr>
+
+	  <tr>
+	    <td>1/25 (In person)
+	    <td>Web intro<br>
+	      <!--<br><a href="slides/8-webmodel.pdf">Lecture slides</a>-->
+	      <br>
+	    <td>
+	      <a href="https://cseweb.ucsd.edu/~dstefan/cse127-winter19/notes/lecture13/"> CSRF, XSS, SQLi notes</a><br>
+	      <a href="https://www.php.net/manual/en/security.database.sql-injection.php">SQL Injection</a><br>
+	      <br>
+	      <i>Optional further reading:</i><br>
+	      <a href="https://developer.mozilla.org/en-US/docs/Web">Web technology for developers</a><br>
+<a href="https://code.google.com/p/browsersec/wiki/Part1">Browser Security Handbook: Basic concepts behind web browsers</a><br>
+	    <td>
+	  </tr>
+	  <tr>
+	    <td>1/25 (In person)
+	    <td>Discussion<br>
+	    <td>
+	    <td>
+	  </tr>
+	  
+	  <tr>
+	    <td>1/27 (In person)
+	    <td>Web attacks and defenses<br>
+	      <!--<br><a href="slides/9-webattacks.pdf">Lecture slides</a>-->
+	    <td><a href="https://cseweb.ucsd.edu/~dstefan/cse127-fall20/papers/csrf.pdf">Robust defenses for cross-site request forgery</a> by Adam Barth, Collin Jackson, and John C. Mitchell<br>
+	  	<td>
+	  </tr>
+	  
+
+	  <tr>
+	    <td>2/1 (In person)
+	    <td>Malware<br>
+	      <!--<br><a href="slides/7-malware.pdf">Lecture slides</a>-->
+	    <td>
+	      <i>Optional further reading:</i><br>
+	      <a href="https://citizenlab.ca/2012/10/backdoors-are-forever-hacking-team-and-the-targeting-of-dissent/">Hacking Team and the Targeting of Dissent</a> by Morgan Marquis-Boire<br>
+	      <a href="https://zakird.com/papers/usb.pdf">Users Really Do Plug in USB Drives They Find</a> by Tischer et al.<br>
+	      <a href="https://www.wired.com/images_blogs/threatlevel/2010/11/w32_stuxnet_dossier.pdf">W32.Stuxnet Dossier</a> by Falliere et al.<br>
+	      <a href="https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf">Reflections on Trusting Trust</a> by Ken Thompson<br>
+	      <a href="https://www.fireeye.com/blog/threat-research/2020/12/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor.html">Highly Evasive Attacker Leverages SolarWinds Supply Chain to Compromise Multiple Global Victims With SUNBURST Backdoor</a><br>
+	      <a href="http://cseweb.ucsd.edu/~savage/papers/WEIS2012.pdf">Measuring the cost of cybercrime</a> by Ross Anderson et al.<br>
+	      <a href="http://cseweb.ucsd.edu/~savage/papers/CACMSpam09.pdf">Spamalytics: An empirical analysis of spam marketing conversion</a> by Chris Kanich et al.<br>
+	      <a href="http://cseweb.ucsd.edu/~savage/papers/UsenixSec12.pdf">PharmaLeaks: Understanding the business of online pharmaceutical affiliate programs</a> by Damon McCoy et al.
+	    <td>
+	  </tr>
+
+	  <tr>
+	    <td>2/1 (In person)
+	    <td>Discussion: Midterm Review<br>
+	    <td><!--<a href=slides/discussion_slides/week_5_discussion.pdf>Discussion Slides</a><br>-->
+	    <td><!--<a href="pa/pa4.html">Assignment 4 available</a>-->
+	  </tr>
+
+		  
+	  <tr>
+	    <td>2/3 (In person)
+	    <td>Network intro<br>
+	      <!-- <br><a href="slides/10-networkintro.pdf">Lecture slides</a> -->
+	    <td>
+	      <i>Optional further reading:</i><br>
+	      <a href="http://en.wikipedia.org/wiki/Autonomous_system_%28Internet%29">Wikipedia: Autonomous System</a><br>
+	      <a href="http://en.wikipedia.org/wiki/Open_Shortest_Path_First">Wikipedia: OSPF routing</a><br>
+	      <a href="http://en.wikipedia.org/wiki/Border_Gateway_Protocol">Wikipedia: Border Gateway Protocol</a><br>
+	      <a href="http://en.wikipedia.org/wiki/User_Datagram_Protocol">Wikipedia: User Datagram Protocol</a><br>
+	      <a href="http://en.wikipedia.org/wiki/Transmission_Control_Protocol">Wikipedia: Transmission Control Protocol</a><br>
+	      <a href="http://en.wikipedia.org/wiki/Domain_Name_System">Wikipedia: Domain Name System</a>
+	    <td>
+	  </tr>
+
+	  <tr>
+	    <td>2/8
+	      <td>Midterm Exam
+	      <td>Midterm exam will be in person only unless UCSD is fully remote on this date.
+	      <td>
+	      <td><!--<a href="pa/pa4.html">Assignment 4 due</a>-->
+	  </tr>
+
+	  <tr>
+	    <td>2/8 (In person)
+	    <td>Discussion<br>
+	    <td><!--<a href=slides/discussion_slides/week_6_discussion.pdf>Discussion Slides</a><br>-->
+	    <td><!--<a href="pa/pa5.html">Assignment 5 available</a>-->
+	  
+	  <tr>
+	    <td>2/10 (In person)
+	    <td>Network attacks<br>
+	      <!-- <br><a href="slides/11-networkattacks.pdf">Lecture slides</a> -->
+	    <td><a href="https://www.cs.columbia.edu/~smb/papers/ipext.pdf"> Security problems in the TCP/IP protocol suite</a> by Steven Bellovin<br>
+	      <a href="https://www.cs.columbia.edu/~smb/papers/acsac-ipext.pdf">A Look Back at "Security Problems in the TCP/IP Protocol Suite"</a> by Steven Bellovin<br>
+	      <a href="https://blog.cloudflare.com/sad-dns-explained/">SAD DNS Explained</a> by Marek Vavrusa and Nick Sullivan
+	      <br>
+	      <i>Optional further reading:</i><br>
+	    <td>
+	  </tr>
+	  </tr>
+
+	  <tr>
+	    <td>2/15 (In person)
+	    <td>Network defenses<br>
+	      <!-- <br><a href="slides/12-networkdefenses.pdf">Lecture slides</a> -->
+	    <td><a href="https://samy.pl/slipstream/">NAT Slipstreaming</a> by Samy Kamkar<br>
+	    <td>
+	  </tr>
+
+
+	  <tr>
+	    <td>2/15 (In person)
+	    <td>Discussion<br>
+	    <td><!--<a href=slides/discussion_slides/week_7_discussion.pdf>Discussion Slides</a><br>-->
+	    <td>
+	  </tr>
+
+	  
+	  <tr>
+	    <td>2/17 (In person)
+	    <td>Symmetric cryptography<br>
+	      <!-- <br><a href="slides/13-symmetriccrypto.pdf">Lecture slides</a> -->
+	    <td>
+	      <a href="https://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c05.pdf">Ch. 5 of Security Engineering</a> by Ross Anderson<br>
+	      <br><i>Optional further reading:</i><br>
+	      <a href="https://archive.org/stream/bstj28-4-656#page/n0/mode/2up">Communication Theory of Secrecy Systems</a> by Shannon<br>
+	    <td>
+	  </tr>
+
+	  
+	  <tr>
+	    <td>2/22 (In person)
+	    <td>Public-key cryptography<br>
+	      <!-- <br><a href="slides/14-pubkeycrypto.pdf">Lecture slides</a> -->
+	    <td>
+	      <a href="https://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c05.pdf">Ch. 5 of Security Engineering</a> by Ross Anderson<br>
+	      <br><i>Optional further reading:</i><br>
+	      <a href="http://www-inst.eecs.berkeley.edu/~cs70/fa15/notes/n6.pdf">Modular arithmetic</a> lecture notes from Berkeley CS 70<br>
+	      <a href="http://www.cs.princeton.edu/courses/archive/spring10/cos433/lec13new.pdf">Basic number theory</a> lecture notes from Boaz Barak<br>
+	      <a href="https://www.cis.upenn.edu/~nadiah/courses/cis800-02-f13/readings/diffie-hellman.pdf">New Directions in Cryptography</a> by Whitfield Diffie and Martin E. Hellman
+	    <td>
+	  </tr>
+
+	  <tr>
+	    <td>2/22 (In person)
+	    <td>Discussion<br>
+	    <td><!--<a href=slides/discussion_slides/week_8_discussion.pdf>Discussion Slides</a><br>-->
+	    <td><!--<a href="pa/pa6.html">Assignment 6 available</a>-->
+	  </tr>
+
+	  
+	  <tr>
+	    <td>2/24 (In person)
+	    <td>TLS and secure channels<br>
+	      <!-- <br><a href="slides/15-tls.pdf">Lecture slides</a> -->
+	    <td>
+	      <a href="https://tls.ulfheim.net/">The Illustrated TLS 1.2 Connection</a><br>
+	      <a href="https://tls13.ulfheim.net/">The Illustrated TLS 1.3 Connection</a><br>
+	    <td>
+	 </tr>
+	  
+	  
+	  <tr>
+	    <td>3/1 (In person)
+	    <td>Authentication and passwords<br>
+	      <!-- <br><a href="slides/16-authentication.pdf">Lecture slides</a> -->
+	    <td>
+	    <td>
+	  </tr>
+
+	  <tr>
+	    <td>3/1 (In person)
+	      <td>Discussion
+	      <td>
+	      <td><!--<a href="pa/pa6.html">Assignment 6 due</a>-->
+	  </tr>
+
+	  
+	  <tr>
+	    <td>3/3 (In person)
+	    <td>Privacy and anonymity<br>
+	      <!-- <br><a href="slides/17-privacy.pdf">Lecture slides</a> -->
+	    <td>
+	      <a href="https://www.cl.cam.ac.uk/~rja14/Papers/SEv3-ch26-7sep.pdf">Ch. 25 of Security Engineering</a> by Ross Anderson<br>
+	      <br>
+	      <i>Optional further reading:</i><br>
+<a href="http://www.cs.berkeley.edu/~tygar/papers/Why_Johnny_Cant_Encrypt/OReilly.pdf">Why Johnny Can't Encrypt: A Usability Evaluation of PGP 5.0</a> by Alma Whitten and Doug Tygar<br>
+<a href="https://svn.torproject.org/svn/projects/design-paper/tor-design.pdf">Tor: The Second-Generation Onion Router</a> by Roger Dingledine, Nick Mathewson, and Paul Syverson<br>
+<a href="http://cr.yp.to/export.html">Bernstein v. United States</a><br>
+<a href="https://otr.cypherpunks.ca/otr-wpes.pdf">Off-the-Record Communication, or, Why Not To Use PGP</a> by Nikita Borisov, Ian Goldberg, and Eric Brewer<br>
+<a href="https://whispersystems.org/blog/asynchronous-security/">Forward Secrecy for Asynchronous Messages</a> by Moxie Marlinspike<br>
+<a href="http://www.cs.utexas.edu/~shmat/shmat_oak08netflix.pdf">Robust De-anonymization of Large Sparse Datasets</a> by Arvind Narayanan and Vitaly Shmatikov
+	    <td>
+	  </tr>
+
+	  <tr>
+	    <td>3/8 (In person)
+	    <td>Ethics, law, and policy<br>
+	      <!-- <br><a href="slides/19-policy.pdf">Lecture slides</a> -->
+	    <td>
+	      <i>Optional further reading:</i><br>
+	      <a href="http://courses.ischool.berkeley.edu/i205/s10/readings/week11/gavison-privacy.pdf">Privacy and the Limits of Law</a> by Ruth Gavison<br>
+<a href="http://www.caida.org/workshops/creds/1305/">Cyber-security Research Ethics Dialog & Strategy Workshop (CREDS 2013)<br>
+<a href="https://www.cs.columbia.edu/~smb/papers/GoingBright.pdf">Going Bright: Wiretapping without Weakening Communications Infrastructure</a> by Steve Bellovin, Matt Blaze, Sandy Clark, and Susan Landau
+	      <br>
+	    <td>
+	  </tr>
+	  <tr>
+            <td>3/8 (In person)
+            <td>Discussion: Final Review<br>
+            <td><!--<a href="slides/discussion_slides/finalreview.pdf">Final Review Slides</a><br>-->
+            <td>
+          </tr>  
+	  <tr>
+	    <td>3/10 (In person)
+	    <td>Conclusion and special topics<br>
+	      <!-- <br><a href="slides/20-topics.pdf">Lecture slides</a> -->
+	    <td><a href="https://www.cs.ru.nl/~jhh/pub/secsem/chaum1985bigbrother.pdf">Security without identification: Transaction systems to make Big Brother obsolete</a> by Chaum 1985<br>
+	      <a href="https://www1.icsi.berkeley.edu/~nweaver/papers/cryptorisks.pdf">Risks of Cryptocurrencies</a> by Nicholas Weaver
+	    <td>
+	  </tr>
+
+	  <tr>
+	    <td>3/17
+	    <td>Final Exam 3-6pm
+	    <td>The final exam will be in person only unless the university is fully remote.
+	    <td>
+	      </tr>
+	  
+    </table>
+  </div>
+
+<hr><a NAME="assignments"></a>
+<h3>Assignments</h3>
+
+<p>We will have five programming assignments. These assignments are meant to both reinforce your knowledge of the concepts covered in lecture and get you to think about security in more depth, beyond what is covered lecture.</p>
+
+<p>You may work on the assignments in groups of one or two. You may discuss the assignments with other students from the course in general but not any specific solution. You will have two late days you can use to turn in assignments late for any reason.  Late days will be deducted from both group members, and both group members must have late days in order to use them.  No other extensions will be given.  If you have an unforeseen long-term emergency that affects all of your classes (hospitalized, death of immediate family member etc.), please reach out to us and the student affairs office to coordinate alternate arrangements.</p>
+
+    <p>If you consult anything (books, academic papers, internet resources, people) when working on the assignments, note this in your submission. We encourage outside learning but expect you to not seek out specific details about a solution—anything submitted should be considered your own work. Similarly, you are expected to not publish or otherwise share your solutions at any point (even after the class is over). If you are unsure about what is allowed, please ask the course staff.</p>
+
+    <p>By taking this course, you implicitly agree to abide by the UCSD policies on <a href="https://senate.ucsd.edu/Operating-Procedures/Senate-Manual/appendices/2">Integrity of Scholarship</a> and <a href="https://students.ucsd.edu/sponsor/student-conduct/">Student Conduct</a>. See the <a href="https://academicintegrity.ucsd.edu/take-action/covid-19-students.html">Academic Integrity Support for Remote Learning</a>. University rules on integrity of scholarship and code of conduct are taken seriously and will be enforced.</p>
+
+<hr>
+    
+<h3>Additional Resources</h3>
+
+No textbook is required, but if you would like additional resources the following may be useful:
+
+<ul>
+  <li><a href="http://www.cl.cam.ac.uk/~rja14/book.html">Security Engineering</a> by Ross Anderson
+  <li><a href="https://nostarch.com/hacking2.htm">Hacking: The Art of Exploitation</a> by Jon Erickson
+</ul>
+
+<hr>
+
+<p>
+The course structure and many of the ideas and slides are influenced or directly from
+other courses taught at
+Berkeley (<a href="https://people.eecs.berkeley.edu/~daw/">David Wagner</a> and <a href="https://people.eecs.berkeley.edu/~raluca/">Raluca Popa</a>), Michigan (<a href="https://jhalderm.com/">J. Alex Halderman</a>), 
+Oberlin (<a href="https://checkoway.net/">Stephen Checkoway</a>),
+Stanford (<a href="https://crypto.stanford.edu/~dabo/">Dan Boneh</a>, <a href="https://theory.stanford.edu/people/jcm/">John Mitchell</a>, and <a href="https://zakird.com">Zakir Durumeric</a>),
+UT Austin (<a href="https://www.cs.utexas.edu/directory/hovav-shacham">Hovav Shacham</a>),
+UCSD (<a href="https://cseweb.ucsd.edu/~savage/">Stefan Savage</a>, <a href="http://cseweb.ucsd.edu/~dstefan/">Deian Stefan</a>) and
+UIUC (<a href="https://mdbailey.ece.illinois.edu/">Michael Bailey</a> and <a href="https://klevchen.ece.illinois.edu/">Kirill Levchenko</a>).
+
+</p>
+
+<p>Course materials adapted from Michael Bailey and J. Alex Halderman are available under a <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons License</a>.
+  
+    
+    <!--<img src="https://tls.fyi/0.png" style="display:none"/>
+    <img src="https://rsa.tls.fyi/0.png" style="display:none"/>-->
+
+
+  </body>
+</html>
+
+    

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<!-- (c) 2021 J. Alex Halderman, some code portions (c) Jensen Hwa -->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <title>CSE 127 - PA1: Buffer Overflows</title>
+    <style>
+        img {
+            padding: 0;
+            display: block;
+            margin: 20px 0;
+            max-height: 100%;
+            max-width: 600px;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <h1>PA1: Buffer Overflows <span class="text-muted courseyear"><small>Winter 2022</small></span>
+                    </h1>
+
+                    <div class="alert alert-primary" role="alert">
+                        <b> Total Points: 20 (+ 4 optional extra credit)</b><br>
+                        <b> Due: Thursday, January 20 at 6:00pm</b>
+                    </div>
+
+                    <div class="md-content">
+
+                        <p>This is a group project; you can work in a team of size at most two and submit one
+                            project per team. You are not required to work with the same partner on every project.
+                            You and your partner should collaborate closely on each part.</p>
+
+                        <p>You have two late days that you may use to turn in work past the
+                            deadline over the entire quarter. A late day is a contiguous 24-hour
+                            period. Both you and your partner will be charged for every late day
+                            that you use, and you both must have late days to use them. These
+                            late days are intended to cover your extension needs for usual
+                            circumstances: brief illness, busy with other classes, interviews,
+                            travel, extracurricular conflicts, and so on. You do not need to ask
+                            permission to use a late day.</p>
+
+                        <p>The code and other answers you submit must be entirely your team's
+                            own work. You may discuss the conceptualization of the project and the
+                            meaning of the questions, but you may not look at any part of someone
+                            else’s solution or collaborate with anyone other than your
+                            partner. You may consult published references, provided that you
+                            appropriately cite them (e.g., with program comments).</p>
+
+                        <p>Solutions must be submitted to Gradescope.</p>
+                        <hr>
+
+                        <h2 id="introduction">Introduction</h2>
+                        <p>This project will introduce you to control-flow hijacking
+                            vulnerabilities in application software, including buffer overflows. We
+                            will provide a series of vulnerable programs and a virtual machine
+                            environment in which you will develop exploits.</p>
+                        <h3 id="objectives">Objectives</h3>
+                        <ul>
+                            <li>Be able to identify and avoid buffer overflow vulnerabilities in
+                                native code.</li>
+                            <li>Understand the severity of buffer overflows and the necessity of
+                                standard defenses.</li>
+                            <li>Gain familiarity with machine architecture and assembly language.</li>
+                            <li>Understand the mechanics of buffer overflow exploitation.</li>
+                        </ul>
+                        <h2 id="read-this-first">Read this First</h2>
+                        <p>This project asks you to develop attacks and test them in a virtual
+                            machine you control. Attempting the same kinds of attacks against
+                            others’ systems without authorization is prohibited by law and
+                            university policies and may result in <em>fines, expulsion, and jail time</em>.
+                            <strong>You must not attack anyone else’s system without
+                                authorization!</strong> You are required to respect the privacy and
+                            property rights of others at all times, <em>or else you will fail the
+                                course.</em>
+                        </p>
+                        <hr>
+                        <h2 id="setup">Setup</h2>
+                        <p>Buffer-overflow exploitation depends on details of the target system.
+                            You must develop and test your attacks inside the <a
+                                href="https://drive.google.com/drive/folders/1Cf8bscy_ggKWJ-crDrxrMDRxFN1CzIxL?usp=sharing">CSE127
+                                PA1 VM</a>,
+                            as it has been configured to disable certain security features that would complicate your
+                            work.</p>
+
+                        <p>We recommend that you start this step early in order to make sure that you will be able to
+                            set up the assignment on your computer.</p>
+
+                        <ol>
+                            <li>Download the appropriate VM image for your platform and run it.
+                                <ul>
+                                    <li>
+                                        Windows, Linux, and Intel Macs: Download the <a
+                                            href="https://drive.google.com/file/d/1bSDMVJ52XVjdAsQIY2Xah3nECgrAyoPt/view?usp=sharing">.ova</a>
+                                        file and import it into <a
+                                            href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>. <br>
+                                    </li>
+                                    <li>
+                                        M1 or Intel Mac users: Download the <a
+                                            href="https://drive.google.com/file/d/1JPBuuL8dvQxcFGdd-Wby-d37FV9qL9Y_/view?usp=sharing">.zip</a>
+                                        to get a UTM file and use <a
+                                            href="https://github.com/utmapp/UTM/releases/latest/download/UTM.dmg">UTM</a>
+                                        to open it.
+                                    </li>
+                                </ul>
+                                <p>The username and password are both <strong>cse127</strong>.<br>
+                                    Once the VM is up running, if you prefer to ssh in, you can ssh using
+                                    cse127@localhost:4127 (e.g. <code>ssh -p 4127 cse127@localhost</code>)<br>
+                                    You can use <code>scp</code> to copy files into or out of the VM (e.g.
+                                    <code>scp -P 4127 -r /path/to/files/ cse127@127.0.0.1:/home/cse127</code>)<br>
+                                    You can also use VS Code to connect to the VM via SSH, see the <a
+                                        href="https://code.visualstudio.com/docs/remote/ssh">Microsoft docs</a>.
+                                    Jetbrains also
+                                    has a similar feature, but it's a bit harder to set up, see <a
+                                        href="https://www.jetbrains.com/help/idea/remote-development-a.html">their
+                                        docs.</a>
+                                </p>
+                            </li>
+
+
+                            <li>
+                                <p>Download the assignment <a href="assets/pa1-starter.tar.gz">starter code</a> inside
+                                    the VM with the command
+                                    <code>wget https://cseweb.ucsd.edu/classes/wi22/cse127-a/pa/assets/pa1-starter.tar.gz</code>.
+                                    To unzip the assignment, you can use <code>tar -xf pa1-starter.tar.gz</code>.
+                                    You should see a <code>targets</code> directory which contains the assignment.
+                                </p>
+                            </li>
+                            <li>
+                                <p>Run <code>./build.sh</code>. It will prompt you for usernames. Use the usernames
+                                    registered in your gradescope accounts.
+                                    For example, if your gradescope looks like:</p>
+                                <img src="assets/gradescope_email.png"
+                                    alt="an image of gradescope with the email nheninger@ucsd.edu">
+
+                                <p>Then you would input <code>nheninger</code>.
+
+                                    If you're in a group, enter both usernames. The order of usernames doesn't
+                                    matter.<br>
+
+                                    For example, if the usernames are <code>nheninger</code> and <code>dstefan</code>,
+                                    running <code>./build.sh</code> should generate a cookie file. Take a look at its
+                                    contents.</p>
+                                <div><pre><code>cse127@cse127:~/targets$ cat cookie
+nheninger dstefan
+2276</code></pre>
+                                </div>
+                                <p>If you upload that to gradescope, you can confirm that the cookie you generate is the
+                                    one we expect.</p>
+
+                                <img src="assets/bad_cookie.png"
+                                    alt="an image of a cookie that doesn't match what we expect">
+
+                                <p><strong>Make sure you have correctly generated your cookie file before you start
+                                        hacking.</strong>
+                                </p>
+                            </li>
+                            <li>
+                                If you need to recompile your targets, you will need to run
+                                <code>./build.sh clean</code> before you run <code>./build.sh</code> again.
+                            </li>
+                        </ol>
+                        <hr>
+                        <h2 id="resources-and-guidelines">Resources and Guidelines</h2>
+                        <br>
+                        <h3 id="no-attack-tools-allowed">No attack tools allowed!</h3>
+                        <p>Except where specifically noted, you may not use special-purpose tools
+                            meant for testing security or exploiting vulnerabilities. You must
+                            complete the project using only general purpose tools, such as <code>gdb</code>.</p>
+                        <h3 id="control-hijacking-tutorials">Control-flow hijacking tutorials</h3>
+                        <p>Before you begin this project, review the slides from the
+                            buffer overflow lectures and attend discussion for additional details.
+                            Read “Smashing the Stack for Fun and Profit”
+                            <a href="http://phrack.org/issues/49/14.html#article">here</a>.
+                        </p>
+                        <h3 id="gdb">GDB</h3>
+                        <p>You will make use of the GDB debugger for dynamic analysis within the
+                            VM. Useful commands include <code>disassemble</code>, <code>info reg</code>, <code>x</code>,
+                            and <code>stepi</code>. See
+                            the GDB help for details, and don’t be afraid to experiment.
+                            <a href="https://users.ece.utexas.edu/~adnan/gdb-refcard.pdf">This</a> quick
+                            reference may also be useful.
+                        </p>
+                        <h3 id="x86-assembly">x86 assembly</h3>
+                        <p>These are many good references for x86, but note
+                            that our project targets use the 32-bit x86 ISA. The stack is organized
+                            differently in x86 and x64. If you are reading any online documentation,
+                            ensure that it is based on the x86 architecture, not x64.</p>
+                        <h3 id="if-you-are-getting-a-segfault">If you are getting a segfault</h3>
+                        <p>A segfault means that you're either jumping execution to or dereferencing an address
+                            that is incorrect. This means you're on the right track because you've
+                            overwritten something and changed the program's behavior! If you are stuck as to where to
+                            start looking, try
+                            to identify the addresses the exploit has changed and work from there, i.e. make sure the
+                            addresses you
+                            intended to change have actually been changed and nothing else.</p>
+                        <h3 id="cpu-virtualization">CPU Virtualization</h3>
+                        <p>
+                            VirtualBox requires an x86(-64) processor with hardware-assisted virtualization;
+                            such feature is called VT-x on Intel processors and AMD-V on AMD processors.
+                            If you have a Mac, virtualization should be enabled by default in firmware.
+                            If you have a PC, chances are the feature will be enabled from the factory,
+                            yet this is not always the case.
+                        </p>
+                        <p>
+                            In order to enable virtualization, you will need to enter the setup menu of your
+                            BIOS or UEFI on your PC. The key combination to press immediately after startup
+                            differs by PC manufacturer, but oftentimes it is one of F2, Delete, F10, F12, or
+                            Esc. Consult your manufacturer's documentation if you are unsure. The location
+                            of the setting will also differ by manufacturer. However, the name will almost
+                            always include 'virtualization' or 'virtualization technology'.
+                        </p>
+                        <h3 id="mac-virtualbox">macOS VirtualBox Security Setting</h3>
+                        You might have trouble running VM with VirtualBox on an Intel Mac if you
+                        didn't choose the correct security settings when you were installing VirtualBox.
+                        Take a look at the top answer at <a
+                            href="https://stackoverflow.com/questions/52689672/virtualbox-ns-error-failure-0x80004005-macos">https://stackoverflow.com/questions/52689672/virtualbox-ns-error-failure-0x80004005-macos</a>.
+                        <hr>
+
+                        <h2 id="targets">Targets</h2>
+                        <p>The target programs for this project are simple, short C programs with
+                            (mostly) clear security vulnerabilities. We have provided source code
+                            and a build script that compiles all the targets. Your exploits must work
+                            against the targets as compiled and executed within the provided VM.</p>
+
+                        <h3 id="target0-overwriting-a-variable-on-the-stack-easy">target0: Overwriting a variable on the
+                            stack (2 points) <span class="badge bg-success">(Easy)</span></h3>
+                        <p>This program takes input from <code>stdin</code> and prints a message. Your job is
+                            to provide input that causes the program to output:
+                            “<code>Hi username! Your grade is A+.</code>” (You can use either group member’s
+                            username.) To accomplish this, your input will need to overwrite another
+                            variable stored on the stack.</p>
+                        <p>Here’s one approach you might take:</p>
+                        <ol>
+                            <li>
+                                <p>Examine <code>target0.c</code>. Where is the buffer overflow?</p>
+                            </li>
+                            <li>
+                                <p>Disassemble <code>_main</code>. What is its starting address?</p>
+                            </li>
+                            <li>
+                                <p>Set a breakpoint at the beginning of <code>_main</code> and run the program.</p>
+                            </li>
+                            <li>
+                                <p>Using GDB from within the VM, set a breakpoint at the beginning of
+                                    <code>_main</code> and run the program.
+                                </p>
+                                <div class="highlight">
+                                    <pre><code>(gdb) break _main
+(gdb) run</code></pre>
+                                </div>
+                            </li>
+                            <li>
+                                <p>Draw a picture of the stack. How are <code>name[]</code> and <code>grade[]</code>
+                                    stored
+                                    relative to each other?</p>
+                            </li>
+                            <li>
+                                <p>How could a value read into <code>name[]</code> affect the value contained in
+                                    <code>grade[]</code>? Test your hypothesis by running <code>./target0</code> on the
+                                    command line with different inputs.
+                                </p>
+                            </li>
+                        </ol>
+                        <p>Be careful about null terminators!</p>
+
+
+                        <h4 id="what-to-submit">What to submit</h4>
+                        <p>Create a Python 3 program named <code>sol0.py</code> that prints a line to be
+                            passed as input to the target. Test your program with the command line:</p>
+                        <div class="highlight">
+                            <pre><code><span class="gp">$ </span>python3 sol0.py <span class="p">|</span> ./target0</code></pre>
+                        </div>
+
+                        <p>Hint: In Python 3, you should work with bytes rather than Unicode
+                            strings. To construct a byte literal, use this syntax: <code>b"\xnn"</code>, where
+                            <code>nn</code> is a 2-digit hex value. To repeat a byte <em>n</em> times, you can do:
+                            <code>b"\xnn" * n</code>. To output a sequence of bytes, use:
+                        </p>
+                        <div class="highlight">
+                            <pre><code>import sys
+sys.stdout.buffer.write(b"\x61\x62\x63")</code></pre>
+                        </div>
+                        <p>Don’t use <code>print()</code>, because it automatically encodes whatever is being
+                            printed with the default encoding of the console. We don’t want our payload
+                            to be encoded, so we use <code>sys.stdout.buffer.write()</code>.</p>
+
+                        <h3 id="target1-overwriting-the-return-address-easy">target1: Overwriting the return address (3
+                            points) <span class="badge bg-success">(Easy)</span></h3>
+                        <p>This program takes input from <code>stdin</code> and prints a message. Your job is
+                            to provide input that makes it output: “<code>Your grade is perfect.</code>” Your
+                            input will need to overwrite the return address so that the function
+                            <code>vulnerable()</code> transfers control to <code>print_good_grade()</code> when it
+                            returns.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>Examine <code>target1.c</code>. Where is the buffer overflow?</p>
+                            </li>
+                            <li>
+                                <p>Examine the function <code>print_good_grade</code>. What is its starting
+                                    address?</p>
+                            </li>
+                            <li>
+                                <p>Using GDB from within the VM, set a breakpoint at the beginning of
+                                    <code>vulnerable</code> and run the program.
+                                </p>
+                                <div class="highlight">
+                                    <pre><code>(gdb) break vulnerable
+(gdb) run</code></pre>
+                                </div>
+                            </li>
+                            <li>
+                                <p>Disassemble <code>vulnerable</code> and draw the stack. Where is <code>input[]</code>
+                                    stored relative to <code>ebp</code>? How long would an input have to be to
+                                    overwrite this value and the return address?</p>
+                            </li>
+                            <li>
+                                <p>Examine the <code>esp</code> and <code>ebp</code> registers:
+                                </p>
+                                <div class="highlight">
+                                    <pre><code>(gdb) info reg</code></pre>
+                                </div>
+                            </li>
+                            <li>
+                                <p>What are the current values of the saved frame pointer and return
+                                    address from the stack frame? You can examine two words of memory at
+                                    <code>ebp</code> using:
+                                </p>
+                                <div class="highlight">
+                                    <pre><code>(gdb) x/2wx $ebp</code></pre>
+                                    Essentially, this command says "e(x)amine the memory at location $ebp. Give me two
+                                    words (4 bytes per word, so 8
+                                    bytes in total) and put the result in hexadecimal.
+                                </div>
+                                <p></p>
+                            </li>
+                            <li>
+                                <p>What should these values be in order to redirect control to the
+                                    desired function?</p>
+                            </li>
+                        </ol>
+                        <h4 id="what-to-submit_1">What to submit</h4>
+                        <p>Create a Python 3 program named <code>sol1.py</code> that prints a line to be
+                            passed as input to the target. Test your program with the command line:
+                        </p>
+                        <div class="highlight">
+                            <pre><code><span class="gp">$ </span>python3 sol1.py <span class="p">|</span> ./target1</code></pre>
+                        </div>
+                        <p></p>
+                        <p>When debugging your program, it may be helpful to view a hex dump of the
+                            output. Try this:
+                        </p>
+                        <div class="highlight">
+                            <pre><code><span class="gp">$ </span>python3 sol1.py <span class="p">|</span> hd</code></pre>
+                        </div>
+                        <p></p>
+                        <p>Remember that x86 uses little endian ordering. Use Python’s <code>to_bytes</code> method to
+                            output 32-bit little-endian values like so:</p>
+                        <div class="highlight">
+                            <pre><code>import sys
+sys.stdout.buffer.write(0xDEADBEEF.to_bytes(4, "little"))</code></pre>
+                        </div>
+                        <h3 id="target2-redirecting-control-to-shellcode-easy">target2: Redirecting control to shellcode
+                            (3 points) <span class="badge bg-success">(Easy)</span></h3>
+                        <p>Targets 2 through 7 are owned by the <code>root</code> user and have the <code>suid</code>
+                            bit set. Your goal is to cause them to launch a shell, which will
+                            therefore have root privileges. This and several of the following targets all take
+                            input as command-line arguments rather than from <code>stdin</code>. Unless
+                            otherwise noted, you should use the shellcode we have provided in
+                            <code>shellcode.py</code>. Successfully placing this shellcode in memory and
+                            setting the instruction pointer to the beginning of the shellcode (e.g.,
+                            by returning or jumping to it) will open a shell.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>Examine <code>target2.c</code>. Where is the buffer overflow?</p>
+                            </li>
+                            <li>
+                                <p>Create a Python 3 program named <code>sol2.py</code> that outputs the provided
+                                    shellcode:
+                                </p>
+                                <div class="highlight">
+                                    <pre><code>from shellcode import shellcode
+import sys
+sys.stdout.buffer.write(shellcode)</code></pre>
+                                </div>
+                                <p></p>
+                            </li>
+                            <li>
+                                <p>Disassemble <code>vulnerable</code>. Where does <code>buf</code> begin relative to
+                                    <code>ebp</code>?
+                                    What is the offset from the start of the shellcode to the saved
+                                    return address?
+                                </p>
+                            </li>
+                            <li>
+                                <p>Set up the target in GDB using the output of your program as its
+                                    argument:
+                                </p>
+                                <div class="highlight">
+                                    <pre><code><span class="gp">$ </span>gdb --args ./target2 <span class="s2">"</span><span class="k">$(</span>python3 sol2.py<span class="k">)</span><span class="s2">"</span></code></pre>
+                                </div>
+                                <p></p>
+                            </li>
+                            <li>
+                                <p>Set a breakpoint in <code>vulnerable</code> and start the target.</p>
+                            </li>
+                            <li>
+                                <p>Identify the address after the call to <code>strcpy</code> and set a breakpoint
+                                    there:
+                                </p>
+                                <div class="highlight">
+                                    <pre><code>(gdb) break *&lt;address&gt;</code></pre>
+                                </div>
+                                <p></p>
+                                <p>Continue the program until it reaches that breakpoint.</p>
+                                <div class="highlight">
+                                    <pre><code>(gdb) cont</code></pre>
+                                </div>
+                            </li>
+                            <li>
+                                <p>Examine the bytes of memory where you think the shellcode is to
+                                    confirm your calculation:</p>
+                                <div class="highlight">
+                                    <pre><code>(gdb) x/32bx 0x&lt;address&gt;</code></pre>
+                                </div>
+                            </li>
+                            <li>
+                                <p>Disassemble the shellcode:
+                                </p>
+                                <div class="highlight">
+                                    <pre><code>(gdb) disas/r 0x&lt;address&gt;,+32</code></pre>
+                                </div>
+                                <p></p>
+                                <p>How does it work?</p>
+                            </li>
+                            <li>
+                                <p>Modify your solution to overwrite the return address and cause it to
+                                    jump to the beginning of the shellcode.</p>
+                            </li>
+                        </ol>
+                        <h4 id="what-to-submit_2">What to submit</h4>
+                        <p>Create a Python 3 program named <code>sol2.py</code> that prints a line to be used
+                            as the command-line argument to the target. Test your program with the
+                            command line:
+                        </p>
+                        <div class="highlight">
+                            <pre><code><span class="gp">$ </span>./target2 <span class="s2">"</span><span class="k">$(</span>python3 sol2.py<span class="k">)</span><span class="s2">"</span></code></pre>
+                        </div>
+                        <p></p>
+                        <p>If you are successful, you will see a root shell prompt (<code>#</code>). Running
+                            <code>whoami</code> will output “<code>root</code>”. Running <code>exit</code> will return
+                            to your normal
+                            shell.
+                        </p>
+                        <p>If your program segfaults, you can examine the state at the time of the
+                            crash using GDB with the core dump: <code>gdb ./target2 core</code>. To enable
+                            creating core dumps, run <code>ulimit -c unlimited</code>. The file <code>core</code> won’t
+                            be
+                            created if a file with the same name already exists. Also, since the
+                            target runs as root, you will need to run it using <code>sudo ./target2</code> in
+                            order for the core dump to be created.</p>
+                        <h3 id="target3-overwriting-the-return-address-indirectly-medium">target3: Overwriting the
+                            return address indirectly (3 points) <span class="badge bg-warning">(Medium)</span></h3>
+                        <p>In this target, the buffer overflow is restricted and cannot directly
+                            overwrite the return address. You’ll need to find another way. Your
+                            input should cause the provided shellcode to execute and open a root
+                            shell.</p>
+                        <h4 id="what-to-submit_3">What to submit</h4>
+                        <p>Create a Python 3 program named <code>sol3.py</code> that prints a line to be used
+                            as the command-line argument to the target. Test your program with the
+                            command line:</p>
+                        <div class="highlight">
+                            <pre><code><span class="gp">$ </span>./target3 <span class="s2">"</span><span class="k">$(</span>python3 sol3.py<span class="k">)</span><span class="s2">"</span></code></pre>
+                        </div>
+                        <h3 id="target4-beyond-strings-medium">target4: Beyond strings (3 points) <span
+                                class="badge bg-warning">(Medium)</span></h3>
+                        <p>This target takes as its command-line argument the name of a data file
+                            it will read. The file format is a 32-bit count followed by that many
+                            32-bit integers (all little endian). Create a data file that causes the
+                            provided shellcode to execute and opens a root shell.</p>
+                        <div class="admonition alert-warning">
+                            <p>Hint: First figure out how an attacker can cause a buffer overflow in
+                                this program. Note that the <code>read_elements</code> function
+                                breaks the for-loop once the end of the file is reached, so the
+                                32-bit count does not need to be truthful.</p>
+                        </div>
+                        <h4 id="what-to-submit_4">What to submit</h4>
+                        <p>Create a Python 3 program named <code>sol4.py</code> that outputs the contents of a
+                            data file to be read by the target. Test your program with the command
+                            line:</p>
+                        <div class="highlight">
+                            <pre><code><span class="gp">$ </span>python3 sol4.py &gt; tmp<span class="p">;</span> ./target4 tmp</code></pre>
+                        </div>
+                        <h3 id="target5-bypassing-dep-medium">target5: Bypassing DEP (3 points) <span
+                                class="badge bg-warning">(Medium)</span></h3>
+                        <p>This program resembles <code>target2</code>, but it has been compiled with data
+                            execution prevention (DEP) enabled. DEP means that the processor will
+                            refuse to execute instructions stored on the stack. You can overflow the
+                            stack and modify values like the return address, but you can’t jump to
+                            any shellcode you inject. You need to find another way to run the
+                            command <code>/bin/sh</code> and open a root shell.</p>
+                        <h4 id="what-to-submit_5">What to submit</h4>
+                        <p>Create a Python 3 program named <code>sol5.py</code> that prints a line to be used
+                            as the command-line argument to the target. Test your program with the
+                            command line:</p>
+                        <div class="highlight">
+                            <pre><code><span class="gp">$ </span>./target5 <span class="s2">"</span><span class="k">$(</span>python3 sol5.py<span class="k">)</span><span class="s2">"</span></code></pre>
+                        </div>
+                        <p>For this target, it’s acceptable if the program segfaults after the root
+                            shell is closed.</p>
+                        <p>Warning: Do not try to create a solution that depends on you manually
+                            setting environment variables. You cannot assume that the autograder
+                            will run your solution with the same environment variables that you have
+                            set.</p>
+                        <h3 id="target6-variable-stack-position-medium">target6: Variable stack position (3 points)
+                            <span class="badge bg-warning">(Medium)</span>
+                        </h3>
+                        <p>When we constructed the previous targets, we ensured that the stack
+                            would be in the same position every time the vulnerable function was
+                            called, but this is often not the case in real targets. In fact, a
+                            defense called ASLR (address-space layout randomization) makes buffer
+                            overflows harder to exploit by changing the starting location of the
+                            stack and other memory areas on each execution. This target resembles
+                            <code>target2</code>, but the stack position is randomly offset by 0–255 bytes each
+                            time it runs. You need to construct an input that <em>always</em> opens a root
+                            shell despite this randomization.
+                        </p>
+                        <h4 id="what-to-submit_6">What to submit</h4>
+                        <p>Create a Python 3 program named <code>sol6.py</code> that prints a line to be used
+                            as the command-line argument to the target. Test your program with the
+                            command line:</p>
+                        <div class="highlight">
+                            <pre><code><span class="gp">$ </span>./target6 <span class="s2">"</span><span class="k">$(</span>python3 sol6.py<span class="k">)</span><span class="s2">"</span></code></pre>
+                        </div>
+                        <p>Warning: If you see any output before the root shell is opened, you have
+                            not done this target correctly and your solution will not be accepted by
+                            the autograder.</p>
+                        <h3 id="target7-return-oriented-programming-hard">target7: Return-oriented programming (4
+                            points) (Extra Credit) <span class="badge bg-dark">(Hard)</span> </h3>
+                        <p>This target is identical to <code>target2</code>, but it is compiled with DEP
+                            enabled. Implement a ROP-based attack to bypass DEP and open a root
+                            shell.</p>
+                        <p>It will be helpful to use a tool such as <a
+                                href="https://github.com/JonathanSalwan/ROPgadget">ROPgadget</a>; this is an exception
+                            to
+                            the “no attack tools” policy. The <code>ROPgadget</code> command is already
+                            installed on the provided VM. View its usage by running <code>ROPgadget -h</code>. The
+                            <code>--binary</code>, <code>--badbytes</code>, <code>--multibr</code>, and
+                            <code>--ropchain</code> flags will be particularly helpful.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>Though there are a number of ways you could implement a ROP exploit,
+                                    for this target you should use the <code>setuid</code> syscall to become root,
+                                    followed by the <code>execve</code> syscall to run the <code>/bin/sh</code> binary.
+                                    This
+                                    is equivalent to:
+                                </p>
+                                <div class="highlight">
+                                    <pre><code>setuid(0);
+execve("/bin/sh", 0, 0);</code></pre>
+                                </div>
+                                <p></p>
+                            </li>
+                            <li>
+                                <p>For an extra push in the right direction, <code>int 0x80</code> is the assembly
+                                    instruction for interrupting execution with a syscall. If the EAX
+                                    register contains the number 23, the syscall will be <code>setuid</code>; if it
+                                    contains 11, the syscall will be <code>execve</code>. You need to figure out
+                                    what values you need for EBX, ECX, and EDX, and set them using ROP
+                                    gadgets!</p>
+                            </li>
+                            <li>
+                                <p>We recommend that you start by getting the <code>execve</code> call to work on
+                                    its own, without <code>setuid</code>. When you do this correctly, it will open
+                                    a shell, but you won’t be root. Then modify your solution to make it
+                                    call <code>setuid</code> first, and you’ll get a root shell.</p>
+                            </li>
+                        </ol>
+                        <h4 id="what-to-submit_7">What to submit</h4>
+                        <p>Create a Python 3 program named <code>sol7.py</code> that prints a line to be used
+                            as the command-line argument to the target. Test your program with the
+                            command line:</p>
+                        <div class="highlight">
+                            <pre><code><span class="gp">$ </span>./target7 <span class="s2">"</span><span class="k">$(</span>python3 sol7.py<span class="k">)</span><span class="s2">"</span></code></pre>
+                        </div>
+                        <p>For this target, it’s acceptable if the program segfaults after the root
+                            shell is closed.</p>
+
+                        <p>Note: Tutors/TAs will not offer help for the extra credit problem.</p>
+
+                        <hr>
+                        <h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+                        <p><strong>Q: I'm getting an "ignored null byte in input" but I didn't put any null bytes in my
+                                input.</strong></p>
+                        <p>A: Targets 2, 3, 5, 6, and 7 require you to pass in a value as a
+                            command-line argument, but arguments in Unix cannot contain null bytes.
+                            (The other targets, which read data from <code>stdin</code> or a file, don't face this
+                            challenge.)</p>
+                        <p>Using target 2 as an example, you can examine the exact bytes of your solution
+                            using this command:</p>
+                        <div class="highlight">
+                            <pre><code>$ python3 sol2.py | hd</code></pre>
+                        </div>
+                        <p>Do you see a null byte? Something in your Python code like this example
+                            may be causing it:</p>
+                        <div class="highlight">
+                            <pre><code><span class="p">(</span><span class="mh">0xFF</span><span class="p">)</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">little</span><span class="p">)</span></code></pre>
+                        </div>
+                        <p>This will format the integer as 4 bytes in little endian. If the value is too small, it
+                            will be padded with zeros, such that the line produces bytes 0xFF, 0x00, 0x00, and
+                            0x00. It is also possible that an address you're trying to use happens to have a null
+                            byte. In that case, try to find an alternative way to accomplish what you're trying to do
+                            by, for example, using
+                            a copy of the data located at a different address, or overwriting a different function's
+                            return address.</p>
+                        <p><strong>Q: I get a root shell when I run</strong>
+                            <code>sudo ./targetX "$(python3 solX.py)"</code>. <strong>Am I done?</strong>
+                        </p>
+                        <p>A: No! You should only run <code>./targetX "$(python3 solX.py)"</code> <em>without</em>
+                            <code>sudo</code>. If you run it under <code>sudo</code>,
+                            then your shells will always be spawned as the <code>root</code> user, whether you have
+                            accomplished
+                            the task of opening a root shell or not.
+                        </p>
+                        <p><strong>Q: My solution works in GDB but not from the command line.</strong></p>
+                        <p>A: The most likely explanation is that you're referencing data from <code>argv[]</code>.
+                            Since <code>argv[]</code>
+                            comes from outside of <code>_main</code>'s stack frame, its position can vary depending
+                            on the size of the environment and arguments, which can be slightly different when
+                            running under <code>gdb</code>. The best solution is to find the data you need in the stack
+                            frame of the vulnerable function, rather than from <code>argv[]</code>.</p>
+
+                        <p><strong>Q: I'm tired of starting gdb over and over with my new input, is there a way to just
+                                run it again with new
+                                args without restarting it?</strong></p>
+                        <p>A: Instead of running gdb every time, you can just run <code>run $(python3 solX.py)</code> in
+                            the same
+                            gdb instance, and it should restart with the output of your updated python script (or use
+                            <code>run</code> or <code>r</code> without arguments, as this will use the last arguments
+                            given).
+                        </p>
+
+                        <p><strong>Q: When I try to rebuild the cookie, I get an error like: </strong>
+                        <pre>
+                <code>
+    Traceback (most recent call last):
+    File "/home/cse127/targets/./build.py", line 120, in module
+    generate(workdir, offsets, rootdir, 0xffff_0000 - cookie)
+    File "/home/cse127/targets/./build.py", line 96, in generate
+    with open(output_file, 'wb') as out:
+    PermissionError: [Errno 13] Permission denied: '/home/cse127/targets/target0'
+                </code>
+            </pre>
+                        </p>
+                        <p>A: Remember to run <code>./build.sh clean</code> before you run <code>./build.sh</code>
+                            again.</p>
+                        <p><strong>Q: I'm sure my cookie is right, and it looks identical to the one in the autograder,
+                                but
+                                the autograder isn't accepting it!</strong></p>
+                        <p>A: The cookie generated by the script doesn't have an end of file newline. Many IDEs
+                            automatically add
+                            this newline, so it's a very subtle issue. Maybe your IDE has added a newline at the end of
+                            your file
+                            without you knowing about it. See <a href="https://stackoverflow.com/a/16114535">here</a> on
+                            how to resolve this using vim.</p>
+                        <p><strong>Q: I have trouble using UTM on M1 Mac or VirtualBox on other platforms. Or I want to run UTM headlessly. </strong></p>
+                        <p>A:
+                            The UTM file can work on other platforms as well but you need to install
+                            <a href="https://www.qemu.org/">qemu</a> and run this command in the same directory where you stored the .utm file: (UTM is just a wrapper around qemu)<br>
+                            <code>
+                                qemu-system-x86_64 \<br>
+                                -cpu qemu64 \<br>
+                                -m 2048 \<br>
+                                -device e1000,netdev=net0,mac=E2:ED:57:F0:5A:E5 \<br>
+                                -netdev user,id=net0,hostfwd=tcp::4127-:22 \<br>
+                                -drive file=./CSE127-PA1.utm/Images/cse127pa1.qcow2<br>
+                            </code>
+                            <br>
+                            To Run it headlessly, add <code>-nographic -device sga</code> to the argument list.
+                        </p>
+                        <hr />
+
+                        <h2 id="submission-details">Submission Details</h2>
+                        <ol>
+                            <li>Submit the following files as a group submission on Gradescope.
+                                <ul>
+                                    <li><code>sol[0-6].py</code></li>
+                                    <li><code>sol7.py</code> (only needed for EC)</li>
+                                    <li><code>cookie</code></li>
+                                </ul>
+                            </li>
+                            <li>The Gradescope autograder will not test your submission when you submit, only check for
+                                the Python solution files and
+                                whether the provided cookie is what we expect. <br />
+                                You will need to make sure you are satisfied with the correctness of your submission
+                                when you submit. <br />
+                                <b>Again, the score on Gradescope is not your score for the assignment and is not
+                                    related to your score. <br />
+                                    8.0/8.0 does not guarantee any points on the assignment, but you do need to pass the
+                                    sanity checks to have any possibility of getting points. <br />
+                                    If you do not pass the Cookie validity test, you won't pass any of the actual
+                                    tests.</b>
+                            </li>
+                        </ol>
+                        <p>Your files can make use of standard Python 3 libraries and the provided
+                            <code>shellcode.py</code>, but they must be otherwise self-contained. Do not modify
+                            or include the targets, build script, <code>helper.c</code>, <code>shellcode.py</code>, etc.
+                            Be
+                            sure to test that your solutions work correctly in an unmodified copy of
+                            the provided VM, without installing or updating any packages or changing
+                            any environment variables.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
