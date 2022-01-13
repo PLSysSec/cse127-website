@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
-<!-- (c) 2021 J. Alex Halderman, some code portions (c) Jensen Hwa -->
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -156,7 +155,7 @@
 
 				<tr>
 					<td>1/11 (Zoom)</td>
-					<td>Buffer overflow attacks and defenses<br>
+					<td>Buffer overflow attacks<br>
 						<br><a href="slides/3-bufferoverflows.pdf">Lecture slides</a>
 					</td>
 					<td>
@@ -169,8 +168,6 @@
 						<a href="https://www.cs.utexas.edu/~shmat/courses/cs380s_fall09/cowan.pdf">Buffer Overflows:
 							Attacks and Defenses for the Vulnerability of the Decade</a> by Crispin Cowan, Perry Wagle,
 						Calton Pu, Steve Beattie, and Jonathan Walpole<br>
-						<a href="https://pax.grsecurity.net/docs/aslr.txt">ASLR</a><br>
-						<a href="https://pax.grsecurity.net/docs/noexec.txt">NOEXEC</a><br>
 					</td>
 					<td>
 						<a href="pa/pa1.html">Assignment 1 available</a>
@@ -184,13 +181,31 @@
 						<a href=discussions/week2.pdf>Week 2 Discussion Slides</a>
 					</td>
 					<td>
-						<!--<a href="pa/pa1.html">Assignment 1 due</a><br>
-           				<a href="pa/pa2.html">Assignment 2 available</a>-->
+						
+           				
 					</td>
 				</tr>
 
-				<tr>
 					<td>1/13 (Zoom)</td>
+					<td>Buffer overflow defenses<br>
+						<br><a href="slides/4-lowlevelmitigations.pdf">Lecture slides</a>
+					</td>
+					<td>
+						<a href="scribenotes/3-bufferoverflowdefenses-notes.pdf">Scribe Notes</a><br>
+						<br>
+						<i>Optional further reading:</i><br>
+						<a href="https://www.cs.utexas.edu/~shmat/courses/cs380s_fall09/cowan.pdf">Buffer Overflows:
+							Attacks and Defenses for the Vulnerability of the Decade</a> by Crispin Cowan, Perry Wagle,
+						Calton Pu, Steve Beattie, and Jonathan Walpole<br>
+						<a href="https://pax.grsecurity.net/docs/aslr.txt">ASLR</a><br>
+						<a href="https://pax.grsecurity.net/docs/noexec.txt">NOEXEC</a><br>
+					</td>
+					<td>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>1/18 (Zoom)</td>
 					<td>Memory safety<br>
 						<!--<br><a href="slides/4-memorysafety.pdf">Lecture slides</a>-->
 					</td>
@@ -212,8 +227,20 @@
 					<td></td>
 				</tr>
 
+
 				<tr>
 					<td>1/18 (Zoom)</td>
+					<td>Discussion</td>
+					<td>
+						<!--<a href=slides/discussion_slides/week_3_discussion.pdf>Discussion 3 Slides</a><br>
+						<a href=slides/discussion_slides/sploit4.pdf>sploit4 Supplemental Slides</a>-->
+					</td>
+					<td></td>
+				</tr>
+
+				
+				<tr>
+					<td>1/20 (Zoom)</td>
 					<td>Sandboxing and isolation<br>
 						<!--<br><a href="slides/5-isolation.pdf">Lecture slides</a>-->
 					</td>
@@ -229,33 +256,32 @@
 							security</a><br>
 						<a href="https://www.apple.com/business/docs/iOS_Security_Guide.pdf">iOS Security Guide</a>
 					</td>
-					<td></td>
-				</tr>
-
-				<tr>
-					<td>1/18 (Zoom)</td>
-					<td>Discussion</td>
 					<td>
-						<!--<a href=slides/discussion_slides/week_3_discussion.pdf>Discussion 3 Slides</a><br>
-						<a href=slides/discussion_slides/sploit4.pdf>sploit4 Supplemental Slides</a>-->
-					</td>
-					<td></td>
-				</tr>
-
-				<tr>
-					<td>1/20 (Zoom)</td>
-					<td>Side channels<br></td>
-					<!--<br><a href="slides/6-sidechannels.pdf">Lecture slides</a>-->
-					<td></td>
-
-					<td>
-						<a href="pa/pa1.html">Assignment 1 due</a><br>
-						<!--<a href="pa/pa3.html">Assignment 3 available</a>-->
+					  <a href="pa/pa1.html">Assignment 1 due</a><br>
 					</td>
 				</tr>
 
 				<tr>
 					<td>1/25 (Zoom)</td>
+					<td>Side channels<br></td>
+					<!--<br><a href="slides/6-sidechannels.pdf">Lecture slides</a>-->
+					<td></td>
+
+					<td>
+						<!--<a href="pa/pa3.html">Assignment 3 available</a>-->
+					</td>
+				</tr>
+
+
+				<tr>
+					<td>1/25 (Zoom)</td>
+					<td>Discussion<br></td>
+					<td></td>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<td>1/27 (Zoom)</td>
 					<td>Web intro<br>
 						<!--<br><a href="slides/8-webmodel.pdf">Lecture slides</a>-->
 						<br>
@@ -274,51 +300,14 @@
 					<td></td>
 				</tr>
 
-				<tr>
-					<td>1/25 (Zoom)</td>
-					<td>Discussion<br></td>
-					<td></td>
-					<td></td>
-				</tr>
 
 				<tr>
-					<td>1/27 (Zoom)</td>
+					<td>2/1 (In person)</td>
 					<td>Web attacks and defenses<br>
 						<!--<br><a href="slides/9-webattacks.pdf">Lecture slides</a>-->
 					</td>
 					<td><a href="https://cseweb.ucsd.edu/~dstefan/cse127-fall20/papers/csrf.pdf">Robust defenses for
 							cross-site request forgery</a> by Adam Barth, Collin Jackson, and John C. Mitchell<br>
-					</td>
-					<td></td>
-				</tr>
-
-				<tr>
-					<td>2/1 <br>(In person)</td>
-					<td>Malware<br>
-						<!--<br><a href="slides/7-malware.pdf">Lecture slides</a>-->
-					</td>
-					<td>
-						<i>Optional further reading:</i><br>
-						<a
-							href="https://citizenlab.ca/2012/10/backdoors-are-forever-hacking-team-and-the-targeting-of-dissent/">Hacking
-							Team and the Targeting of Dissent</a> by Morgan Marquis-Boire<br>
-						<a href="https://zakird.com/papers/usb.pdf">Users Really Do Plug in USB Drives They Find</a> by
-						Tischer et al.<br>
-						<a href="https://www.wired.com/images_blogs/threatlevel/2010/11/w32_stuxnet_dossier.pdf">W32.Stuxnet
-							Dossier</a> by Falliere et al.<br>
-						<a
-							href="https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf">Reflections
-							on Trusting Trust</a> by Ken Thompson<br>
-						<a
-							href="https://www.fireeye.com/blog/threat-research/2020/12/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor.html">Highly
-							Evasive Attacker Leverages SolarWinds Supply Chain to Compromise Multiple Global Victims
-							With SUNBURST Backdoor</a><br>
-						<a href="http://cseweb.ucsd.edu/~savage/papers/WEIS2012.pdf">Measuring the cost of
-							cybercrime</a> by Ross Anderson et al.<br>
-						<a href="http://cseweb.ucsd.edu/~savage/papers/CACMSpam09.pdf">Spamalytics: An empirical
-							analysis of spam marketing conversion</a> by Chris Kanich et al.<br>
-						<a href="http://cseweb.ucsd.edu/~savage/papers/UsenixSec12.pdf">PharmaLeaks: Understanding the
-							business of online pharmaceutical affiliate programs</a> by Damon McCoy et al.
 					</td>
 					<td></td>
 				</tr>
