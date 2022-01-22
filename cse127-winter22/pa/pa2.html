@@ -20,20 +20,25 @@ academic integrity policy.
 
 # Getting Started
 
-Just like previous assignments, for this assignment you will be provided with a
-VirtualBox VM containing all the files you need.  The VM is named `pa4box`, and
-you can download the VM image
-[**here**](https://drive.google.com/file/d/1lMa0afTAMyCUjot_tYlwAKAxiFJP8WCU/view?usp=sharing).
-As in previous assignments, import the `pa4box.vbox` file into VirtualBox via
-the `Machine` &rarr; `Add` menu item; *don't* create a brand-new VirtualBox VM
-or import the `pa4box-data.vmdk` file on its own: If you do this, you won't
-have the correct configuration.
+Just like PA1, for this assignment you will be provided with a
+VirtualBox VM containing all the files you need. You can download the VM image
+[**here**](https://drive.google.com/drive/folders/1YZGD86nx5bzFqQoxQ0pLEZ36MHZMs7jg?usp=sharing).
+As in PA1, download [CSE127-PA2-VBOX.zip](https://drive.google.com/file/d/1j0aEiwCmxBI8Y64pdLnEEDoqUlt_4UfX/view?usp=sharing)
+if VirtualBox is compatible with your machine; download [CSE127-PA2-UTM.zip](https://drive.google.com/file/d/1ndyAsYrKjU2OMBCGBRRHKrlDzLzTrONl/view?usp=sharing)
+if you are using M1 Macs.
+
+Make sure to import the `pa2box.vbox` file into VirtualBox via the `Machine`
+&rarr; `Add` menu item; *don't* create a brand-new VirtualBox VM or import the
+`pa2box-data.vmdk` file on its own: If you do this, you won't have the correct
+configuration.
 
 The VM is configured with two users: `student`, with password `hacktheplanet`;
 and `root`, with password `hackallthethings`. We recommend you use the VM via
 `ssh` and `scp`, just like previous assignments.  Please note that SSH is
 disabled for `root`, so you can only SSH in as the `student` user. You can
 still log in as `root` using `su` or by logging into the VM directly.
+
+SSH is listening on port `2222`.
 
 ## Assignment Files
 
@@ -60,14 +65,11 @@ its corresponding `writeup.txt` file.
 
 ## Submitting Your Solutions
 
-Submit `memhack.c` and `timehack.c` to the corresponding assignments on
-Gradescope, and submit a combined writeup to the writeup assignment on
-Gradescope.
+Submit `memhack.c` and `timehack.c` with their `writeup.txt` to the corresponding
+assignments on Gradescope.
 
-The score that you receive on Gradescope will be your grade for the PA, so
-please make sure that your code is working on Gradescope.
-
-TODO: don't show all scores
+The score that you receive on Gradescope is **NOT** your final grade for the PA,
+so please make sure that you test your code thoroughly.
 
 # Exploit Construction
 
