@@ -25,7 +25,7 @@ VirtualBox VM containing all the files you need. You can download the VM image
 [**here**](https://drive.google.com/drive/folders/1YZGD86nx5bzFqQoxQ0pLEZ36MHZMs7jg?usp=sharing).
 As in PA1, download [CSE127-PA2-VBOX.zip](https://drive.google.com/file/d/1j0aEiwCmxBI8Y64pdLnEEDoqUlt_4UfX/view?usp=sharing)
 if VirtualBox is compatible with your machine; download [CSE127-PA2-UTM.zip](https://drive.google.com/file/d/1ndyAsYrKjU2OMBCGBRRHKrlDzLzTrONl/view?usp=sharing)
-if you are using M1 Macs.
+if you are using an M1 Mac (Intel Macs can use either VM software).
 
 Make sure to import the `pa2box.vbox` file into VirtualBox via the `Machine`
 &rarr; `Add` menu item; *don't* create a brand-new VirtualBox VM or import the
@@ -35,10 +35,17 @@ configuration.
 The VM is configured with two users: `student`, with password `hacktheplanet`;
 and `root`, with password `hackallthethings`. We recommend you use the VM via
 `ssh` and `scp`, just like previous assignments.  Please note that SSH is
-disabled for `root`, so you can only SSH in as the `student` user. You can
-still log in as `root` using `su` or by logging into the VM directly.
+disabled for `root`, so you can only SSH in as the `student` user.
 
-SSH is listening on port `2222`.
+SSH is listening on port `2222`, i.e.
+```
+ssh -p 2222 student@localhost
+```
+
+You can still log in as `root` using `su` or by logging into the VM directly, i.e.
+```
+student@CSE127:~$ su root
+```
 
 You can redownload the starter code [here](https://cseweb.ucsd.edu/classes/wi22/cse127-a/pa/assets/side-channel-starter.zip).
 
@@ -52,7 +59,7 @@ There are two parts to this assignment, each with its own subdirectory,
 same contents across the two subdirectories) with password-checking
 functionality vulnerable to side-channel attacks. You should *not* modify
 `sysapp.c`, only `memhack.c` and `timehack.c`. Each subdirectory contains a
-`Makefile` for building your exploits.
+`Makefile` for building your exploits, i.e. run `make` or `make clean` if desired.
 
 ## Assignment Instructions
 
@@ -60,8 +67,9 @@ You will be writing two exploits, each of which takes advantage of a side
 channel, to obtain the password in `sysapp.c`. In `memhack.c`, you will exploit
 a memory-based side channel, and in `timehack.c` you will exploit a
 timing-based side channel. See Section 2 for specific details. Once both of
-your exploits can determine the password in `sysapp.c` and call the
+your exploits can determine the password stored in `correct_pass` in `sysapp.c` and call the
 `hack_system()` function successfully, the assignment is complete.
+
 Additionally, for each exploit, provide a brief description of how it works in
 its corresponding `writeup.txt` file.
 
@@ -72,6 +80,13 @@ assignments on Gradescope.
 
 The score that you receive on Gradescope is **NOT** your final grade for the PA,
 so please make sure that you test your code thoroughly.
+
+## Grading
+
+We will randomize the contents of the `correct_pass` variable, and we expect your `memhack.c`
+and `timehack.c` to correctly determine the password.
+
+We will grade the writeup portion based on accuracy and correctness.
 
 # Exploit Construction
 
@@ -85,11 +100,12 @@ function in `sysapp.c` and note two things:
 2. The memory it points to is checked against the reference password one character at a time.
 
 Now look in `memhack.c` and note how a buffer is allocated such that the page
-starting at page start is protected (i.e., accessing it will caused a
-segmentation fault, or SEGV) and the previous 32 characters are allocated. Now
-look at the demonstration function `demonstrate_signals()`, which shows how
-referencing any memory in the protected page will produce a fault as well as
-how to catch that fault in your program. You do not need to use this function;
+starting at `page_start` is protected (i.e., accessing it will caused a
+segmentation fault, or SEGV) and the previous 32 characters are allocated.
+
+Now look at the demonstration function `demonstrate_signals()`, which shows how
+referencing any memory in the protected page will produce a fault. Also observe
+how the function catches that fault. You do not need to use this function;
 it is merely there to show you how to use signals to capture whether a memory
 reference touched a page or not.
 
@@ -100,7 +116,7 @@ size (32 characters) where for the first guess you store the password such that
 its first character is one byte before page start and then iterate between
 possible choices for the first character (when you get it right you will get a
 page fault). Repeat this to guess the entire password. Note that all ASCII
-symbols from ASCII 33 (`!`) to ASCII 126 (`∼`) can be used in the password.
+symbols from ASCII symbol 33 (`!`) to ASCII symbol 126 (`∼`) can be used in the password.
 Other hints:
 
 1. You are already given a page protected buffer with enough memory to crack
