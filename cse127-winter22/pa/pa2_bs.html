@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <title>CSE 127 - PA2: Side Channels</title>
+    <style>
+        img {
+            padding: 0;
+            display: block;
+            margin: 20px 0;
+            max-height: 100%;
+            max-width: 600px;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <h1>PA2: Side Channels <span class="text-muted courseyear"><small>Winter 2022</small></span>
+                    </h1>
+
+                    <div class="alert alert-primary" role="alert">
+                        <b> Total Points: 20</b><br>
+                        <b> Due: Thursday, February 1 at 6:00pm</b>
+                    </div>
+
+
+                    <div class="md-content">
+
+                        <p>This is a group project; you can work in a team of size at most two
+                            and submit one project per team. You are not required to work with the
+                            same partner on every project. You and your partner should
+                            collaborate closely on each part.</p>
+
+                        <p>You have two late days that you may use to turn in work past the
+                            deadline over the entire quarter. A late day is a contiguous 24-hour
+                            period. Both you and your partner will be charged for every late day
+                            that you use, and you both must have late days to use them. These late
+                            days are intended to cover your extension needs for usual
+                            circumstances: brief illness, busy with other classes, interviews,
+                            travel, extracurricular conflicts, and so on. You do not need to ask
+                            permission to use a late day.</p>
+
+                        <p>The code and other answers you submit must be entirely your team's own
+                            work. You may discuss the conceptualization of the project and the
+                            meaning of the questions, but you may not look at any part of someone
+                            else’s solution or collaborate with anyone other than your
+                            partner. You may consult published references, provided that you
+                            appropriately cite them (e.g., with program comments).</p>
+
+                        <p>Solutions must be submitted to Gradescope.</p>
+                        <hr>
+
+                        <h2 id="introduction">Introduction</h2>
+                        <p>The goal of this assignment is to gain hands-on experience exploiting side
+                            channels. This assignment will demonstrate how side channels can be just as
+                            dangerous as the control flow vulnerabilities you exploited in PA 1.</p>
+
+                        <p>You will be provided a two skeleton files (<code>memhack.c</code> and
+                            <code>timehack.c</code>) that you will use to exploit side channels present in a
+                            target library (<code>sysapp.c</code>) to obtain a protected key. You may consult
+                            any online references you wish. You must document sources you used in
+                            your solutions, for example with program comments. Failure to do so
+                            will be considered a violation of the academic integrity policy.
+                        </p>
+
+                        <h2 id="read-this-first">Read this First</h2>
+                        <p>This project asks you to develop attacks and test them in a virtual
+                            machine you control. Attempting the same kinds of attacks against
+                            others’ systems without authorization is prohibited by law and
+                            university policies and may result in <em>fines, expulsion, and jail time</em>.
+                            <strong>You must not attack anyone else’s system without
+                                authorization!</strong> You are required to respect the privacy and
+                            property rights of others at all times, <em>or else you will fail the
+                                course.</em>
+                        </p>
+                        <hr>
+
+                        <h2 id="getting-started">Getting Started</h2>
+                        <br>
+
+                        <p>Just like PA1, for this assignment you will be provided with a
+                            VirtualBox VM containing all the files you need. You can download the VM image
+                            <a
+                                href="https://drive.google.com/drive/folders/1YZGD86nx5bzFqQoxQ0pLEZ36MHZMs7jg?usp=sharing">here</a>.
+                            As in PA1, download <a
+                                href="https://drive.google.com/file/d/1j0aEiwCmxBI8Y64pdLnEEDoqUlt_4UfX/view?usp=sharing">CSE127-PA2-VBOX.zip</a>
+                            if VirtualBox is compatible with your machine; download <a
+                                href="https://drive.google.com/file/d/1ndyAsYrKjU2OMBCGBRRHKrlDzLzTrONl/view?usp=sharing">CSE127-PA2-UTM.zip</a>
+                            if you are using an M1 Mac (Intel Macs can use either VM software).
+                        </p>
+
+                        <p>
+
+                            Make sure to import the <code>pa2box.vbox</code> file into VirtualBox via the
+                            <code>Machine</code>
+                            → <code>Add</code> menu item; <em class="asterisk">don't</em> create a brand-new VirtualBox
+                            VM or import the
+                            <code>pa2box-data.vmdk</code> file on its own: If you do this, you won't have the correct
+                            configuration.
+
+                        </p>
+
+                        <p>
+
+                            The VM is configured with two users: <code>student</code>, with password
+                            <code>hacktheplanet</code>;
+                            and <code>root</code>, with password <code>hackallthethings</code>. We recommend you use the
+                            VM via
+                            <code>ssh</code> and <code>scp</code>, just like previous assignments. Please note that SSH
+                            is
+                            disabled for <code>root</code>, so you can only SSH in as the <code>student</code> user.
+
+                        </p>
+
+                        <p>
+
+                            SSH is listening on port <code>2222</code>, i.e.
+                        </p>
+
+                        <pre
+                            class="listing backtick"><code><span class="line"><span class="hljs-selector-tag">ssh</span> <span class="hljs-selector-tag">-p</span> 2222 <span class="hljs-selector-tag">student</span><span class="hljs-keyword">@localhost</span></span></code></pre>
+
+                        <p>
+
+                            You can still log in as <code>root</code> using <code>su</code> or by logging into the VM
+                            directly, i.e.
+                        </p>
+
+                        <pre
+                            class="listing backtick"><code><span class="line">student@CSE127<span class="hljs-symbol">:~</span>$ su root</span></code></pre>
+
+                        <p>
+
+                            You can redownload the starter code <a
+                                href="https://cseweb.ucsd.edu/classes/wi22/cse127-a/pa/assets/side-channel-starter.zip">here</a>.
+
+                        </p>
+
+                        <h3 id="assignment-files">Assignment Files</h3>
+                        <p>
+
+
+                            Starter files are included inside the <code>student</code> user's home directory within the
+                            VM image.
+
+                        </p>
+
+                        <p>
+
+                            There are two parts to this assignment, each with its own subdirectory,
+                            <code>memhack</code> and <code>timehack</code>. Each subdirectory contains exploit starter
+                            code
+                            (<code>memhack.c</code> or <code>timehack.c</code>), which imports a library
+                            (<code>sysapp.c</code>, with the
+                            same contents across the two subdirectories) with password-checking
+                            functionality vulnerable to side-channel attacks. You should <em class="asterisk">not</em>
+                            modify
+                            <code>sysapp.c</code>, only <code>memhack.c</code> and <code>timehack.c</code>. Each
+                            subdirectory contains a
+                            <code>Makefile</code> for building your exploits, i.e. run <code>make</code> or
+                            <code>make clean</code> if desired.
+
+                        </p>
+
+                        <h3 id="assignment-instructions">Assignment Instructions</h3>
+
+                        <p> You will be writing two exploits, each of which takes advantage of a side
+                            channel, to obtain the password in <code>sysapp.c</code>. In <code>memhack.c</code>, you
+                            will exploit
+                            a memory-based side channel, and in <code>timehack.c</code> you will exploit a
+                            timing-based side channel. See Section 2 for specific details. Once both of
+                            your exploits can determine the password stored in <code>correct_pass</code> in
+                            <code>sysapp.c</code> and call the
+                            <code>hack_system()</code> function successfully, the assignment is complete.
+                        </p>
+
+                        <p> Additionally, for each exploit, provide a brief description of how it works in
+                            its corresponding <code>writeup.txt</code> file. </p>
+
+                        <h3 id="submitting-your-solutions">Submitting Your Solutions</h3>
+
+                        <p> Submit <code>memhack.c</code> and <code>timehack.c</code> with their
+                            <code>writeup.txt</code> to the corresponding
+                            assignments on Gradescope.
+                        </p>
+
+                        <p> The score that you receive on Gradescope is <strong class="asterisk">NOT</strong> your final
+                            grade for the PA,
+                            so please make sure that you test your code thoroughly. </p>
+
+                        <h3 id="grading">Grading</h3>
+
+                        <p> We will randomize the contents of the <code>correct_pass</code> variable, and we expect your
+                            <code>memhack.c</code>
+                            and <code>timehack.c</code> to correctly determine the password.
+                        </p>
+
+                        <p> We will grade the writeup portion based on accuracy and correctness. </p>
+
+                        <hr>
+                        <h2 id="exploit-construction">Exploit Construction</h2>
+                        <br>
+                        <h3 id="memory-based-side-channel">Memory-Based Side Channel</h3>
+
+                        <p>
+
+
+                            We recommend you start with the memory-based side channel because it is
+                            deterministic and doesn't have problems with noise. Look at the <code>check_pass()</code>
+                            function in <code>sysapp.c</code> and note two things:
+
+                        </p>
+                        <ol start="1">
+                            <li class="number">The password string is passed by reference
+                            </li>
+                            <li class="number">The memory it points to is checked against the reference password one
+                                character at a time.</li>
+                        </ol>
+                        <p>
+
+                            Now look in <code>memhack.c</code> and note how a buffer is allocated such that the page
+                            starting at <code>page_start</code> is protected (i.e., accessing it will caused a
+                            segmentation fault, or SEGV) and the previous 32 characters are allocated.
+
+                        </p>
+                        <p>
+
+                            Now look at the demonstration function <code>demonstrate_signals()</code>, which shows how
+                            referencing any memory in the protected page will produce a fault. Also observe
+                            how the function catches that fault. You do not need to use this function;
+                            it is merely there to show you how to use signals to capture whether a memory
+                            reference touched a page or not.
+
+                        </p>
+                        <p>
+
+                            Now you will want to create a framework (in <code>memhack.c</code>) to call
+                            <code>check_pass()</code>
+                            with different inputs and catching any resulting faults so you can determine if
+                            part of the password is correct. We suggest a loop over the maximum password
+                            size (32 characters) where for the first guess you store the password such that
+                            its first character is one byte before page start and then iterate between
+                            possible choices for the first character (when you get it right you will get a
+                            page fault). Repeat this to guess the entire password. Note that all ASCII
+                            symbols from ASCII symbol 33 (<code>!</code>) to ASCII symbol 126 (<code>∼</code>) can be
+                            used in the password.
+                            Other hints:
+
+                        </p>
+                        <ol start="1">
+                            <li class="number">You are already given a page protected buffer with enough memory to crack
+                                the password. All you need to do is use it appropriately for each guess you make.
+                            </li>
+                            <li class="number">The <code>demonstrate_signals</code> function handles all the segfaults
+                                for you. You
+                                can re-use almost all of it in your code.</li>
+                        </ol>
+
+                        <h4 id="note-on-sigsetjmp-siglongjmp">Note on <code>sigsetjmp</code>/<code>siglongjmp</code>
+                        </h4>
+
+                        <p>We <strong>highly advise</strong> reading the man pages for
+                            <code>sigsetjmp</code>/<code>siglongjmp</code> so you
+                            understand how they work.
+                        </p>
+
+                        <p>
+
+                            One frequent pitfall students run into is calling <code>sigsetjmp</code> inside of a helper
+                            function, which can cause undefined behavior (especially when running on Gradescope).
+
+                        </p>
+
+                        <p>An excerpt from <code>man sigsetjmp</code>:</p>
+                        <pre>   If the function which called setjmp() returns before longjmp() is called, the behavior is undefined. Some kind of subtle or unsubtle chaos is sure to result.</pre>
+
+                        <h3 id="timing-based-side-channel">Timing-Based Side Channel</h3>
+
+                        <p>
+
+
+                            Unlike the memory-based side channel, the timing-based side channel will deal
+                            with noise. Go back and look at <code>check_pass()</code>. An artificial delay has been
+                            added when each character is checked to make your life easier (it’s possible to
+                            do the assignment without it but it would require a much more careful
+                            methodology). The execution time of <code>check_pass()</code> depends on how many
+                            characters you guess <strong class="asterisk">correctly</strong>.
+
+                        </p>
+
+                        <p>
+
+                            Look in <code>timehack.c</code> and find a macro there for a function called
+                            <code>rdtsc()</code>
+                            which invokes the processors cycle counter (a clock that increments by one for
+                            each processor cycle that passes). In general, treat <code>rdtsc()</code> as a free
+                            running timer that returns a <code>long</code>. Insert a call to <code>rdtsc()</code> before
+                            the call
+                            to <code>check_pass()</code> and afterwards. Print the difference between these values to
+                            see how long (in cycles) the password checking ran. Run the program a few
+                            times. Now change the guess string so the first character is correct. Run again
+                            and see how the time difference changes.
+
+                        </p>
+
+                        <p>
+
+                            Now automate this entire process, in the style of the original approach in
+                            <code>memhack.c</code>. Note that unlike the <code>memhack</code> attack, the
+                            <code>timehack</code> problem will
+                            have to deal with <strong class="asterisk">noise</strong>. Depending on things like what
+                            other programs are
+                            running, the status of the cache, the contents of the branch target buffer,
+                            etc... there can be significant variability in the amount of time each check
+                            takes. This <strong class="asterisk">will</strong> matter in practice. You will want to run
+                            a lot of trials
+                            before you reach your conclusion about each character. Other hints:
+
+                        </p>
+
+                        <ol start="1">
+                            <li class="number">Be careful in using <code>printf</code>’s. These can blow out the
+                                instruction cache
+                                and data caches and perturb your results (i.e. overwhelm the timing effects
+                                you are trying to detect).
+                            </li>
+                            <li class="number">Be careful in averaging across trials. If your process is descheduled in
+                                the
+                                middle of a measurement, the time cost of that individual trial will be so
+                                large that it overwhelms everything else. Instead, the <strong
+                                    class="asterisk">median</strong> is your
+                                friend. However, feel free to experiment if something does not work for you.
+                            </li>
+                            <li class="number">If time is not continuing to increase as you progress through characters,
+                                then you probably made a bad guess earlier. Backtrack.
+                            </li>
+                            <li class="number"><code>rdtsc()</code> will wrap around at some point. You may need to
+                                handle this
+                                outlier if it is causing issues.
+                            </li>
+                            <li class="number">Debugging advice: make a big array to hold your timing measurements and
+                                print them at the end.
+                            </li>
+                            <li class="number">Be sure to test a bunch of different passwords. We will when we grade.
+                            </li>
+                        </ol>
+
+                        <hr>
+                        <h2 id="final-notes">Final Notes</h2>
+                        <p>
+
+
+                            <strong class="asterisk">Do not write a solution that simply checks all passwords
+                                exhaustively.</strong> You
+                            will not get credit for this. The timing side-channel should be exploitable in
+                            linear time (we will stop programs that are running for excessive periods) and
+                            it will basically feel instantaneous for passwords of 8 characters or less
+                            (note we will not test passwords over 12 characters).
+
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
