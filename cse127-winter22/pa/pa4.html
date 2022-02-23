@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- DW6 -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bungle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <title>CSE 127 - PA4: Network Attacks</title>
+  <style>
+    img {
+      padding: 0;
+      display: block;
+      margin: 20px 0;
+      max-height: 100%;
+      max-width: 600px;
+    }
+
+    body {
+      padding-top: 20px;
+      padding-bottom: 50px;
+    }
+
+    .tab {
+      margin-left: 40px;
+    }
+  </style>
+</head>
+
+<body class="d-flex flex-column">
+  <main role="main" class="flex-shrink-0">
+    <div class="container">
+      <div class="row">
+        <div>
+          <h1>PA4: Network Attacks <span class="text-muted courseyear"><small>Winter 2022</small></span>
+          </h1>
+
+          <div class="alert alert-primary" role="alert">
+            <b> Total Points: 20</b><br>
+            <b> Due: Thursday, March 3 at 6:00pm</b>
+          </div>
+
+          <div class="md-content">
+
+            <p>This is a group project; you can work in a team of size at most two and submit one
+              project per team. You are not required to work with the same partner on every project.
+              You and your partner should collaborate closely on each part.</p>
+
+            <p>You have two late days that you may use to turn in work past the
+              deadline over the entire quarter. A late day is a contiguous 24-hour
+              period. Both you and your partner will be charged for every late day
+              that you use, and you both must have late days to use them. These
+              late days are intended to cover your extension needs for usual
+              circumstances: brief illness, busy with other classes, interviews,
+              travel, extracurricular conflicts, and so on. You do not need to ask
+              permission to use a late day.</p>
+
+            <p>The code and other answers you submit must be entirely your team's
+              own work. You may discuss the conceptualization of the project and the
+              meaning of the questions, but you may not look at any part of someone
+              else’s solution or collaborate with anyone other than your
+              partner. You may consult published references, provided that you
+              appropriately cite them (e.g., with program comments).</p>
+
+            <p>Solutions must be submitted to Gradescope.</p>
+            <hr>
+
+            <h2 id="introduction">Introduction</h2>
+            <p>A talented but, unfortunately, clumsy student in Nadia's research group
+              accidentally dropped a flash drive in the campus coffee shop. You, an
+              infamously nefarious hacker known far and wide as the archvillain of the
+              research group, noticed this dropped flash drive, and quickly but
+              surreptitiously pocketed it. As usual, you're trying to do everything in your
+              power to disrupt all of the activities of the research group. Your latest scheme
+              requires you to get control of the account Nadia uses to access campus networks,
+              and you have a sneaking suspicion that this dropped flash drive might be just
+              the foothold you need in order to set your scheme in motion.</p>
+
+            <p>Being a smart but cautious hacker, you connected the flash drive to a secure,
+              isolated machine to inspect its contents. You don't want a repeat of that one
+              time when a similar dropped flash drive actually contained a nasty virus and you
+              ended up having to wipe your machine and reinstall your operating system. But
+              this one seems to have nothing suspicious, no traps or hidden surprises. This
+              drop seems to actually have been an accident. Feeling exhilarated, you quickly
+              email a dump of the flash drive's contents to yourself so you can access it on
+              your primary machine.</p>
+
+            <p>Unfortunately, a quick glance shows that there's not much of interest on this
+              flash drive itself. You were hoping it might have something juicy, like the
+              plans for the research group's next super-potent virus. But all is not lost.
+              You might still be able to use some of the information on this flash drive to
+              breach into the research group's super-secret network. And then who knows what
+              information you might be able to find just by listening in to what's going
+              on...</p>
+
+          </div>
+
+          <hr>
+          <h2>
+            Logistics and Opening Hints
+          </h2>
+
+          <p>You should have already received the "email to yourself" with the dump of the
+            dropped flash drive's contents; the email's subject is "flash drive dump". (If
+            you don't immediately see it, you may need to check your spam folder.) That
+            should be all you need to get started - what interesting things might be here
+            that would prove useful for your hacking activities?</p>
+
+          <p>You'll eventually have to turn in a writeup describing the steps you took to
+            achieve your goals, so you may want to keep a log as you go in order to make
+            that easier.</p>
+
+          <p>Linux commands you may need to know about or look up for this assignment, in alphabetical order, include:
+          <ul>
+            <li>nc</li>
+            <li>nmap</li>
+            <li>ssh</li>
+            <li>tcpdump</li>
+            <li>wget</li>
+          </ul>
+          </p>
+
+          <p>Certain flags of some of these commands may also come in useful, such as
+            -F, -i, -p, and -X, among others. Information can be found on man pages
+            (e.g., man nc) or online.</p>
+        </div>
+
+        <hr />
+        <h2>Final Notes</h2>
+
+        <p>We hope this assignment will be enjoyable and interesting for you. In order
+          to preserve the experience for everyone, please be careful with spoilers on
+          Piazza and in class - part of the fun is finding the relevant information and
+          figuring out how you're supposed to use it. As usual, the TA's will be
+          available in office hours and via private questions on Piazza to provide help
+          and maybe some hints if necessary.</p>
+
+        <p>There are three parts to turn in on Gradescope. A hint for what to turn in
+          for assignment A is in the PA itself. Assignment B is the discovered token,
+          and assignment C is a writeup of the steps you took and what tools/flags you used in
+          the process. Note that if you are working with a partner, you should upload your parts 
+          together in one submission. This means you should primarily use one account for this 
+          entire PA.</p>
+
+        <p>Also, once you breach into the network, you should be able to find a
+          `README.md` file in the victim's home directory with additional directions and
+          hints for the next steps.</p>
+
+        <p><b>Note: this project is self contained. You should not be actually trying to
+            access anything outside of this server. If you have questions, please reach out
+            to the TAs.</b></p>
+
+        <p>Good luck in your hacking!</p>
+
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
