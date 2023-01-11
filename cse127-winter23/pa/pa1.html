@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- DW6 -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bungle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <title>CSE 127 - PA 0: GDB + x86</title>
+  <style>
+    img {
+      padding: 0;
+      display: block;
+      margin: 20px 0;
+      max-height: 100%;
+      max-width: 600px;
+    }
+
+    body {
+      padding-top: 20px;
+      padding-bottom: 50px;
+    }
+
+    .tab {
+      margin-left: 40px;
+    }
+  </style>
+</head>
+
+<body class="d-flex flex-column">
+  <main role="main" class="flex-shrink-0">
+    <div class="container">
+      <div class="row">
+        <div>
+          <h1>PA 1: GDB <span class="text-muted courseyear"><small>Winter 2023</small></span>
+          </h1>
+
+          <div class="alert alert-primary" role="alert">
+            <b> Total Points: 10</b><br>
+            <b> Due: Tuesday, January 20 at 11:59 pm</b>
+          </div>
+
+          <div class="md-content">
+
+            <p>This is a group project; you can work in a team of size at most two and submit one
+              project per team. You are not required to work with the same partner on every project.
+              You and your partner should collaborate closely on each part.</p>
+
+            <p>You have two/three? late days that you may use to turn in work past the
+              deadline over the entire quarter. A late day is a contiguous 24-hour
+              period. Both you and your partner will be charged for every late day
+              that you use, and you both must have late days to use them. These
+              late days are intended to cover your extension needs for usual
+              circumstances: brief illness, busy with other classes, interviews,
+              travel, extracurricular conflicts, and so on. You do not need to ask
+              permission to use a late day.</p>
+
+            <p>The code and other answers you submit must be entirely your team's
+              own work. You may discuss the conceptualization of the project and the
+              meaning of the questions, but you may not look at any part of someone
+              else’s solution or collaborate with anyone other than your
+              partner. You may consult published references, provided that you
+              appropriately cite them (e.g., with program comments).</p>
+
+            <p>Solutions must be submitted to Gradescope.</p>
+            <hr>
+
+            <h2 id="goal">Goal</h2>
+            <p>The goal of this assignment is to become familiar with the setup that will be used for future
+              assignments, such as the use of a virtual machine and the included turn-in script, as well as the
+              basics of working with gdb and writing programs in x86 assembly.</p>
+          </div>
+
+          <hr>
+          <h2>
+            Getting Started
+          </h2>
+
+          <p>To complete this assignment, you are provided with a VirtualBox VM
+            pre-populated with the assignment files.</p>
+
+          <h3>
+            VM Image
+          </h3>
+          <p>
+            In order to match the environment in which your submission will be graded, all work for this
+            assignment must be done on the VirtualBox VM we provide, named <code>pa0box</code>. You can download the VM
+            image <a href="https://drive.google.com/file/d/1RdZO58lNrXmgpg85ZrKD2e3hDEHuo6NX/view?usp=sharing">here</a>.
+          </p>
+          <p>
+            The VM is configured with two users: <code>student</code>, with password <code>hacktheplanet</code>; and <code>root</code>, with
+            password <code>hackallthethings</code>. The VM is configured with SSH on port 2222. Please note that SSH is
+            disabled for <code>root</code>, so you can only SSH in as the <code>student</code> user. You can still log in as <code>root</code>
+            using <code>su</code> or by logging into the VM directly.
+          </p>
+          <p>
+            <code>
+              # To SSH into the VM:<br/>
+
+              ssh -p 2222 student@127.0.0.1<br/><br/>
+
+              # To copy files from your computer to the VM: <br/>
+
+              scp -P 2222 -r /path/to/files/ student@127.0.0.1:/home/student<br/><br/>
+
+              # To copy files from the VM to your computer:<br/>
+
+              scp -P 2222 student@127.0.0.1:/path/to/files/ /destination/path<br/>
+            </code>
+          </p>
+
+        <hr />
+        <h2>Part 1: Using GDB</h2>
+        <p>
+          Alice is a security engineer in a company called Security4All. She felt 
+          that their programs are running a bit weird recently. After doing some
+          research, she suspect that the C compiler they are using might have
+          been backdoored. It is a huge issue because a compromised compiler
+          will potentially defeat all security mechanism they implemented in a
+          higher level language. Now Alice heard that you have experience with
+          gdb in some classes and asks for your help to learn the behavior of a
+          program using gdb.
+        </p>
+
+        <p>
+          Files for this sub-assignment are located in the <code>gdb</code> subdirectory of the <code>student</code> user's home
+          directory in the VM image; that is, <code>/home/student/gdb</code>. SSH into the VM and <code>cd</code> into that
+          directory to begin working on it.
+        </p>
+
+        <p>
+          Inside the <code>gdb</code> directory, you'll find <code>fib.c</code>, a C program demonstrating the Fibonacci sequence;
+          a <code>Makefile</code>; and <code>hw1.txt</code>, in which you'll record your responses to the questions below. The
+          first step is to compile <code>fib</code> by running <code>make</code> on the command line.
+        </p>
+
+        <p>
+          To run the <code>fib</code> executable in GDB, run <code>gdb fib</code>.
+          I recommend the following workflow in GDB:
+        </p>
+
+        <ol>
+          <li>
+            <strong>Starting.</strong> Set breakpoints that you can later use for analysis:
+            <ul>
+              <li><code>b f</code> &mdash; break at function <code>f</code></li>
+              <li><code>b *0x08048489</code> &mdash; break at the instruction at address 0x08048489</li>
+              <li><code>r</code> &mdash; run the executable</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Analyzing.</strong> Examine memory, registers, etc; disassemble code; show stack frames, backtrace, etc; and more:
+            <ul>
+              <li><code>disas f</code> &mdash; disassemble function <code>f</code></li>
+              <li><code>i r</code> &mdash; view registers</li>
+              <li><code>where</code> &mdash; view stack frames</li>
+              <li><code>x <loc></code> &mdash; examine memory</li>
+              <li><code>x $eip</code> &mdash; examine current instruction pointer</li>
+              <li><code>x /10x $esp</code> &mdash; examine 10 words at top of stack</li>
+              <li><code>x /10x buf</code> &mdash; examine 10 words in <code>buf</code></li>
+              <li><code>x /10i $eip</code> &mdash; examine 10 instructions starting at instruction pointer</li>
+              <li><code>x /10i f</code> &mdash; examine 10 instructions starting at <code>f</code></li>
+            </ul>
+          </li>
+          <li>
+            <strong>Continuing.</strong> Continue analysis:
+            <ul>
+              <li><code>c</code> &mdash; continue execution until next breakpoint/watchpoint</li>
+              <li><code>si</code> &mdash; step to the next instruction</li>
+              <li><code>s</code> &mdash; step to the next line of source code</li>
+            </ul>
+          </li>
+        </ol>
+
+        <p>
+          Note that this is only a cursory overview of GDB; much more info is available from online
+          resources.
+        </p>
+
+        <h3>Assignment Instructions</h3>
+        <p>
+        Complete the following exercises and <strong>fill out <a href="assets/hw1.txt"><code>hw1.txt</code></a></strong> with your answers. 
+        <strong>Follow the directions in the template, do not delete the square brackets</strong>
+        </p>
+
+        <ol>
+          <li>What is the value, in hex, of the <code>ecx</code> register when the function f is called for the first time?</li>
+          <li>Which register stores the value of the variable <code>i</code> in the function main (before f is called)?</li>
+          <li>What is the address, in hex, of the function <code>f</code>?</li>
+          <li>What is the name of the 6th instruction of the function <code>f</code>?</li>
+          <li>When <code>f</code> completes after being called from <code>main</code>, to which address in <code>main</code> does control return? Write your answer in hex form.</li>
+        </ol>
+        <h3>Submission</h3>
+        <p>
+          Submit <code>hw1.txt</code> to "PA1: gdb" on Gradescope. Gradescope will check that it has successfully detected your answers, but it will not give you your grade until the due date.
+        </p>
+
+        <hr/>
+    
+        <h2>Help</h2>
+        <h3>Hints</h3>
+        <ul>
+          <li>In a Linux program, stdout is file descriptor number 1 and stderr is number 2.</li>
+          <li>Linux programs start with <code>argc</code> at the top of the stack, accessible at <code>0(%esp)</code> from</li>
+            x86-assembly programs. Below it is <code>argv</code>, the array of pointers to <i>(null-terminated)</i> strings
+            passed into the program as arguments. So <code>argv[0]</code> can be accessed from x86-assembly programs at
+            <code>4(%esp)</code>, <code>argv[1]</code> at <code>8(%esp)</code>, <code>argv[2]</code> at <code>12(%esp)</code>, and so on.
+          <li><code>argv[0]</code> is the name of the program executed, <i>not</i> the first argument, which is <code>argv[1]</code> if</li>
+            supplied (or <code>8(%esp)</code> for our purposes). Then <code>argc</code> (or <code>0(%esp)</code>) will be 1 if the program was
+            not passed any arguments, 2 if it was passed 1 argument, and so on.
+          <li>This <a href="https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md#x86-32_bit">table of Linux system calls</a> may come in handy.</li>
+        </ul>
+        <h3>M1 machines</h3>
+        <p>
+        VirtualBox doesn't work on M1 machines. To use the vm image on M1 machines, you will have to install <a href="https://www.qemu.org/">qemu</a> and run the vm with it.
+        </p>        
+
+        <code>
+        brew install qemu<br/><br/>
+        qemu-system-x86_64 \<br/>
+          -cpu qemu64 \<br/>
+          -m 4096 \<br/>
+          -device e1000,netdev=net0,mac=08:00:27:D3:23:52 \<br/>
+          -netdev user,id=net0,hostfwd=tcp::2222-:22 \<br/>
+          -drive file=/Path/to/pa0box/pa0box-data.vmdk
+        </code>
+        
+        <p>
+        User and ssh settings are the same as using VirtualBox.
+        </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
